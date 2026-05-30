@@ -1,0 +1,32 @@
+name: Otomatis Deploy ke PC Server
+
+on:
+  push:
+    branches:
+      - main # Ubah ke master jika branch utama GitHub Anda bernama master
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Tarik update terbaru dari GitHub
+        run: |
+          cd /home/inxdvi/portofolio
+          git fetch --all
+          git reset --hard origin/main
+          
+      - name: Update Composer Dependencies
+        run: |
+          cd /home/inxdvi/portofolio
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+          
+      - name: Jalankan Migrasi Database (Jika ada)
+        run: |
+          cd /home/inxdvi/portofolio
+          php artisan migrate --force
+          
+      - name: Bersihkan Cache Laravel
+        run: |
+          cd /home/inxdvi/portofolio
+          php artisan optimize:clear
