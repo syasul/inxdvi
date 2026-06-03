@@ -15,6 +15,7 @@
 
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -23,9 +24,9 @@
                     },
                     colors: {
                         tech: {
-                            bg: '#09090b',
-                            card: '#18181b',
-                            border: 'rgba(255, 255, 255, 0.08)',
+                            bg: 'var(--bg-main)',
+                            card: 'var(--bg-card)',
+                            border: 'var(--border-color)',
                             primary: '#4f46e5',
                             primaryHover: '#4338ca'
                         }
@@ -36,31 +37,58 @@
     </script>
     <style>
         :root {
-            --tech-bg: #09090b;
+            --bg-main: #f9fafb; /* gray-50 */
+            --bg-card: #ffffff;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --text-main: #0f172a; /* slate-950 */
+            --text-muted: #475569; /* slate-600 */
+            --accent-primary: #4f46e5;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --gradient-start: #1e1b4b; /* Indigo 950 */
+            --gradient-end: #4f46e5;   /* Indigo 600 */
+        }
+
+        .dark {
+            --bg-main: #030712; /* gray-950 */
+            --bg-card: #0f172a; /* slate-900 */
+            --border-color: rgba(255, 255, 255, 0.06);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(3, 7, 18, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            --gradient-start: #f8fafc;
+            --gradient-end: #818cf8;
         }
 
         body {
-            background-color: var(--tech-bg);
-            color: #ffffff;
+            background-color: var(--bg-main);
+            color: var(--text-main);
             overflow-x: hidden;
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-
 
         /* Custom Spotlight Card */
         .spotlight-card {
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            background: rgba(24, 24, 27, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             backdrop-filter: blur(8px);
+            box-shadow: var(--card-shadow);
         }
 
         .spotlight-card:hover {
             border-color: rgba(79, 70, 229, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(79, 70, 229, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(79, 70, 229, 0.1);
+        }
+
+        .dark .spotlight-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(79, 70, 229, 0.2);
         }
 
         /* Cursor-responsive spotlight glow */
@@ -75,7 +103,7 @@
             pointer-events: none;
             z-index: 2;
             transition: opacity 0.5s ease;
-            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.06), transparent 50%);
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.1), transparent 40%);
         }
 
         .spotlight-card:hover::before {
@@ -85,32 +113,38 @@
         /* Glass Panel Navigation */
         .glass-panel {
             backdrop-filter: blur(16px);
-            background: rgba(9, 9, 11, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .glass-panel.scrolled {
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
-            background: rgba(9, 9, 11, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+            background: var(--glass-bg);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Text Gradient Accent (refined to not look overly flashy) */
+        .dark .glass-panel.scrolled {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Text Gradient Accent */
         .text-gradient {
+            display: inline;
             background-clip: text;
             -webkit-background-clip: text;
+            color: var(--gradient-end); /* Fallback */
             -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+            background-image: linear-gradient(135deg, var(--gradient-start) 20%, var(--gradient-end) 100%);
+            transition: all 0.5s ease;
         }
 
-        /* Scroll-Driven Reveals with scale and blur */
+        /* Scroll-Driven Reveals */
         .reveal {
             opacity: 0;
-            transform: translateY(24px) scale(0.98);
-            filter: blur(4px);
+            transform: translateY(30px) scale(0.97);
+            filter: blur(8px);
             transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
                 filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -187,7 +221,7 @@
 
     <!-- Mouse Follow Ambient Glow -->
     <div id="ambient-glow"
-        class="fixed pointer-events-none w-[600px] h-[600px] rounded-full bg-indigo-500/3 opacity-30 blur-[150px] z-0 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out"
+        class="fixed pointer-events-none w-[600px] h-[600px] rounded-full bg-indigo-500/10 dark:bg-indigo-500/5 opacity-20 dark:opacity-30 blur-[120px] z-0 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out"
         style="left: -1000px; top: -1000px;"></div>
 
     <!-- Glowing Background Accent -->
@@ -202,40 +236,36 @@
             <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 z-50 text-decoration-none">
                 <img src="/images/logo.png" alt="INXDVI Logo"
-                    class="h-8 md:h-9 w-auto object-contain transition-transform duration-300 hover:scale-[1.03]">
+                    class="h-8 md:h-9 w-auto object-contain transition-transform duration-300 hover:scale-[1.03] opacity-100">
             </a>
 
             <!-- Navigation Links -->
-            <div class="hidden md:flex items-center gap-2 bg-white/5 p-1 rounded-full border border-white/5">
+            <div class="hidden md:flex items-center gap-2 bg-black/5 dark:bg-white/5 p-1 rounded-full border border-black/10 dark:border-white/10">
                 <a href="#masalah"
-                    class="px-4 py-2 text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
-                    data-i18n="nav_problem">Masalah</a>
+                    class="px-4 py-2 text-xs font-bold text-zinc-900 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white dark:hover:bg-white/10 rounded-full transition-all shadow-sm dark:shadow-none">Masalah</a>
                 <a href="#layanan"
-                    class="px-4 py-2 text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
-                    data-i18n="nav_solution">Solusi</a>
+                    class="px-4 py-2 text-xs font-bold text-zinc-900 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white dark:hover:bg-white/10 rounded-full transition-all shadow-sm dark:shadow-none">Solusi</a>
                 <a href="#hemat"
-                    class="px-4 py-2 text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
-                    data-i18n="nav_benefit">Penghematan</a>
+                    class="px-4 py-2 text-xs font-bold text-zinc-900 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white dark:hover:bg-white/10 rounded-full transition-all shadow-sm dark:shadow-none">Penghematan</a>
                 <a href="#portfolio"
-                    class="px-4 py-2 text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
-                    data-i18n="nav_portfolio">Portfolio</a>
+                    class="px-4 py-2 text-xs font-bold text-zinc-900 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white dark:hover:bg-white/10 rounded-full transition-all shadow-sm dark:shadow-none">Portfolio</a>
             </div>
 
             <!-- Custom Controls & Call to Action -->
             <div class="flex items-center gap-3 z-50">
-                <button id="lang-toggle"
-                    class="h-9 px-3 rounded-full bg-white/5 border border-white/10 flex items-center gap-2 hover:bg-white/10 transition-all cursor-pointer">
-                    <span id="lang-flag" class="text-sm">🇮🇩</span>
-                    <span id="lang-text" class="text-xs font-bold font-mono text-white">ID</span>
+                <button id="theme-toggle"
+                    class="h-9 w-9 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-black/10 dark:hover:bg-white/10 transition-all cursor-pointer text-zinc-600 dark:text-white">
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden"></i>
                 </button>
 
                 <a href="https://wa.me/628123456789"
-                    class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-white text-black text-xs font-bold rounded-lg hover:bg-gray-100 transition-all hover:scale-[1.02] shadow-lg">
-                    <span data-i18n="btn_contact">Konsultasi Gratis</span>
+                    class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-bold rounded-lg hover:bg-zinc-800 dark:hover:bg-gray-100 transition-all hover:scale-[1.02] shadow-lg">
+                    <span>Konsultasi Gratis</span>
                 </a>
 
                 <button id="mobile-menu-btn"
-                    class="md:hidden w-9 h-9 flex items-center justify-center text-white text-lg focus:outline-none hover:text-indigo-400 transition bg-white/5 rounded-lg border border-white/10">
+                    class="md:hidden w-9 h-9 flex items-center justify-center text-zinc-800 dark:text-white text-lg focus:outline-none hover:text-indigo-400 transition bg-black/5 dark:bg-white/5 rounded-lg border border-black/10 dark:border-white/10">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -243,20 +273,16 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="hidden md:hidden absolute top-full left-0 w-full bg-zinc-950/98 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all z-40">
+            class="hidden md:hidden absolute top-full left-0 w-full bg-white/98 dark:bg-zinc-950/98 backdrop-blur-xl border-b border-black/10 dark:border-white/10 shadow-2xl transition-all z-40">
             <div class="p-4 flex flex-col gap-2">
                 <a href="#masalah"
-                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-white/10 text-white font-medium transition-colors"
-                    data-i18n="nav_problem">Masalah Anda</a>
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-zinc-800 dark:text-white font-medium transition-colors">Masalah Anda</a>
                 <a href="#layanan"
-                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-white/10 text-white font-medium transition-colors"
-                    data-i18n="nav_solution">Solusi</a>
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-zinc-800 dark:text-white font-medium transition-colors">Solusi</a>
                 <a href="#hemat"
-                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-white/10 text-white font-medium transition-colors"
-                    data-i18n="nav_benefit">Penghematan</a>
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-zinc-800 dark:text-white font-medium transition-colors">Penghematan</a>
                 <a href="https://wa.me/628123456789"
-                    class="block w-full py-3 bg-indigo-600 text-white font-bold rounded-lg text-center hover:bg-indigo-500 transition-colors shadow-lg"
-                    data-i18n="btn_contact_wa">Chat WhatsApp</a>
+                    class="block w-full py-3 bg-indigo-600 text-white font-bold rounded-lg text-center hover:bg-indigo-500 transition-colors shadow-lg">Chat WhatsApp</a>
             </div>
         </div>
     </nav>
@@ -268,22 +294,20 @@
             <!-- Left Info Block -->
             <div class="text-left reveal">
                 <div
-                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-[10px] md:text-xs font-mono mb-6 backdrop-blur-sm">
+                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 text-[10px] md:text-xs font-mono mb-6 backdrop-blur-sm">
                     <span class="relative flex h-2 w-2">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
                     </span>
-                    <span data-i18n="hero_badge">BISNIS JADI AUTOPILOT</span>
+                    <span>BISNIS JADI AUTOPILOT</span>
                 </div>
 
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight text-white"
-                    data-i18n="hero_title">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight text-zinc-900 dark:text-white">
                     Bisnis Jalan Otomatis <br> <span class="text-gradient">Omzet Naik Drastis</span>
                 </h1>
 
-                <p class="text-base md:text-lg text-zinc-400 max-w-xl mb-10 font-light leading-relaxed"
-                    data-i18n="hero_desc">
+                <p class="text-base md:text-lg text-zinc-800 dark:text-zinc-400 max-w-xl mb-10 font-medium dark:font-light leading-relaxed">
                     Stop jadi "budak" di bisnis sendiri. Kami buatkan sistem kasir, stok, dan laporan otomatis. Anda
                     tinggal pantau lewat HP. Gaptek? Tenang, kami ajari.
                 </p>
@@ -291,53 +315,74 @@
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="https://wa.me/628123456789"
                         class="shimmer-btn px-8 py-4 bg-indigo-600 hover:bg-indigo-700 rounded-xl w-full sm:w-auto text-center cursor-pointer text-white font-bold tracking-wide transition-all shadow-lg hover:scale-[1.01] hover:shadow-indigo-500/20">
-                        <span data-i18n="btn_start">Konsultasi via WA</span> <i
+                        <span>Konsultasi via WA</span> <i
                             class="fa-brands fa-whatsapp text-lg ml-2"></i>
                     </a>
 
                     <a href="#portfolio"
-                        class="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 text-gray-300 hover:text-white transition-all font-mono text-xs flex items-center justify-center gap-3 w-full sm:w-auto">
-                        <span data-i18n="btn_portfolio">LIHAT HASIL KERJA</span>
+                        class="px-8 py-4 rounded-xl border border-zinc-300 dark:border-white/10 hover:bg-white dark:hover:bg-white/5 text-zinc-900 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-white transition-all font-bold text-xs flex items-center justify-center gap-3 w-full sm:w-auto shadow-sm">
+                        <span>LIHAT HASIL KERJA</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Right Visual Panel (Dynamic 3D Mockup) -->
+            <!-- Right Visual Panel (Polished 3D Dashboard Mockup) -->
             <div class="relative perspective-[2000px] hidden md:block reveal reveal-delay-200">
                 <div
-                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[65%] bg-indigo-600/5 blur-[120px] rounded-full pointer-events-none">
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] bg-indigo-600/5 dark:bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none">
                 </div>
+                
                 <div id="hero-mockup"
-                    class="relative bg-zinc-950 border border-white/10 rounded-2xl p-2 shadow-2xl transition-all duration-300 ease-out group cursor-pointer"
+                    class="relative bg-white dark:bg-zinc-900 border border-black/5 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl transition-all duration-500 ease-out preserve-3d"
                     style="transform: rotateY(-8deg) rotateX(4deg);">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none rounded-2xl">
-                    </div>
-                    <div
-                        class="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-zinc-900 rounded-t-xl">
-                        <div class="flex gap-1.5">
-                            <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                    
+                    <!-- App Interface Simulation -->
+                    <div class="flex items-center justify-between mb-10">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-400 shadow-sm"></div>
+                            <div class="w-3 h-3 rounded-full bg-amber-400 shadow-sm"></div>
+                            <div class="w-3 h-3 rounded-full bg-emerald-400 shadow-sm"></div>
                         </div>
-                        <div class="text-[10px] text-gray-500 font-mono">Laporan_Omzet.tsx</div>
-                        <div class="w-10"></div>
+                        <div class="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 tracking-wider">INXDVI_SaaS_v2.4</div>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
-                        alt="Dashboard"
-                        class="w-full h-auto rounded-b-xl opacity-90 transition-all group-hover:scale-[1.01]">
 
-                    <div
-                        class="absolute -left-6 bottom-10 bg-zinc-900/90 backdrop-blur-md border border-emerald-500/20 p-4 rounded-xl shadow-2xl transition-all group-hover:scale-105 duration-300">
+                    <!-- Dashboard Stats Grid -->
+                    <div class="grid grid-cols-2 gap-5">
+                        <div class="col-span-2 bg-indigo-500/5 rounded-2xl p-6 border border-indigo-500/10 relative overflow-hidden group">
+                            <div class="absolute inset-x-0 bottom-0 h-1 bg-indigo-500/20 w-0 group-hover:w-full transition-all duration-700"></div>
+                            <span class="text-zinc-500 dark:text-zinc-400 text-[10px] font-mono mb-1 block uppercase">Monthly Net Profit</span>
+                            <div class="text-4xl font-extrabold text-zinc-900 dark:text-white">Rp <span class="counter-number" data-target="420">0</span>M+</div>
+                            <div class="mt-4 flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-bold bg-emerald-500/10 w-fit px-2 py-0.5 rounded">
+                                <i class="fa-solid fa-arrow-up"></i> <span>+32.4%</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-zinc-950/50 rounded-2xl p-5 border border-black/5 dark:border-white/5 shadow-sm transform hover:scale-[1.02] transition-transform">
+                            <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-3">
+                                <i class="fa-solid fa-users text-sm"></i>
+                            </div>
+                            <div class="text-2xl font-bold text-zinc-900 dark:text-white"><span class="counter-number" data-target="1520">0</span>+</div>
+                            <div class="text-[10px] text-zinc-500 dark:text-zinc-400 font-medium">New Customers</div>
+                        </div>
+
+                        <div class="bg-white dark:bg-zinc-950/50 rounded-2xl p-5 border border-black/5 dark:border-white/5 shadow-sm transform hover:scale-[1.02] transition-transform">
+                            <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-3">
+                                <i class="fa-solid fa-bolt text-sm"></i>
+                            </div>
+                            <div class="text-2xl font-bold text-zinc-900 dark:text-white"><span class="counter-number" data-target="98">0</span>%</div>
+                            <div class="text-[10px] text-zinc-500 dark:text-zinc-400 font-medium">Automation Score</div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Floating Widget -->
+                    <div class="absolute -right-8 -bottom-4 bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/20 p-4 rounded-2xl shadow-2xl transform rotate-6 hover:rotate-0 transition-all duration-300 backdrop-blur-md">
                         <div class="flex items-center gap-3">
-                            <div
-                                class="w-9 h-9 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                                <i class="fa-solid fa-arrow-trend-up"></i>
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                                <i class="fa-solid fa-check-double scale-110"></i>
                             </div>
                             <div>
-                                <div class="text-[9px] text-gray-400 uppercase font-mono tracking-wider">Profit Bulan
-                                    Ini</div>
-                                <div class="text-sm font-bold text-white">+250% Naik</div>
+                                <div class="text-[9px] text-zinc-400 dark:text-zinc-500 uppercase font-mono">System Status</div>
+                                <div class="text-xs font-bold text-zinc-900 dark:text-white">All Run Automatically</div>
                             </div>
                         </div>
                     </div>
@@ -348,47 +393,46 @@
     </section>
 
     <!-- Pain Points (Masalah) -->
-    <section id="masalah" class="py-20 relative z-10 bg-white/5 border-y border-white/5">
+    <section id="masalah" class="py-20 relative z-10 bg-black/5 dark:bg-white/5 border-y border-black/5 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <span class="text-red-400 font-mono text-xs tracking-widest uppercase mb-3 block"
-                    data-i18n="sec_prob_sub">/// KELUHAN UMUM</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6" data-i18n="sec_prob_title">Apakah Bisnis
-                    Anda <br> Mengalami <span class="text-red-400">Masalah Ini?</span></h2>
+                <span class="text-red-500 dark:text-red-400 font-mono text-xs tracking-widest uppercase mb-3 block">/// KELUHAN UMUM</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-zinc-900 dark:text-white mb-6">Apakah Bisnis
+                    Anda <br> Mengalami <span class="text-red-500 dark:text-red-400">Masalah Ini?</span></h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 <div
-                    class="p-8 rounded-2xl bg-zinc-950/40 border border-red-500/10 hover:border-red-500/30 transition-all duration-300 reveal reveal-delay-100">
+                    class="p-8 rounded-2xl bg-zinc-100 dark:bg-zinc-950/40 border border-red-500/10 hover:border-red-500/30 transition-all duration-300 reveal reveal-delay-100">
                     <div
-                        class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-400 text-xl mb-6">
+                        class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-500 dark:text-red-400 text-xl mb-6">
                         <i class="fa-solid fa-money-bill-wave"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-i18n="prob_1_title">Uang & Stok Selisih</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="prob_1_desc">Tiap tutup toko uang di
+                    <h3 class="text-lg font-bold text-zinc-900 dark:text-white mb-3">Uang & Stok Selisih</h3>
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Tiap tutup toko uang di
                         laci kurang? Stok barang hilang misterius? Awas kebocoran atau karyawan tidak jujur.</p>
                 </div>
 
                 <div
-                    class="p-8 rounded-2xl bg-zinc-950/40 border border-red-500/10 hover:border-red-500/30 transition-all duration-300 reveal reveal-delay-200">
+                    class="p-8 rounded-2xl bg-zinc-100 dark:bg-zinc-950/40 border border-red-500/10 hover:border-red-500/30 transition-all duration-300 reveal reveal-delay-200">
                     <div
-                        class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-400 text-xl mb-6">
+                        class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-500 dark:text-red-400 text-xl mb-6">
                         <i class="fa-solid fa-calculator"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-i18n="prob_2_title">Pusing Rekap Manual</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="prob_2_desc">Akhir bulan lembur ngitung
+                    <h3 class="text-lg font-bold text-zinc-900 dark:text-white mb-3">Pusing Rekap Manual</h3>
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Akhir bulan lembur ngitung
                         nota tulis tangan. Salah hitung sedikit, rugi jutaan rupiah.</p>
                 </div>
 
                 <div
-                    class="p-8 rounded-2xl bg-zinc-950/40 border border-red-500/10 hover:border-red-500/30 transition-all duration-300 reveal reveal-delay-300">
+                    class="p-8 rounded-2xl bg-zinc-100 dark:bg-zinc-950/40 border border-red-500/10 hover:border-red-500/30 transition-all duration-300 reveal reveal-delay-300">
                     <div
-                        class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-400 text-xl mb-6">
+                        class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-500 dark:text-red-400 text-xl mb-6">
                         <i class="fa-solid fa-store-slash"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-i18n="prob_3_title">Kalah Sama Tetangga</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="prob_3_desc">Toko sebelah sudah bisa
+                    <h3 class="text-lg font-bold text-zinc-900 dark:text-white mb-3">Kalah Sama Tetangga</h3>
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Toko sebelah sudah bisa
                         pesan online dan ada di Google Maps, toko Anda masih nunggu bola.</p>
                 </div>
 
@@ -400,12 +444,10 @@
     <section id="layanan" class="py-24 relative z-10 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16 text-center reveal">
-                <span class="text-indigo-400 font-mono text-xs tracking-widest uppercase mb-3 block"
-                    data-i18n="sec_service_sub">/// SOLUSI KAMI</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6" data-i18n="sec_service_title">Solusi
+                <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs tracking-widest uppercase mb-3 block">/// SOLUSI KAMI</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-zinc-900 dark:text-white mb-6">Solusi
                     Praktis <span class="text-gradient">Tanpa Ribet</span></h2>
-                <p class="text-zinc-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed"
-                    data-i18n="sec_service_desc">Kami sediakan "alat digital" biar Anda bisa tidur nyenyak sementara
+                <p class="text-zinc-800 dark:text-zinc-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed">Kami sediakan "alat digital" biar Anda bisa tidur nyenyak sementara
                     sistem bekerja.</p>
             </div>
 
@@ -413,67 +455,67 @@
 
                 <div class="spotlight-card rounded-2xl p-8 group cursor-pointer reveal reveal-delay-100">
                     <div
-                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
+                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
                         <i class="fa-solid fa-mobile-screen"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="srv_mobile_title">Aplikasi Kasir
+                    <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white mb-3">Aplikasi Kasir
                         & Stok</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="srv_mobile_desc">Pantau penjualan dan
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Pantau penjualan dan
                         stok barang langsung dari HP (Real-time).</p>
                 </div>
 
                 <div class="spotlight-card rounded-2xl p-8 group cursor-pointer reveal reveal-delay-200">
                     <div
-                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
+                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
                         <i class="fa-solid fa-globe"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="srv_web_title">Website Pencari
+                    <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white mb-3">Website Pencari
                         Pelanggan</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="srv_web_desc">Bikin toko/jasa Anda
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Bikin toko/jasa Anda
                         muncul paling atas di Google (SEO) saat orang mencari.</p>
                 </div>
 
                 <div class="spotlight-card rounded-2xl p-8 group cursor-pointer reveal reveal-delay-300">
                     <div
-                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
+                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
                         <i class="fa-solid fa-pen-nib"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="srv_vector_title">Desain Logo &
+                    <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white mb-3">Desain Logo &
                         Branding</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="srv_vector_desc">Bikin brand terlihat
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Bikin brand terlihat
                         mahal. Desain logo, banner, dan menu yang menggugah selera.</p>
                 </div>
 
                 <div class="spotlight-card rounded-2xl p-8 group cursor-pointer reveal reveal-delay-100">
                     <div
-                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
+                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
                         <i class="fa-brands fa-instagram"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="srv_sosmed_spec_title">Jasa
+                    <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white mb-3">Jasa
                         Kelola Sosmed</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="srv_sosmed_spec_desc">Kami urus IG &
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Kami urus IG &
                         TikTok Anda. Mulai dari ide konten, edit video, sampai posting rutin.</p>
                 </div>
 
                 <div class="spotlight-card rounded-2xl p-8 group cursor-pointer reveal reveal-delay-200">
                     <div
-                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
+                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="srv_sec_title">Keamanan Data
+                    <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white mb-3">Keamanan Data
                     </h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="srv_sec_desc">Data keuangan Anda aman,
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Data keuangan Anda aman,
                         tidak akan bocor ke kompetitor.</p>
                 </div>
 
                 <div class="spotlight-card rounded-2xl p-8 group cursor-pointer reveal reveal-delay-300">
                     <div
-                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
+                        class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-lg mb-6 border border-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
                         <i class="fa-solid fa-headset"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="srv_sosmed_title">Bot Balas Chat
+                    <h3 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white mb-3">Bot Balas Chat
                     </h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="srv_sosmed_desc">Sistem yang menjawab
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm leading-relaxed">Sistem yang menjawab
                         pertanyaan pelanggan 24 jam nonstop.</p>
                 </div>
 
@@ -482,96 +524,89 @@
     </section>
 
     <!-- ROI (Hemat) -->
-    <section id="hemat" class="py-24 relative z-10 bg-zinc-950/60 border-y border-white/5">
+    <section id="hemat" class="py-24 relative z-10 bg-black/5 dark:bg-zinc-950/60 border-y border-black/5 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                 <div class="reveal">
-                    <span class="text-indigo-400 font-mono text-xs uppercase mb-3 block" data-i18n="sec_roi_sub">///
+                    <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs uppercase mb-3 block">///
                         HITUNG-HITUNGAN CUAN</span>
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6" data-i18n="sec_roi_title">Lebih
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-zinc-900 dark:text-white mb-6">Lebih
                         Murah Dari <br> <span class="text-gradient">Gaji Karyawan</span></h2>
-                    <p class="text-zinc-400 text-base md:text-lg mb-8 leading-relaxed" data-i18n="sec_roi_desc">
+                    <p class="text-zinc-800 dark:text-zinc-400 text-base md:text-lg mb-8 leading-relaxed">
                         Daripada tambah 2 admin baru, lebih baik investasi sistem. Tidak perlu bayar THR, tidak ada
                         drama izin sakit, dan kerja 24 jam.
                     </p>
 
                     <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3 text-zinc-300 font-medium">
-                            <i class="fa-solid fa-check text-indigo-400"></i> <span data-i18n="roi_1">Sistem bekerja 24
+                        <li class="flex items-center gap-3 text-zinc-700 dark:text-zinc-300 font-medium">
+                            <i class="fa-solid fa-check text-indigo-500 dark:text-indigo-400"></i> <span>Sistem bekerja 24
                                 jam nonstop</span>
                         </li>
-                        <li class="flex items-center gap-3 text-zinc-300 font-medium">
-                            <i class="fa-solid fa-check text-indigo-400"></i> <span data-i18n="roi_2">Akurasi data 100%
+                        <li class="flex items-center gap-3 text-zinc-700 dark:text-zinc-300 font-medium">
+                            <i class="fa-solid fa-check text-indigo-500 dark:text-indigo-400"></i> <span>Akurasi data 100%
                                 (Anti Salah Hitung)</span>
                         </li>
-                        <li class="flex items-center gap-3 text-zinc-300 font-medium">
-                            <i class="fa-solid fa-check text-indigo-400"></i> <span data-i18n="roi_3">Investasi sekali,
+                        <li class="flex items-center gap-3 text-zinc-700 dark:text-zinc-300 font-medium">
+                            <i class="fa-solid fa-check text-indigo-500 dark:text-indigo-400"></i> <span>Investasi sekali,
                                 untung selamanya</span>
                         </li>
                     </ul>
 
                     <!-- Interactive ROI Sliders -->
-                    <div class="bg-zinc-900/50 border border-white/5 rounded-2xl p-6 space-y-6">
+                    <div class="bg-zinc-100 dark:bg-zinc-900/50 border border-black/5 dark:border-white/5 rounded-2xl p-6 space-y-6">
                         <h4
-                            class="text-white font-bold text-sm uppercase tracking-wider font-mono text-indigo-400 flex items-center gap-2">
-                            <i class="fa-solid fa-calculator"></i> <span data-i18n="calc_title">Kalkulator ROI
+                            class="text-zinc-900 dark:text-white font-bold text-sm uppercase tracking-wider font-mono text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
+                            <i class="fa-solid fa-calculator"></i> <span>Kalkulator ROI
                                 Interaktif</span>
                         </h4>
 
                         <div class="space-y-2">
-                            <div class="flex justify-between text-xs font-semibold text-zinc-300">
-                                <span data-i18n="calc_staff_label">Jumlah Karyawan Admin</span>
-                                <span class="font-bold text-white font-mono"><span id="calc-staff-val">2</span> <span
-                                        data-i18n="calc_staff_unit">Orang</span></span>
+                            <div class="flex justify-between text-xs font-semibold text-zinc-600 dark:text-zinc-300">
+                                <span>Jumlah Karyawan Admin</span>
+                                <span class="font-bold text-zinc-900 dark:text-white font-mono"><span id="calc-staff-val">2</span> <span>Orang</span></span>
                             </div>
                             <input type="range" id="calc-staff" min="1" max="10" value="2"
-                                class="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                                class="w-full h-1.5 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
                         </div>
 
                         <div class="space-y-2">
-                            <div class="flex justify-between text-xs font-semibold text-zinc-300">
-                                <span data-i18n="calc_salary_label">Gaji Per Karyawan (Bulanan)</span>
-                                <span class="font-bold text-white font-mono">Rp <span id="calc-salary-val">4</span>
-                                    <span data-i18n="roi_unit">Juta</span></span>
+                            <div class="flex justify-between text-xs font-semibold text-zinc-600 dark:text-zinc-300">
+                                <span>Gaji Per Karyawan (Bulanan)</span>
+                                <span class="font-bold text-zinc-900 dark:text-white font-mono">Rp <span id="calc-salary-val">4</span>
+                                    <span>Juta</span></span>
                             </div>
                             <input type="range" id="calc-salary" min="2" max="10" value="4"
-                                class="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                                class="w-full h-1.5 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
                         </div>
                     </div>
                 </div>
 
                 <!-- ROI Cards with Reactive Counter values -->
                 <div class="relative reveal reveal-delay-200">
-                    <div class="bg-zinc-900 border border-white/10 rounded-2xl p-8 relative overflow-hidden">
+                    <div class="bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-2xl p-8 relative overflow-hidden shadow-xl">
                         <div class="grid grid-cols-2 gap-6 text-center relative z-10">
 
                             <div class="p-6 bg-red-500/5 rounded-xl border border-red-500/10">
-                                <div class="text-xs text-red-400 mb-2 font-mono uppercase tracking-wider"
-                                    data-i18n="card_manual">Cara Manual</div>
-                                <div class="text-xl md:text-2xl font-extrabold text-white mb-2">Rp <span
-                                        id="calc-manual-total" class="font-mono">96</span> <span
-                                        data-i18n="roi_unit">Juta</span></div>
-                                <div class="text-[10px] md:text-xs text-zinc-400 leading-normal"
-                                    data-i18n="card_desc_manual">Gaji Admin UMR setahun</div>
+                                <div class="text-xs text-red-500 dark:text-red-400 mb-2 font-mono uppercase tracking-wider">Cara Manual</div>
+                                <div class="text-xl md:text-2xl font-extrabold text-zinc-900 dark:text-white mb-2">Rp <span
+                                        id="calc-manual-total" class="font-mono">96</span> <span>Juta</span></div>
+                                <div class="text-[10px] md:text-xs text-zinc-500 dark:text-zinc-400 leading-normal">Gaji Admin UMR setahun</div>
                             </div>
 
                             <div
-                                class="p-6 bg-indigo-500/5 rounded-xl border border-indigo-500/20 scale-105 shadow-2xl bg-zinc-950">
-                                <div class="text-xs text-indigo-400 mb-2 font-mono uppercase tracking-wider"
-                                    data-i18n="card_tech">Pakai Sistem</div>
-                                <div class="text-xl md:text-2xl font-extrabold text-white mb-2">Rp <span
-                                        id="calc-system-total" class="font-mono">5</span> <span
-                                        data-i18n="roi_unit">Juta</span></div>
-                                <div class="text-[10px] md:text-xs text-zinc-400 leading-normal"
-                                    data-i18n="card_desc_tech">Investasi Awal (Sekali Bayar)</div>
+                                class="p-6 bg-indigo-500/5 rounded-xl border border-indigo-500/20 scale-105 shadow-2xl bg-white dark:bg-zinc-950">
+                                <div class="text-xs text-indigo-600 dark:text-indigo-400 mb-2 font-mono uppercase tracking-wider">Pakai Sistem</div>
+                                <div class="text-xl md:text-2xl font-extrabold text-zinc-900 dark:text-white mb-2">Rp <span
+                                        id="calc-system-total" class="font-mono">5</span> <span>Juta</span></div>
+                                <div class="text-[10px] md:text-xs text-zinc-500 dark:text-zinc-400 leading-normal">Investasi Awal (Sekali Bayar)</div>
                             </div>
 
                         </div>
-                        <div class="mt-8 text-center border-t border-white/10 pt-6">
-                            <p class="text-zinc-400 text-sm mb-2" data-i18n="roi_summary">Anda Menghemat Uang:</p>
-                            <p class="text-3xl font-black text-indigo-400">Rp <span id="calc-saved-total"
-                                    class="font-mono">91</span> <span data-i18n="roi_unit">Juta</span>++</p>
+                        <div class="mt-8 text-center border-t border-black/10 dark:border-white/10 pt-6">
+                            <p class="text-zinc-500 dark:text-zinc-400 text-sm mb-2">Anda Menghemat Uang:</p>
+                            <p class="text-3xl font-black text-indigo-600 dark:text-indigo-400">Rp <span id="calc-saved-total"
+                                    class="font-mono">91</span> <span>Juta</span>++</p>
                         </div>
                     </div>
                 </div>
@@ -582,18 +617,18 @@
 
     <!-- Client Trust Message -->
     <section class="py-20 relative z-10 px-6">
-        <div class="max-w-4xl mx-auto bg-zinc-900 border border-white/10 rounded-2xl p-8 md:p-14 text-center reveal">
+        <div class="max-w-4xl mx-auto bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-2xl p-8 md:p-14 text-center reveal shadow-xl">
             <div
-                class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 text-indigo-400">
+                class="w-14 h-14 bg-indigo-500/5 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 text-indigo-600 dark:text-indigo-400">
                 <i class="fa-solid fa-hand-holding-heart"></i>
             </div>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-4" data-i18n="trust_title">"Saya Gaptek, Takut
+            <h2 class="text-2xl md:text-3xl font-extrabold text-zinc-900 dark:text-white mb-4">"Saya Gaptek, Takut
                 Gak Bisa Pakai"</h2>
-            <p class="text-zinc-400 text-base md:text-lg mb-10 leading-relaxed font-light" data-i18n="trust_desc">
+            <p class="text-zinc-800 dark:text-zinc-400 text-base md:text-lg mb-10 leading-relaxed font-light">
                 Jangan khawatir Pak/Bu. Kami tidak akan tinggalkan Anda. Tim kami akan mengajari Anda dan karyawan
                 sampai benar-benar lancar. Kalau ada error, kami perbaiki gratis.
             </p>
-            <div class="flex flex-wrap justify-center gap-3 text-[10px] md:text-xs font-mono text-indigo-300">
+            <div class="flex flex-wrap justify-center gap-3 text-[10px] md:text-xs font-mono text-indigo-600 dark:text-indigo-300">
                 <span class="px-4 py-1.5 bg-indigo-500/5 rounded-full border border-indigo-500/20"><i
                         class="fa-solid fa-check mr-1.5"></i> GRATIS TRAINING</span>
                 <span class="px-4 py-1.5 bg-indigo-500/5 rounded-full border border-indigo-500/20"><i
@@ -609,15 +644,14 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 reveal">
                 <div>
-                    <span class="text-indigo-400 font-mono text-xs tracking-widest uppercase mb-2 block"
-                        data-i18n="sec_port_sub">/// SHOWCASE</span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-white" data-i18n="sec_port_title">Portfolio
+                    <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs tracking-widest uppercase mb-2 block">/// SHOWCASE</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-900 dark:text-white">Portfolio
                         <span class="text-gradient">Kami</span>
                     </h2>
                 </div>
                 <a href="#"
-                    class="text-xs font-mono text-zinc-400 hover:text-white flex items-center gap-2 group transition-colors">
-                    <span data-i18n="btn_see_all">LIHAT SEMUA</span> <i
+                    class="text-xs font-mono text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-white flex items-center gap-2 group transition-colors">
+                    <span>LIHAT SEMUA</span> <i
                         class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
@@ -662,58 +696,57 @@
     </section>
 
     <!-- Workflow (Alur Kerja) -->
-    <section id="proses" class="py-20 relative z-10 border-y border-white/5 bg-white/5">
+    <section id="proses" class="py-20 relative z-10 border-y border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="mb-16 reveal">
-                <span class="text-indigo-400 font-mono text-xs tracking-widest uppercase mb-3 block"
-                    data-i18n="sec_workflow_sub">/// ALUR KERJA</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white" data-i18n="sec_workflow_title">Proses Gampang
+                <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs tracking-widest uppercase mb-3 block">/// ALUR KERJA</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-900 dark:text-white">Proses Gampang
                     <span class="text-gradient">Anti Ribet</span>
                 </h2>
             </div>
 
             <div class="relative">
-                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-white/5"></div>
+                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-black/5 dark:bg-white/5"></div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
 
                     <div class="flex flex-col items-center group reveal reveal-delay-100">
                         <div
-                            class="w-20 h-20 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center text-2xl mb-6 relative z-10 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(79,70,229,0.15)] transition-all duration-300">
-                            <i class="fa-regular fa-comments text-indigo-400"></i>
+                            class="w-20 h-20 bg-white dark:bg-zinc-950 border border-black/10 dark:border-white/10 rounded-full flex items-center justify-center text-2xl mb-6 relative z-10 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(79,70,229,0.15)] transition-all duration-300 shadow-md">
+                            <i class="fa-regular fa-comments text-indigo-600 dark:text-indigo-400"></i>
                         </div>
-                        <h3 class="text-base font-bold text-white mb-2" data-i18n="step_1_title">1. Curhat Dulu</h3>
-                        <p class="text-zinc-400 text-xs px-4 leading-relaxed" data-i18n="step_1_desc">Ceritakan masalah
-                            bisnis Anda, kami dengarkan dan beri solusi.</p>
+                        <h3 class="text-base font-bold text-zinc-900 dark:text-white mb-2">1. Curhat Dulu</h3>
+                        <p class="text-zinc-800 dark:text-zinc-400 text-xs px-4 leading-relaxed">Ceritakan masalah
+                            bisnis Anda, kami dengarkan and beri solusi.</p>
                     </div>
 
                     <div class="flex flex-col items-center group reveal reveal-delay-200">
                         <div
-                            class="w-20 h-20 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center text-2xl mb-6 relative z-10 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(79,70,229,0.15)] transition-all duration-300">
-                            <i class="fa-solid fa-pen-ruler text-indigo-400"></i>
+                            class="w-20 h-20 bg-white dark:bg-zinc-950 border border-black/10 dark:border-white/10 rounded-full flex items-center justify-center text-2xl mb-6 relative z-10 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(79,70,229,0.15)] transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-pen-ruler text-indigo-600 dark:text-indigo-400"></i>
                         </div>
-                        <h3 class="text-base font-bold text-white mb-2" data-i18n="step_2_title">2. Kami Buatkan</h3>
-                        <p class="text-zinc-400 text-xs px-4 leading-relaxed" data-i18n="step_2_desc">Tim kami mulai
+                        <h3 class="text-base font-bold text-zinc-900 dark:text-white mb-2">2. Kami Buatkan</h3>
+                        <p class="text-zinc-800 dark:text-zinc-400 text-xs px-4 leading-relaxed">Tim kami mulai
                             merancang sistem sesuai kebutuhan Anda.</p>
                     </div>
 
                     <div class="flex flex-col items-center group reveal reveal-delay-300">
                         <div
-                            class="w-20 h-20 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center text-2xl mb-6 relative z-10 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(79,70,229,0.15)] transition-all duration-300">
-                            <i class="fa-solid fa-code text-indigo-400"></i>
+                            class="w-20 h-20 bg-white dark:bg-zinc-950 border border-black/10 dark:border-white/10 rounded-full flex items-center justify-center text-2xl mb-6 relative z-10 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(79,70,229,0.15)] transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-code text-indigo-600 dark:text-indigo-400"></i>
                         </div>
-                        <h3 class="text-base font-bold text-white mb-2" data-i18n="step_3_title">3. Pengerjaan</h3>
-                        <p class="text-zinc-400 text-xs px-4 leading-relaxed" data-i18n="step_3_desc">Proses coding dan
+                        <h3 class="text-base font-bold text-zinc-900 dark:text-white mb-2">3. Pengerjaan</h3>
+                        <p class="text-zinc-800 dark:text-zinc-400 text-xs px-4 leading-relaxed">Proses coding dan
                             pembuatan aplikasi oleh ahli kami.</p>
                     </div>
 
                     <div class="flex flex-col items-center group reveal reveal-delay-400">
                         <div
-                            class="w-20 h-20 bg-zinc-950 border border-white/10 rounded-full flex items-center justify-center text-2xl mb-6 relative z-10 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(79,70,229,0.15)] transition-all duration-300">
-                            <i class="fa-solid fa-rocket text-indigo-400"></i>
+                            class="w-20 h-20 bg-white dark:bg-zinc-950 border border-black/10 dark:border-white/10 rounded-full flex items-center justify-center text-2xl mb-6 relative z-10 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(79,70,229,0.15)] transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-rocket text-indigo-600 dark:text-indigo-400"></i>
                         </div>
-                        <h3 class="text-base font-bold text-white mb-2" data-i18n="step_4_title">4. Training & Jadi</h3>
-                        <p class="text-zinc-400 text-xs px-4 leading-relaxed" data-i18n="step_4_desc">Kami ajari cara
+                        <h3 class="text-base font-bold text-zinc-900 dark:text-white mb-2">4. Training & Jadi</h3>
+                        <p class="text-zinc-800 dark:text-zinc-400 text-xs px-4 leading-relaxed">Kami ajari cara
                             pakainya sampai Anda dan staf mahir.</p>
                     </div>
 
@@ -725,50 +758,49 @@
     <!-- Testimonials -->
     <section id="testimoni" class="py-20 relative z-10">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-16 text-center reveal"
-                data-i18n="sec_client_title">Kata Klien <span class="italic text-indigo-400">Kami</span></h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-900 dark:text-white mb-16 text-center reveal">Kata Klien <span class="italic text-indigo-600 dark:text-indigo-400">Kami</span></h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 <div
-                    class="bg-zinc-900/60 border border-white/5 hover:border-indigo-500/20 p-8 rounded-2xl transition-all duration-300 reveal reveal-delay-100">
+                    class="bg-zinc-100 dark:bg-zinc-900/60 border border-black/5 dark:border-white/5 hover:border-indigo-500/20 p-8 rounded-2xl transition-all duration-300 reveal reveal-delay-100 shadow-sm hover:shadow-md">
                     <div class="flex items-center gap-4 mb-6">
                         <img src="https://i.pravatar.cc/150?img=11" alt="Client"
                             class="w-12 h-12 rounded-full border-2 border-indigo-500/20">
                         <div>
-                            <div class="text-white font-bold text-sm">Budi Santoso</div>
-                            <div class="text-indigo-400 text-xs font-mono">CEO, PT Maju Jaya</div>
+                            <div class="text-zinc-900 dark:text-white font-bold text-sm">Budi Santoso</div>
+                            <div class="text-indigo-600 dark:text-indigo-400 text-xs font-mono">CEO, PT Maju Jaya</div>
                         </div>
                     </div>
-                    <p class="text-zinc-400 text-sm italic leading-relaxed">"Dulu pusing rekap nota, sering ribut sama
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm italic leading-relaxed">"Dulu pusing rekap nota, sering ribut sama
                         karyawan soal uang selisih. Sekarang pakai aplikasi, semua otomatis."</p>
                 </div>
 
                 <div
-                    class="bg-zinc-900 border border-white/10 hover:border-indigo-500/30 p-8 rounded-2xl transition-all duration-300 md:-translate-y-4 reveal reveal-delay-200">
+                    class="bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 hover:border-indigo-500/30 p-8 rounded-2xl transition-all duration-300 md:-translate-y-4 reveal reveal-delay-200 shadow-lg">
                     <div class="flex items-center gap-4 mb-6">
                         <img src="https://i.pravatar.cc/150?img=5" alt="Client"
                             class="w-12 h-12 rounded-full border-2 border-indigo-500/30">
                         <div>
-                            <div class="text-white font-bold text-sm">Siti Aminah</div>
-                            <div class="text-indigo-400 text-xs font-mono">Founder, Culinary App</div>
+                            <div class="text-zinc-900 dark:text-white font-bold text-sm">Siti Aminah</div>
+                            <div class="text-indigo-600 dark:text-indigo-400 text-xs font-mono">Founder, Culinary App</div>
                         </div>
                     </div>
-                    <p class="text-zinc-300 text-sm italic leading-relaxed">"Stok sparepart ribuan item sering hilang.
+                    <p class="text-zinc-700 dark:text-zinc-300 text-sm italic leading-relaxed">"Stok sparepart ribuan item sering hilang.
                         Sejak pakai sistem INXDVI, cari barang tinggal ketik di HP langsung ketemu."</p>
                 </div>
 
                 <div
-                    class="bg-zinc-900/60 border border-white/5 hover:border-indigo-500/20 p-8 rounded-2xl transition-all duration-300 reveal reveal-delay-300">
+                    class="bg-zinc-100 dark:bg-zinc-900/60 border border-black/5 dark:border-white/5 hover:border-indigo-500/20 p-8 rounded-2xl transition-all duration-300 reveal reveal-delay-300 shadow-sm hover:shadow-md">
                     <div class="flex items-center gap-4 mb-6">
                         <img src="https://i.pravatar.cc/150?img=3" alt="Client"
                             class="w-12 h-12 rounded-full border-2 border-indigo-500/20">
                         <div>
-                            <div class="text-white font-bold text-sm">Michael Tan</div>
-                            <div class="text-indigo-400 text-xs font-mono">IT Manager, TechCorp</div>
+                            <div class="text-zinc-900 dark:text-white font-bold text-sm">Michael Tan</div>
+                            <div class="text-indigo-600 dark:text-indigo-400 text-xs font-mono">IT Manager, TechCorp</div>
                         </div>
                     </div>
-                    <p class="text-zinc-400 text-sm italic leading-relaxed">"Saya gaptek, tapi tim INXDVI sabar banget
+                    <p class="text-zinc-800 dark:text-zinc-400 text-sm italic leading-relaxed">"Saya gaptek, tapi tim INXDVI sabar banget
                         ngajarin karyawan saya sampai bisa. Sekarang orderan makin lancar."</p>
                 </div>
 
@@ -777,75 +809,71 @@
     </section>
 
     <!-- Articles / Blog -->
-    <section id="blog" class="py-20 relative z-10 px-6 bg-white/5 border-y border-white/5">
+    <section id="blog" class="py-20 relative z-10 px-6 bg-black/5 dark:bg-white/5 border-y border-black/5 dark:border-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 reveal">
                 <div>
-                    <span class="text-indigo-400 font-mono text-xs tracking-widest uppercase mb-2 block"
-                        data-i18n="sec_blog_sub">/// TIPS BISNIS</span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-white" data-i18n="sec_blog_title">Artikel &
+                    <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs tracking-widest uppercase mb-2 block">/// TIPS BISNIS</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-900 dark:text-white">Artikel &
                         <span class="text-gradient">Tips</span>
                     </h2>
                 </div>
                 <a href="#"
-                    class="text-xs font-mono text-zinc-400 hover:text-white flex items-center gap-2 group transition-colors">
-                    <span data-i18n="btn_read_more">LIHAT SEMUA TIPS</span> <i
+                    class="text-xs font-mono text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-white flex items-center gap-2 group transition-colors">
+                    <span>LIHAT SEMUA TIPS</span> <i
                         class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                <div class="spotlight-card rounded-2xl overflow-hidden group transition-all reveal reveal-delay-100">
+                <div class="spotlight-card rounded-2xl overflow-hidden group transition-all reveal reveal-delay-100 shadow-md">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=2071&auto=format&fit=crop"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div
-                            class="absolute top-4 left-4 bg-red-500/10 backdrop-blur-md border border-red-500/20 text-red-300 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
+                            class="absolute top-4 left-4 bg-red-500/10 backdrop-blur-md border border-red-500/20 text-red-600 dark:text-red-300 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
                             KEUANGAN</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-base font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors"
-                            data-i18n="blog_1_title">Kasir Sering Minus? Ini 5 Penyebabnya</h3>
-                        <p class="text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed" data-i18n="blog_1_desc">
+                        <h3 class="text-base font-bold text-zinc-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Kasir Sering Minus? Ini 5 Penyebabnya</h3>
+                        <p class="text-zinc-800 dark:text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed">
                             Jangan biarkan uang bocor. Kenali tanda-tanda karyawan tidak jujur di meja kasir.</p>
-                        <span class="text-xs font-bold text-indigo-400 flex items-center gap-2">Baca Selengkapnya <i
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-2">Baca Selengkapnya <i
                                 class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
-                <div class="spotlight-card rounded-2xl overflow-hidden group transition-all reveal reveal-delay-200">
+                <div class="spotlight-card rounded-2xl overflow-hidden group transition-all reveal reveal-delay-200 shadow-md">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=2069&auto=format&fit=crop"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div
-                            class="absolute top-4 left-4 bg-indigo-500/10 backdrop-blur-md border border-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
+                            class="absolute top-4 left-4 bg-indigo-500/10 backdrop-blur-md border border-indigo-500/20 text-indigo-600 dark:text-indigo-300 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
                             MARKETING</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-base font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors"
-                            data-i18n="blog_2_title">Trik Agar Toko Muncul Paling Atas di Google</h3>
-                        <p class="text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed" data-i18n="blog_2_desc">Cara
+                        <h3 class="text-base font-bold text-zinc-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Trik Agar Toko Muncul Paling Atas di Google</h3>
+                        <p class="text-zinc-800 dark:text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed">Cara
                             gratis agar pelanggan di sekitar Anda langsung menemukan toko Anda di Google Maps.</p>
-                        <span class="text-xs font-bold text-indigo-400 flex items-center gap-2">Baca Selengkapnya <i
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-2">Baca Selengkapnya <i
                                 class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
-                <div class="spotlight-card rounded-2xl overflow-hidden group transition-all reveal reveal-delay-300">
+                <div class="spotlight-card rounded-2xl overflow-hidden group transition-all reveal reveal-delay-300 shadow-md">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=2070&auto=format&fit=crop"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div
-                            class="absolute top-4 left-4 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
+                            class="absolute top-4 left-4 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/20 text-emerald-600 dark:text-emerald-300 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
                             OPERASIONAL</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-base font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors"
-                            data-i18n="blog_3_title">Capek Balas Chat? Pakai Trik Ini</h3>
-                        <p class="text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed" data-i18n="blog_3_desc">
+                        <h3 class="text-base font-bold text-zinc-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Capek Balas Chat? Pakai Trik Ini</h3>
+                        <p class="text-zinc-800 dark:text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed">
                             Rahasia agar chat pelanggan terjawab dalam 1 detik meski Anda sedang tidur.</p>
-                        <span class="text-xs font-bold text-indigo-400 flex items-center gap-2">Baca Selengkapnya <i
+                        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-2">Baca Selengkapnya <i
                                 class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
@@ -857,25 +885,24 @@
     <!-- FAQ Accordion Section -->
     <section id="faq" class="py-20 relative z-10 px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-12 text-center reveal" data-i18n="faq_title">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-900 dark:text-white mb-12 text-center reveal">
                 Pertanyaan <span class="text-gradient">Umum</span></h2>
 
             <div class="space-y-4">
 
                 <!-- FAQ Item 1 -->
                 <div
-                    class="bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 reveal reveal-delay-100">
+                    class="bg-zinc-100 dark:bg-zinc-900/50 border border-black/5 dark:border-white/5 rounded-2xl overflow-hidden transition-all duration-300 reveal reveal-delay-100 shadow-sm">
                     <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group"
                         onclick="toggleFaq(this)">
                         <span
-                            class="font-bold text-white text-sm md:text-base group-hover:text-indigo-400 transition-colors"
-                            data-i18n="faq_1_q">Apakah cocok untuk bisnis kecil / UMKM?</span>
+                            class="font-bold text-zinc-900 dark:text-white text-sm md:text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Apakah cocok untuk bisnis kecil / UMKM?</span>
                         <span
-                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-zinc-400 group-hover:text-white transition-all transform duration-300 shrink-0"><i
+                            class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-all transform duration-300 shrink-0"><i
                                 class="fa-solid fa-chevron-down"></i></span>
                     </button>
                     <div class="faq-answer max-h-0 overflow-hidden transition-all duration-355 ease-in-out">
-                        <p class="px-6 pb-6 text-zinc-400 text-xs md:text-sm leading-relaxed" data-i18n="faq_1_a">
+                        <p class="px-6 pb-6 text-zinc-800 dark:text-zinc-400 text-xs md:text-sm leading-relaxed">
                             Sangat cocok! Sistem kami dirancang sederhana agar mudah dipahami bahkan untuk yang gaptek
                             sekalipun.
                         </p>
@@ -884,18 +911,17 @@
 
                 <!-- FAQ Item 2 -->
                 <div
-                    class="bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 reveal reveal-delay-200">
+                    class="bg-zinc-100 dark:bg-zinc-900/50 border border-black/5 dark:border-white/5 rounded-2xl overflow-hidden transition-all duration-300 reveal reveal-delay-200 shadow-sm">
                     <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group"
                         onclick="toggleFaq(this)">
                         <span
-                            class="font-bold text-white text-sm md:text-base group-hover:text-indigo-400 transition-colors"
-                            data-i18n="faq_2_q">Berapa lama waktu pembuatan?</span>
+                            class="font-bold text-zinc-900 dark:text-white text-sm md:text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Berapa lama waktu pembuatan?</span>
                         <span
-                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-zinc-400 group-hover:text-white transition-all transform duration-300 shrink-0"><i
+                            class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-all transform duration-300 shrink-0"><i
                                 class="fa-solid fa-chevron-down"></i></span>
                     </button>
                     <div class="faq-answer max-h-0 overflow-hidden transition-all duration-355 ease-in-out">
-                        <p class="px-6 pb-6 text-zinc-400 text-xs md:text-sm leading-relaxed" data-i18n="faq_2_a">
+                        <p class="px-6 pb-6 text-zinc-800 dark:text-zinc-400 text-xs md:text-sm leading-relaxed">
                             Proses pengerjaan biasanya berkisar antara 2 hingga 4 minggu tergantung kompleksitas sistem.
                         </p>
                     </div>
@@ -903,18 +929,17 @@
 
                 <!-- FAQ Item 3 -->
                 <div
-                    class="bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 reveal reveal-delay-300">
+                    class="bg-zinc-100 dark:bg-zinc-900/50 border border-black/5 dark:border-white/5 rounded-2xl overflow-hidden transition-all duration-300 reveal reveal-delay-300 shadow-sm">
                     <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group"
                         onclick="toggleFaq(this)">
                         <span
-                            class="font-bold text-white text-sm md:text-base group-hover:text-indigo-400 transition-colors"
-                            data-i18n="faq_3_q">Bagaimana jika ada error di kemudian hari?</span>
+                            class="font-bold text-zinc-900 dark:text-white text-sm md:text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Bagaimana jika ada error di kemudian hari?</span>
                         <span
-                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-zinc-400 group-hover:text-white transition-all transform duration-300 shrink-0"><i
+                            class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-all transform duration-300 shrink-0"><i
                                 class="fa-solid fa-chevron-down"></i></span>
                     </button>
                     <div class="faq-answer max-h-0 overflow-hidden transition-all duration-355 ease-in-out">
-                        <p class="px-6 pb-6 text-zinc-400 text-xs md:text-sm leading-relaxed" data-i18n="faq_3_a">
+                        <p class="px-6 pb-6 text-zinc-800 dark:text-zinc-400 text-xs md:text-sm leading-relaxed">
                             Kami memberikan garansi perbaikan gratis serta pendampingan penuh untuk melatih staf Anda.
                         </p>
                     </div>
@@ -922,19 +947,18 @@
 
                 <!-- FAQ Item 4 -->
                 <div
-                    class="bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 reveal reveal-delay-400">
+                    class="bg-zinc-100 dark:bg-zinc-900/50 border border-black/5 dark:border-white/5 rounded-2xl overflow-hidden transition-all duration-300 reveal reveal-delay-400 shadow-sm">
                     <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group"
                         onclick="toggleFaq(this)">
                         <span
-                            class="font-bold text-white text-sm md:text-base group-hover:text-indigo-400 transition-colors"
-                            data-i18n="faq_4_q">Apakah data bisnis saya aman?</span>
+                            class="font-bold text-zinc-900 dark:text-white text-sm md:text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Apakah data bisnis saya aman?</span>
                         <span
-                            class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-zinc-400 group-hover:text-white transition-all transform duration-300 shrink-0"><i
+                            class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-xs text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-all transform duration-300 shrink-0"><i
                                 class="fa-solid fa-chevron-down"></i></span>
                     </button>
                     <div class="faq-answer max-h-0 overflow-hidden transition-all duration-355 ease-in-out">
-                        <p class="px-6 pb-6 text-zinc-400 text-xs md:text-sm leading-relaxed" data-i18n="faq_4_a">
-                            Ya. Semua database dienkripsi secara berkala dan dihosting di server cloud yang aman.
+                        <p class="px-6 pb-6 text-zinc-800 dark:text-zinc-400 text-xs md:text-sm leading-relaxed">
+                            Ya. Semua database dienkripsi secara berkala and dihosting di server cloud yang aman.
                         </p>
                     </div>
                 </div>
@@ -944,18 +968,18 @@
     </section>
 
     <!-- Footer -->
-    <footer id="footer" class="relative pt-24 pb-12 bg-zinc-950 text-white overflow-hidden border-t border-white/5">
+    <footer id="footer" class="relative pt-24 pb-12 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white overflow-hidden border-t border-black/5 dark:border-white/5">
         <div
-            class="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px]">
+            class="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.03] bg-[linear-gradient(to_right,#00000010_1px,transparent_1px),linear-gradient(to_bottom,#00000010_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px]">
         </div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div
-                class="flex flex-col md:flex-row items-center justify-between gap-8 mb-20 border-b border-white/10 pb-20 reveal">
+                class="flex flex-col md:flex-row items-center justify-between gap-8 mb-20 border-b border-black/10 dark:border-white/10 pb-20 reveal">
                 <div class="text-center md:text-left">
-                    <h3 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight" data-i18n="footer_cta_title">
-                        Jangan Biarkan Kompetitor <br> <span class="text-indigo-400">Menyalip Anda!</span></h3>
-                    <p class="text-zinc-400 max-w-lg text-sm md:text-base leading-relaxed" data-i18n="footer_cta_desc">
+                    <h3 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+                        Jangan Biarkan Kompetitor <br> <span class="text-indigo-600 dark:text-indigo-400">Menyalip Anda!</span></h3>
+                    <p class="text-zinc-800 dark:text-zinc-400 max-w-lg text-sm md:text-base leading-relaxed">
                         Konsultasikan kebutuhan digital Anda sekarang. Gratis, tanpa kewajiban membeli.</p>
                 </div>
                 <div>
@@ -964,7 +988,7 @@
                         <i class="fa-brands fa-whatsapp text-2xl"></i>
                         <div class="text-left">
                             <div class="text-[9px] font-normal opacity-80 leading-none">Chat Admin 24/7</div>
-                            <div class="text-base font-bold mt-1" data-i18n="btn_wa_footer">Hubungi via WhatsApp</div>
+                            <div class="text-base font-bold mt-1">Hubungi via WhatsApp</div>
                         </div>
                     </a>
                 </div>
@@ -974,72 +998,72 @@
 
                 <div>
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="/images/logo.png" alt="INXDVI Logo" class="h-8 w-auto object-contain">
+                        <img src="/images/logo.png" alt="INXDVI Logo" class="h-8 w-auto object-contain opacity-100">
                     </div>
-                    <p class="text-zinc-400 leading-relaxed mb-6 text-xs" data-i18n="footer_about_desc">Partner digital
-                        terpercaya untuk UMKM dan Bisnis Lokal. Kami membuat teknologi rumit menjadi mudah digunakan
+                    <p class="text-zinc-800 dark:text-zinc-400 leading-relaxed mb-6 text-xs">Partner digital
+                        terpercaya untuk UMKM and Bisnis Lokal. Kami membuat teknologi rumit menjadi mudah digunakan
                         untuk semua orang.</p>
 
                     <div class="flex gap-2">
                         <a href="#"
-                            class="w-8 h-8 rounded bg-white/5 hover:bg-indigo-600 flex items-center justify-center text-white transition-all text-sm"><i
+                            class="w-8 h-8 rounded bg-black/5 dark:bg-white/5 hover:bg-indigo-600 hover:text-white flex items-center justify-center text-zinc-600 dark:text-white transition-all text-sm shadow-sm"><i
                                 class="fa-brands fa-instagram"></i></a>
                         <a href="#"
-                            class="w-8 h-8 rounded bg-white/5 hover:bg-indigo-600 flex items-center justify-center text-white transition-all text-sm"><i
+                            class="w-8 h-8 rounded bg-black/5 dark:bg-white/5 hover:bg-indigo-600 hover:text-white flex items-center justify-center text-zinc-600 dark:text-white transition-all text-sm shadow-sm"><i
                                 class="fa-brands fa-facebook-f"></i></a>
                         <a href="#"
-                            class="w-8 h-8 rounded bg-white/5 hover:bg-indigo-600 flex items-center justify-center text-white transition-all text-sm"><i
+                            class="w-8 h-8 rounded bg-black/5 dark:bg-white/5 hover:bg-indigo-600 hover:text-white flex items-center justify-center text-zinc-600 dark:text-white transition-all text-sm shadow-sm"><i
                                 class="fa-brands fa-tiktok"></i></a>
                     </div>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm flex items-center gap-2"><i
-                            class="fa-solid fa-link text-indigo-400 text-[10px]"></i> Menu</h4>
-                    <ul class="space-y-3 text-xs text-zinc-400 font-medium">
+                    <h4 class="text-zinc-900 dark:text-white font-bold mb-6 text-sm flex items-center gap-2"><i
+                            class="fa-solid fa-link text-indigo-600 dark:text-indigo-400 text-[10px]"></i> Menu</h4>
+                    <ul class="space-y-3 text-xs text-zinc-800 dark:text-zinc-400 font-medium">
                         <li><a href="#masalah"
-                                class="hover:text-indigo-400 transition-all block hover:translate-x-1 duration-300">Masalah
+                                class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all block hover:translate-x-1 duration-300">Masalah
                                 Bisnis</a></li>
                         <li><a href="#layanan"
-                                class="hover:text-indigo-400 transition-all block hover:translate-x-1 duration-300">Solusi
+                                class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all block hover:translate-x-1 duration-300">Solusi
                                 Kami</a></li>
                         <li><a href="#hemat"
-                                class="hover:text-indigo-400 transition-all block hover:translate-x-1 duration-300">Hitung
+                                class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all block hover:translate-x-1 duration-300">Hitung
                                 Hemat</a></li>
                         <li><a href="#portfolio"
-                                class="hover:text-indigo-400 transition-all block hover:translate-x-1 duration-300">Hasil
+                                class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all block hover:translate-x-1 duration-300">Hasil
                                 Kerja</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm flex items-center gap-2"><i
-                            class="fa-solid fa-location-dot text-indigo-400 text-[10px]"></i> Kontak</h4>
-                    <ul class="space-y-4 text-xs text-zinc-400 font-medium">
+                    <h4 class="text-zinc-900 dark:text-white font-bold mb-6 text-sm flex items-center gap-2"><i
+                            class="fa-solid fa-location-dot text-indigo-600 dark:text-indigo-400 text-[10px]"></i> Kontak</h4>
+                    <ul class="space-y-4 text-xs text-zinc-800 dark:text-zinc-400 font-medium">
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-map-pin mt-1 text-indigo-400"></i>
+                            <i class="fa-solid fa-map-pin mt-1 text-indigo-600 dark:text-indigo-400"></i>
                             <span class="leading-relaxed">Jl. Jendral Sudirman No. 10, Jakarta Selatan, Indonesia</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-envelope text-indigo-400"></i>
+                            <i class="fa-solid fa-envelope text-indigo-600 dark:text-indigo-400"></i>
                             <span>halo@inxdvi.com</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-clock text-indigo-400"></i>
+                            <i class="fa-solid fa-clock text-indigo-600 dark:text-indigo-400"></i>
                             <span>Senin - Jumat (09.00 - 17.00)</span>
                         </li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm" data-i18n="newsletter_title">Tips Bisnis Gratis</h4>
-                    <p class="text-xs text-zinc-400 mb-4 leading-normal" data-i18n="newsletter_desc">Masukkan email
+                    <h4 class="text-zinc-900 dark:text-white font-bold mb-6 text-sm">Tips Bisnis Gratis</h4>
+                    <p class="text-xs text-zinc-800 dark:text-zinc-400 mb-4 leading-normal">Masukkan email
                         untuk dapat tips meningkatkan omzet tiap minggu.</p>
                     <div class="relative">
                         <input type="email" placeholder="Email Anda..."
-                            class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none focus:border-indigo-400 transition-colors pr-10">
+                            class="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-lg px-4 py-2.5 text-xs text-zinc-900 dark:text-white focus:outline-none focus:border-indigo-600 dark:focus:border-indigo-400 transition-colors pr-10">
                         <button
-                            class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-indigo-600 hover:bg-indigo-500 rounded flex items-center justify-center text-white transition-colors">
+                            class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-indigo-600 hover:bg-indigo-500 rounded flex items-center justify-center text-white transition-colors shadow-sm">
                             <i class="fa-solid fa-paper-plane text-[10px]"></i>
                         </button>
                     </div>
@@ -1048,11 +1072,11 @@
             </div>
 
             <div
-                class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-xs text-zinc-500 font-mono reveal">
+                class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-black/10 dark:border-white/10 text-xs text-zinc-500 font-mono reveal">
                 <p>&copy; 2024 INXDVI Indonesia. Hak Cipta Dilindungi.</p>
                 <div class="flex gap-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-indigo-600 dark:hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-indigo-600 dark:hover:text-white transition-colors">Terms</a>
                 </div>
             </div>
         </div>
@@ -1310,181 +1334,47 @@
             hematObserver.observe(hematSection);
         }
 
-        // 7. Multi-lingual Translations System
-        const langBtn = document.getElementById('lang-toggle');
-        const langFlag = document.getElementById('lang-flag');
-        const langText = document.getElementById('lang-text');
+        // 7. Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-        let currentLang = localStorage.getItem('lang') || 'id';
-
-        const resources = {
-            id: {
-                nav_problem: "Masalah", nav_solution: "Solusi", nav_benefit: "Hemat", nav_portfolio: "Portfolio", btn_contact: "Konsultasi Gratis", btn_contact_wa: "Chat WhatsApp",
-                hero_badge: "BISNIS JADI AUTOPILOT",
-                hero_title: "Bisnis Jalan Otomatis <br> <span class='text-gradient'>Omzet Naik Drastis</span>",
-                hero_desc: "Stop jadi 'budak' di bisnis sendiri. Kami buatkan sistem kasir, stok, dan laporan otomatis. Anda tinggal pantau lewat HP. Gaptek? Tenang, kami ajari.",
-                btn_start: "Konsultasi via WA", btn_portfolio: "LIHAT HASIL KERJA",
-                sec_prob_sub: "/// KELUHAN UMUM",
-                sec_prob_title: "Apakah Bisnis Anda <br> Mengalami <span class='text-red-400'>Masalah Ini?</span>",
-                prob_1_title: "Uang & Stok Selisih", prob_1_desc: "Tiap tutup toko uang di laci kurang? Stok barang hilang misterius? Awas kebocoran atau karyawan tidak jujur.",
-                prob_2_title: "Pusing Rekap Manual", prob_2_desc: "Akhir bulan lembur ngitung nota tulis tangan. Salah hitung sedikit, rugi jutaan rupiah.",
-                prob_3_title: "Kalah Sama Tetangga", prob_3_desc: "Toko sebelah sudah bisa pesan online dan ada di Google Maps, toko Anda masih nunggu bola.",
-                sec_service_sub: "/// SOLUSI KAMI", sec_service_title: "Solusi Praktis <span class='text-gradient'>Tanpa Ribet</span>", sec_service_desc: "Kami sediakan 'alat digital' biar Anda bisa tidur nyenyak sementara sistem bekerja.",
-                srv_mobile_title: "Aplikasi Kasir & Stok", srv_mobile_desc: "Pantau penjualan dan stok barang langsung dari HP (Real-time).",
-                srv_web_title: "Website Pencari Pelanggan", srv_web_desc: "Bikin toko/jasa Anda muncul paling atas di Google (SEO) saat orang mencari.",
-                srv_sosmed_title: "Bot Balas Chat", srv_sosmed_desc: "Sistem yang menjawab pertanyaan pelanggan 24 jam nonstop.",
-                srv_sec_title: "Keamanan Data", srv_sec_desc: "Data keuangan Anda aman, tidak akan bocor ke kompetitor.",
-                srv_data_title: "Laporan Otomatis", srv_data_desc: "Laporan laba rugi keluar otomatis setiap hari tanpa perlu hitung manual.",
-                srv_com_title: "Komunitas Pelanggan", srv_com_desc: "Bangun database pelanggan setia untuk promosi berulang.",
-                srv_vector_title: "Desain Logo & Branding", srv_vector_desc: "Bikin brand terlihat mahal. Desain logo, banner, dan menu yang menggugah selera.",
-                srv_sosmed_spec_title: "Jasa Kelola Sosmed", srv_sosmed_spec_desc: "Kami urus IG & TikTok Anda. Mulai dari ide konten, edit video, sampai posting rutin.",
-                sec_roi_sub: "/// HITUNG-HITUNGAN CUAN",
-                sec_roi_title: "Lebih Murah Dari <br> <span class='text-gradient'>Gaji Karyawan</span>",
-                sec_roi_desc: "Daripada tambah 2 admin baru, lebih baik investasi sistem. Tidak perlu bayar THR, tidak ada drama izin sakit, dan kerja 24 jam.",
-                roi_1: "Sistem bekerja 24 jam nonstop", roi_2: "Akurasi data 100% (Anti Salah Hitung)", roi_3: "Investasi sekali, untung selamanya",
-                btn_calc: "Hitung Penghematan Saya",
-                card_manual: "Cara Manual", card_desc_manual: "Gaji Admin UMR Setahun",
-                card_tech: "Pakai Sistem", card_desc_tech: "Investasi Awal (Sekali Bayar)",
-                roi_summary: "Anda Menghemat Uang:",
-                roi_unit: "Juta",
-                trust_title: "\"Saya Gaptek, Takut Gak Bisa Pakai\"",
-                trust_desc: "Jangan khawatir Pak/Bu. Kami tidak akan tinggalkan Anda. Tim kami akan mengajari Anda dan karyawan sampai benar-benar lancar. Kalau ada error, kami perbaiki gratis.",
-                sec_case_sub: "/// KASUS NYATA", sec_case_title: "Bukti Nyata <span class='text-gradient'>Perubahan</span>", sec_case_desc: "Lihat bagaimana kami mengubah hambatan bisnis menjadi keuntungan.",
-                case_1_prob_title: "Stok Barang Selalu Selisih", case_1_prob_desc: "Klien sering kehilangan stok barang tapi tidak tahu siapa yang ambil. Rugi jutaan per bulan.",
-                case_1_sol_title: "Sistem Stok Barcode", case_1_sol_desc: "Kami pasang sistem barcode. Setiap barang keluar masuk tercatat jam dan petugasnya.",
-                case_2_prob_title: "Admin Kewalahan Balas Chat", case_2_prob_desc: "Banyak chat masuk tapi admin lambat balas. Calon pembeli kabur ke toko sebelah.",
-                case_2_sol_title: "Bot WhatsApp Otomatis", case_2_sol_desc: "Sistem otomatis yang menjawab pertanyaan harga dan stok dalam 1 detik, 24 jam nonstop.",
-                sec_port_sub: "/// PAMERAN", sec_port_title: "Portfolio <span class='text-gradient'>Kami</span>", btn_see_all: "LIHAT SEMUA",
-                sec_workflow_sub: "/// ALUR KERJA", sec_workflow_title: "Proses Gampang <span class='text-gradient'>Anti Ribet</span>",
-                step_1_title: "1. Curhat Dulu", step_1_desc: "Ceritakan masalah bisnis Anda, kami dengarkan dan beri solusi.",
-                step_2_title: "2. Kami Buatkan", step_2_desc: "Tim kami mulai merancang sistem sesuai kebutuhan Anda.",
-                step_3_title: "3. Pengerjaan", step_3_desc: "Proses coding dan pembuatan aplikasi oleh ahli kami.",
-                step_4_title: "4. Training & Jadi", step_4_desc: "Kami ajari cara pakainya sampai Anda dan staf mahir.",
-                sec_client_title: "Kata Klien <span class='italic text-indigo-400'>Kami</span>",
-                sec_why_sub: "/// MENGAPA KAMI",
-                sec_why_title: "Jangan Buang Waktu <br> Dengan <span class='text-gray-600 line-through decoration-red-500 decoration-4'>Cara Lama</span>",
-                sec_why_desc: "Di era digital yang brutal, kecepatan dan ketepatan adalah segalanya. Kami menggunakan teknologi stack terbaru untuk memastikan Anda selalu satu langkah di depan kompetitor.",
-                stat_1: "Retensi Klien", stat_2: "Produk Digital", stat_3: "Peningkatan ROI",
-                offer_title: "Gratis Audit Digital", offer_desc: "Dapatkan analisa mendalam tentang performa website atau aplikasi Anda senilai Rp 5.000.000, gratis untuk 5 pendaftar pertama bulan ini.", btn_claim: "Klaim Sekarang",
-                sec_blog_sub: "/// TIPS BISNIS", sec_blog_title: "Artikel & <span class='text-gradient'>Tips</span>", btn_read_more: "LIHAT SEMUA TIPS",
-                blog_1_title: "Kasir Sering Minus? Ini 5 Penyebabnya", blog_1_desc: "Jangan biarkan uang bocor. Kenali tanda-tanda karyawan tidak jujur di meja kasir.",
-                blog_2_title: "Trik Agar Toko Muncul Paling Atas di Google", blog_2_desc: "Cara gratis agar pelanggan di sekitar Anda langsung menemukan toko Anda di Google Maps.",
-                blog_3_title: "Capek Balas Chat? Pakai Trik Ini", blog_3_desc: "Rahasia agar chat pelanggan terjawab dalam 1 detik meski Anda sedang tidur.",
-                footer_cta_title: "Jangan Biarkan Kompetitor <br> <span class='text-indigo-400'>Menyalip Anda!</span>",
-                footer_cta_desc: "Konsultasikan kebutuhan digital Anda sekarang. Gratis, tanpa kewajiban membeli.",
-                btn_contact_us: "Hubungi Kami", btn_wa_footer: "Hubungi via WhatsApp",
-                footer_about_desc: "Partner digital terpercaya untuk UMKM dan Bisnis Lokal. Kami membuat teknologi rumit menjadi mudah digunakan untuk semua orang.",
-                newsletter_title: "Tips Bisnis Gratis", newsletter_desc: "Masukkan email untuk dapat tips meningkatkan omzet tiap minggu.",
-                calc_title: "Kalkulator ROI Interaktif",
-                calc_staff_label: "Jumlah Karyawan Admin",
-                calc_staff_unit: "Orang",
-                calc_salary_label: "Gaji Per Karyawan (Bulanan)",
-                faq_title: "Pertanyaan <span class='text-gradient'>Umum</span>",
-                faq_1_q: "Apakah cocok untuk bisnis kecil / UMKM?",
-                faq_1_a: "Sangat cocok! Sistem kami dirancang sederhana agar mudah dipahami bahkan untuk yang gaptek sekalipun.",
-                faq_2_q: "Berapa lama waktu pembuatan?",
-                faq_2_a: "Proses pengerjaan biasanya berkisar antara 2 hingga 4 minggu tergantung kompleksitas sistem.",
-                faq_3_q: "Bagaimana jika ada error di kemudian hari?",
-                faq_3_a: "Kami memberikan garansi perbaikan gratis serta pendampingan penuh untuk melatih staf Anda.",
-                faq_4_q: "Apakah data bisnis saya aman?",
-                faq_4_a: "Ya. Semua database dienkripsi secara berkala dan dihosting di server cloud yang aman."
-            },
-            en: {
-                nav_problem: "Problems", nav_solution: "Solutions", nav_benefit: "Savings", nav_portfolio: "Portfolio", btn_contact: "Free Consult", btn_contact_wa: "Chat WhatsApp",
-                hero_badge: "DIGITAL TRANSFORMATION READY",
-                hero_title: "Digital <br> <span class='text-gradient'>Transformation</span> <br> For Your Business",
-                hero_desc: "We help your business grow faster with cutting-edge technology solutions, modern design, and measurable digital strategies.",
-                btn_start: "Get Started", btn_portfolio: "VIEW PORTFOLIO",
-                sec_prob_sub: "/// COMMON ISSUES", sec_prob_title: "Is Your Business <br> Facing <span class='text-red-400'>These Issues?</span>",
-                prob_1_title: "Cash Mismatch", prob_1_desc: "Money missing from the drawer? Inventory disappearing? Signs of leaks or dishonest staff.",
-                prob_2_title: "Manual Recap Headache", prob_2_desc: "Overtime at month-end to calculate handwritten notes. One mistake costs millions.",
-                prob_3_title: "Losing to Competitors", prob_3_desc: "Competitors are online and on Google Maps, while your shop waits for customers.",
-                sec_service_sub: "/// SERVICES", sec_service_title: "Our <span class='text-gradient'>Services</span>", sec_service_desc: "Comprehensive technology solutions for your digital needs and business growth.",
-                srv_mobile_title: "Mobile App Dev", srv_mobile_desc: "High-performance iOS & Android apps with best UX.",
-                srv_web_title: "Website & SEO", srv_web_desc: "Responsive websites optimized for search engines.",
-                srv_sosmed_title: "Social Media", srv_sosmed_desc: "Creative content strategy and account management for brand awareness.",
-                srv_sec_title: "Security", srv_sec_desc: "Protecting digital assets with high security standards.",
-                srv_data_title: "Data Analytics", srv_data_desc: "Data-driven decisions with comprehensive analytic dashboards.",
-                srv_com_title: "Community", srv_com_desc: "Build loyal communities with interactive platforms.",
-                srv_vector_title: "Vector Design & Branding", srv_vector_desc: "Make your brand look premium. Logo design, banners, and attractive menus.",
-                srv_sosmed_spec_title: "Social Media Specialist", srv_sosmed_spec_desc: "We handle your IG & TikTok. From content ideas, video editing, to daily posting.",
-                sec_roi_sub: "/// PROFIT CALCULATION",
-                sec_roi_title: "Cheaper Than <br> <span class='text-gradient'>Employee Salary</span>",
-                sec_roi_desc: "Instead of hiring 2 new admins, invest in a system. No bonuses, no sick leave, and works 24/7.",
-                roi_1: "System works 24/7 nonstop", roi_2: "100% Data Accuracy", roi_3: "One-time investment, lifetime profit",
-                btn_calc: "Calculate My Savings",
-                card_manual: "Manual Way", card_desc_manual: "Yearly Admin Salary",
-                card_tech: "Using System", card_desc_tech: "Initial Investment (One Time)",
-                roi_summary: "You Save Money:",
-                roi_unit: "Million",
-                trust_title: "\"I'm Not Tech Savvy\"",
-                trust_desc: "Don't worry. We won't leave you. Our team will train you and your staff until fluent. If there's an error, we fix it for free.",
-                sec_case_sub: "/// REAL CASES", sec_case_title: "Challenges & <span class='text-gradient'>Solutions</span>", sec_case_desc: "See how we turn technical roadblocks into competitive advantages.",
-                case_1_prob_title: "Slow Legacy System", case_1_prob_desc: "Client experienced data loading >10s causing 40% productivity drop daily.",
-                case_1_sol_title: "Cloud Migration & Optimization", case_1_sol_desc: "We migrated to Cloud Native architecture and optimized DB. Resulting in < 0.8s load time.",
-                case_2_prob_title: "Low Sales Conversion", case_2_prob_desc: "Client's e-commerce had high traffic but very low conversion rate (< 1%).",
-                case_2_sol_title: "UI/UX Revamp & AI Recommendation", case_2_sol_desc: "Redesigned intuitive checkout flow and implemented personal AI product recommendations.",
-                sec_port_sub: "/// SHOWCASE", sec_port_title: "Our <span class='text-gradient'>Portfolio</span>", btn_see_all: "SEE ALL",
-                sec_workflow_sub: "/// WORKFLOW", sec_workflow_title: "Our <span class='text-gradient'>Workflow</span>",
-                step_1_title: "1. Consultation", step_1_desc: "In-depth discussion regarding your business needs and targets.",
-                step_2_title: "2. Planning & Design", step_2_desc: "System architecture design, UI/UX, and project timeline.",
-                step_3_title: "3. Development", step_3_desc: "Iterative coding with high quality and security standards.",
-                step_4_title: "4. Launch & Support", step_4_desc: "System launch and continuous technical support.",
-                sec_client_title: "What Our <span class='italic text-cyan-400'>Clients Say</span>",
-                sec_why_sub: "/// WHY CHOOSE US",
-                sec_why_title: "Don't Waste Time <br> With <span class='text-gray-600 line-through decoration-red-500 decoration-4'>Old Methods</span>",
-                sec_why_desc: "In this brutal digital era, speed and precision are everything. We use the latest tech stack to ensure you are always one step ahead.",
-                stat_1: "Client Retention", stat_2: "Digital Products", stat_3: "ROI Improvement",
-                offer_title: "Free Digital Audit", offer_desc: "Get an in-depth analysis of your website or app performance worth $350, free for the first 5 sign-ups this month.", btn_claim: "Claim Now",
-                sec_blog_sub: "/// INSIGHTS", sec_blog_title: "News & <span class='text-gradient'>Articles</span>", btn_read_more: "READ MORE",
-                blog_1_title: "5 Signs of Cashier Fraud", blog_1_desc: "Don't let money leak. Recognize the signs of dishonest staff at the checkout counter.",
-                blog_2_title: "How to Rank Top on Google Maps", blog_2_desc: "Free ways to make customers in your area instantly find your shop on Google Maps.",
-                blog_3_title: "Tired of Replying Chats? Use This", blog_3_desc: "The secret to answering customer chats in 1 second even when you're asleep.",
-                footer_cta_title: "Ready to Transform <br> <span class='text-cyan-400'>Your Business?</span>",
-                footer_cta_desc: "Don't let competitors get ahead. Consult your digital needs with our experts now.",
-                btn_contact_us: "Contact Us", btn_wa_footer: "Chat on WhatsApp",
-                footer_about_desc: "Your trusted technology partner for digital transformation. We create innovative solutions that drive growth.",
-                newsletter_title: "Free Business Tips", newsletter_desc: "Enter email to get tips on increasing turnover every week.",
-                calc_title: "Interactive ROI Calculator",
-                calc_staff_label: "Number of Admin Staff",
-                calc_staff_unit: "People",
-                calc_salary_label: "Monthly Staff Salary",
-                faq_title: "Frequently Asked <span class='text-gradient'>Questions</span>",
-                faq_1_q: "Is it suitable for small businesses / MSMEs?",
-                faq_1_a: "Absolutely! Our system is designed to be simple and easy to understand, even for beginners.",
-                faq_2_q: "How long does development take?",
-                faq_2_a: "The development process usually takes 2 to 4 weeks depending on the complexity.",
-                faq_3_q: "What if there are bugs or errors later?",
-                faq_3_a: "We provide free repair guarantees and full training support for your staff.",
-                faq_4_q: "Is my business data secure?",
-                faq_4_a: "Yes. All databases are periodically encrypted and hosted on secure cloud servers."
-            }
-        };
-
-        function updateLang(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (resources[lang][key]) el.innerHTML = resources[lang][key];
-            });
-            langFlag.innerText = lang === 'id' ? '🇮🇩' : '🇺🇸';
-            langText.innerText = lang.toUpperCase();
-            localStorage.setItem('lang', lang);
-            currentLang = lang;
-
-            // Re-trigger counter layout update without restarting anim
-            const numSpans = document.querySelectorAll('.counter-number');
-            numSpans.forEach(num => {
-                const target = +num.getAttribute('data-target');
-                if (num.innerText !== '0') {
-                    num.innerText = target;
-                }
-            });
+        // Set initial theme based on localStorage or system Preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+            themeToggleDarkIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleLightIcon.classList.add('hidden');
+            themeToggleDarkIcon.classList.remove('hidden');
         }
 
-        updateLang(currentLang);
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle icons inside button
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
 
-        langBtn.addEventListener('click', () => {
-            updateLang(currentLang === 'id' ? 'en' : 'id');
+            // if set via local storage previously
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+
+            // if NOT set via local storage previously
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
         });
 
         // 8. FAQ Accordion Logic
