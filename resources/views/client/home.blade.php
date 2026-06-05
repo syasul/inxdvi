@@ -395,8 +395,8 @@
 
         <!-- Floating UI contents (Fades out as mask scales) -->
         <div
-            class="hero-overlay-content absolute inset-0 z-20 flex flex-col justify-between items-center text-center py-28 px-6 pointer-events-none">
-            <div class="mt-24 md:mt-20">
+            class="hero-overlay-content absolute inset-0 z-20 flex flex-col justify-between items-center text-center py-10 md:py-24 px-6 pointer-events-none">
+            <div class="mt-12 md:mt-16">
                 <div
                     class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-500/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 text-[10px] md:text-xs font-mono mb-4 backdrop-blur-sm">
                     <span class="relative flex h-2 w-2">
@@ -414,7 +414,7 @@
                 </h1>
             </div>
 
-            <div class="flex flex-col items-center gap-6 max-w-xl pointer-events-auto mb-6 md:mb-12">
+            <div class="flex flex-col items-center gap-6 max-w-xl pointer-events-auto mb-2 md:mb-6">
                 <p class="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 font-light leading-relaxed px-4"
                     data-i18n="hero_desc">
                     Stop jadi "budak" di bisnis sendiri. Kami buatkan sistem kasir, stok, dan laporan otomatis. Anda
