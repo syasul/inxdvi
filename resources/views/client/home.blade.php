@@ -101,6 +101,28 @@
             transform-origin: center;
         }
 
+        #mask-text {
+            font-size: 130px;
+        }
+
+        @media (max-width: 1024px) {
+            #mask-text {
+                font-size: 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #mask-text {
+                font-size: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #mask-text {
+                font-size: 48px;
+            }
+        }
+
         /* Scroll Reveal Word Styling */
         .reveal-word {
             color: var(--text-muted);
@@ -367,7 +389,7 @@
     <div
         class="hero-container relative w-full h-screen overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
         <!-- High-quality video loop behind -->
-        <video class="absolute inset-0 w-full h-full object-cover z-0 opacity-35" autoplay loop muted playsinline>
+        <video class="absolute -inset-4 w-[calc(100%+2rem)] h-[calc(100%+2rem)] object-cover z-0 opacity-35" style="will-change: transform;" autoplay loop muted playsinline>
             <source
                 src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c054ba207d1c3007995a2b7f7e914f6e&profile_id=165&oauth2_token_id=57447761"
                 type="video/mp4">
@@ -383,7 +405,7 @@
                         <rect x="0" y="0" width="1000" height="600" fill="white" />
                         <!-- Black text cuts a hole showing video underneath -->
                         <text id="mask-text" x="50%" y="53%" dominant-baseline="middle" text-anchor="middle"
-                            font-size="120" font-family="Poppins, sans-serif" font-weight="900"
+                            font-family="Poppins, sans-serif" font-weight="900"
                             fill="black">INXDVI</text>
                     </mask>
                 </defs>
@@ -395,8 +417,8 @@
 
         <!-- Floating UI contents (Fades out as mask scales) -->
         <div
-            class="hero-overlay-content absolute inset-0 z-20 flex flex-col justify-between items-center text-center py-10 md:py-24 px-6 pointer-events-none">
-            <div class="mt-12 md:mt-16">
+            class="hero-overlay-content absolute inset-0 z-20 flex flex-col justify-between items-center text-center py-6 md:py-24 px-6 pointer-events-none">
+            <div class="mt-6 md:mt-16">
                 <div
                     class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-500/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 text-[10px] md:text-xs font-mono mb-4 backdrop-blur-sm">
                     <span class="relative flex h-2 w-2">
@@ -407,28 +429,29 @@
                     <span data-i18n="hero_badge">BISNIS JADI AUTOPILOT</span>
                 </div>
                 <!-- Fixed title: adjust margins/sizes on mobile to prevent overlapping -->
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white font-headings max-w-4xl leading-tight px-4"
+                <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white font-headings max-w-4xl leading-tight px-4"
                     style="margin-top: 1vh;">
                     <span data-i18n="hero_title_1">Bisnis Jalan Otomatis</span> <br>
                     <span class="text-gradient" data-i18n="hero_title_2">Omzet Naik Drastis</span>
                 </h1>
             </div>
 
-            <div class="flex flex-col items-center gap-6 max-w-xl pointer-events-auto mb-2 md:mb-6">
-                <p class="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 font-light leading-relaxed px-4"
+            <div class="flex flex-col items-center gap-3 md:gap-6 max-w-xl pointer-events-auto mb-2 md:mb-6">
+                <p class="text-[11px] md:text-sm text-zinc-600 dark:text-zinc-400 font-light leading-relaxed px-4"
                     data-i18n="hero_desc">
                     Stop jadi "budak" di bisnis sendiri. Kami buatkan sistem kasir, stok, dan laporan otomatis. Anda
                     tinggal pantau lewat HP. Gaptek? Tenang, kami ajari.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-3 w-full justify-center px-6">
+                <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full justify-center px-6">
                     <a href="https://wa.me/628123456789"
-                        class="shimmer-btn px-8 py-3.5 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-zinc-100 rounded-full text-center font-bold tracking-wide transition-all shadow-sm flex items-center justify-center gap-2 text-xs">
+                        class="shimmer-btn px-8 py-2.5 md:py-3.5 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-zinc-100 rounded-full text-center font-bold tracking-wide transition-all shadow-sm flex items-center justify-center gap-2 text-xs">
                         <span data-i18n="btn_start">Konsultasi via WA</span> <i
                             class="fa-brands fa-whatsapp text-base"></i>
                     </a>
                     <a href="#portfolio"
-                        class="px-8 py-3.5 rounded-full border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-zinc-300 transition-all font-mono text-[10px] flex items-center justify-center gap-2">
-                        <span data-i18n="btn_portfolio">LIHAT HASIL KERJA</span> <i class="fa-solid fa-arrow-down"></i>
+                        class="group px-8 py-2.5 md:py-3.5 rounded-full border border-black/10 dark:border-white/10 bg-white/5 dark:bg-black/20 hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-transparent dark:hover:border-transparent transition-all duration-300 hover:scale-[1.02] text-zinc-800 dark:text-zinc-300 font-mono text-[10px] flex items-center justify-center gap-2 pointer-events-auto">
+                        <span data-i18n="btn_portfolio">LIHAT HASIL KERJA</span> 
+                        <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                     </a>
                 </div>
             </div>
@@ -457,14 +480,14 @@
         <div class="max-w-7xl mx-auto px-6">
             <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 block mb-12"
                 data-i18n="sec_interactive_sub">/// EKOSISTEM DIGITAL</span>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 <!-- Card 1 -->
                 <div class="crop-card relative h-80 md:h-[450px] overflow-hidden group shadow-sm transition-all duration-500 hover:shadow-lg hover:-translate-y-2"
                     style="clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%, 15% 50%);">
                     <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600&auto=format&fit=crop"
                         class="crop-img absolute inset-0 w-full h-full object-cover" alt="Kasir">
                     <div class="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-all duration-300"></div>
-                    <div class="absolute bottom-6 left-10 z-10">
+                    <div class="absolute bottom-6 left-[20%] z-10">
                         <span
                             class="px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] md:text-xs font-bold font-headings rounded-full tracking-wider shadow-lg uppercase border border-white/10 dark:border-black/10"
                             data-i18n="eco_card_1">Kasir & POS</span>
@@ -476,7 +499,7 @@
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop"
                         class="crop-img absolute inset-0 w-full h-full object-cover" alt="Laporan">
                     <div class="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-all duration-300"></div>
-                    <div class="absolute bottom-6 left-10 z-10">
+                    <div class="absolute bottom-6 left-[20%] z-10">
                         <span
                             class="px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] md:text-xs font-bold font-headings rounded-full tracking-wider shadow-lg uppercase border border-white/10 dark:border-black/10"
                             data-i18n="eco_card_2">Laporan Stok</span>
@@ -488,7 +511,7 @@
                     <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=600&auto=format&fit=crop"
                         class="crop-img absolute inset-0 w-full h-full object-cover" alt="Asisten AI">
                     <div class="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-all duration-300"></div>
-                    <div class="absolute bottom-6 left-10 z-10">
+                    <div class="absolute bottom-6 left-[20%] z-10">
                         <span
                             class="px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] md:text-xs font-bold font-headings rounded-full tracking-wider shadow-lg uppercase border border-white/10 dark:border-black/10"
                             data-i18n="eco_card_3">Asisten AI</span>
@@ -500,7 +523,7 @@
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop"
                         class="crop-img absolute inset-0 w-full h-full object-cover" alt="Dashboard">
                     <div class="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-all duration-300"></div>
-                    <div class="absolute bottom-6 left-10 z-10">
+                    <div class="absolute bottom-6 left-[20%] z-10">
                         <span
                             class="px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] md:text-xs font-bold font-headings rounded-full tracking-wider shadow-lg uppercase border border-white/10 dark:border-black/10"
                             data-i18n="eco_card_4">Dashboard HP</span>
@@ -1294,6 +1317,78 @@
                 navbar.classList.remove('py-4');
             }
         });
+
+        // 0. Hero Intro Load Animation (Cascading stagger entry)
+        const introTl = gsap.timeline();
+        
+        // Hide elements initially to prevent flash of unstyled content (FOUC)
+        gsap.set("#navbar", { y: -80, opacity: 0 });
+        gsap.set(".hero-overlay-content > div > div", { y: 20, opacity: 0 });
+        gsap.set(".hero-overlay-content h1 span", { y: 30, opacity: 0 });
+        gsap.set(".hero-overlay-content p[data-i18n='hero_desc']", { y: 25, opacity: 0 });
+        gsap.set(".hero-overlay-content .pointer-events-auto a", { y: 20, opacity: 0 });
+        
+        // Animate elements in sequentially with elegant easings
+        introTl.to("#navbar", {
+            y: 0,
+            opacity: 1,
+            duration: 1.0,
+            ease: "power3.out"
+        })
+        .to(".hero-overlay-content > div > div", {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out"
+        }, "-=0.6")
+        .to(".hero-overlay-content h1 span", {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out"
+        }, "-=0.6")
+        .to(".hero-overlay-content p[data-i18n='hero_desc']", {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out"
+        }, "-=0.5")
+        .to(".hero-overlay-content .pointer-events-auto a", {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out"
+        }, "-=0.6");
+
+        // 1. Interactive Mouse Move Parallax behind SVG Cutout
+        const heroContainer = document.querySelector('.hero-container');
+        const heroVideo = heroContainer.querySelector('video');
+        
+        if (heroContainer && heroVideo) {
+            heroContainer.addEventListener('mousemove', (e) => {
+                const { width, height } = heroContainer.getBoundingClientRect();
+                const x = (e.clientX / width - 0.5) * 25; // max 25px offset
+                const y = (e.clientY / height - 0.5) * 25;
+                
+                gsap.to(heroVideo, {
+                    x: -x,
+                    y: -y,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+            
+            heroContainer.addEventListener('mouseleave', () => {
+                gsap.to(heroVideo, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+        }
 
         // 2. Cinematic Hero Text Zoom Animation
         const heroTl = gsap.timeline({
