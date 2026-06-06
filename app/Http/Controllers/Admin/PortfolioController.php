@@ -24,10 +24,16 @@ class PortfolioController extends Controller
             'problem_description' => 'required|string',
             'solution_description' => 'required|string',
             'result_description' => 'required|string',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $validated['slug'] = Str::slug($request->title);
         $validated['image_path'] = 'portfolio/default.jpg'; // Placeholder
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('portfolio', 'public');
+            $validated['image_path'] = $path;
+        }
 
         Portfolio::create($validated);
 
@@ -43,10 +49,16 @@ class PortfolioController extends Controller
             'problem_description' => 'required|string',
             'solution_description' => 'required|string',
             'result_description' => 'required|string',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $validated['slug'] = Str::slug($request->title);
         
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('portfolio', 'public');
+            $validated['image_path'] = $path;
+        }
+
         $portfolio->update($validated);
 
         return redirect()->back()->with('success', 'Portfolio entry updated.');

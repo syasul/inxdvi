@@ -26,8 +26,21 @@
             @foreach($articles as $article)
             <tr>
                 <td>
-                    <div style="font-weight: 700; color: #0f172a;">{{ $article->title }}</div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted);">{{ $article->created_at->format('d M Y') }}</div>
+                    <div style="display: flex; gap: 0.75rem; align-items: center;">
+                        @php
+                        $imageUrl = $article->image_path;
+                        if (!$imageUrl) {
+                            $imageUrl = 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=150';
+                        } else if (!Str::startsWith($imageUrl, 'http')) {
+                            $imageUrl = asset('storage/' . $imageUrl);
+                        }
+                        @endphp
+                        <img src="{{ $imageUrl }}" style="width: 48px; height: 48px; object-fit: cover; rounded-lg; border: 1px solid var(--border-color); border-radius: 8px;" alt="">
+                        <div>
+                            <div style="font-weight: 700; color: #0f172a;">{{ $article->title }}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">{{ $article->created_at->format('d M Y') }}</div>
+                        </div>
+                    </div>
                 </td>
                 <td><span class="badge" style="background: #f1f5f9; color: #475569;">{{ $article->category }}</span></td>
                 <td><span style="font-size: 0.875rem;">{{ $article->author->name }}</span></td>
@@ -67,7 +80,7 @@
             <h2>Compose New Article</h2>
             <i data-lucide="x" class="close-modal" onclick="closeModal('addArticleModal')"></i>
         </div>
-        <form action="{{ route('article.store') }}" method="POST">
+        <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
                 <div>
@@ -92,6 +105,10 @@
                             <option value="published">Published</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Cover Image</label>
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -113,7 +130,7 @@
             <h2>Edit Article</h2>
             <i data-lucide="x" class="close-modal" onclick="closeModal('editArticleModal')"></i>
         </div>
-        <form id="editArticleForm" method="POST">
+        <form id="editArticleForm" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
@@ -138,6 +155,10 @@
                             <option value="draft">Draft</option>
                             <option value="published">Published</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cover Image (Optional)</label>
+                        <input type="file" name="image" class="form-control" accept="image/*">
                     </div>
                 </div>
             </div>

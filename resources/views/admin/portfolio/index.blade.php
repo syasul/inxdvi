@@ -25,8 +25,21 @@
             @foreach($portfolios as $item)
             <tr>
                 <td>
-                    <div style="font-weight: 700; color: #0f172a;">{{ $item->title }}</div>
-                    <div style="font-size: 0.75rem; color: var(--primary);">{{ $item->client_name ?? 'Internal Project' }}</div>
+                    <div style="display: flex; gap: 0.75rem; align-items: center;">
+                        @php
+                        $imageUrl = $item->image_path;
+                        if (!$imageUrl) {
+                            $imageUrl = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=150';
+                        } else if (!Str::startsWith($imageUrl, 'http')) {
+                            $imageUrl = asset('storage/' . $imageUrl);
+                        }
+                        @endphp
+                        <img src="{{ $imageUrl }}" style="width: 48px; height: 48px; object-fit: cover; border: 1px solid var(--border-color); border-radius: 8px;" alt="">
+                        <div>
+                            <div style="font-weight: 700; color: #0f172a;">{{ $item->title }}</div>
+                            <div style="font-size: 0.75rem; color: var(--primary);">{{ $item->client_name ?? 'Internal Project' }}</div>
+                        </div>
+                    </div>
                 </td>
                 <td><span class="badge" style="background: #eef2ff; color: var(--primary);">{{ $item->category }}</span></td>
                 <td>
@@ -63,7 +76,7 @@
             <h2>Add New Portfolio</h2>
             <i data-lucide="x" class="close-modal" onclick="closeModal('addPortfolioModal')"></i>
         </div>
-        <form action="{{ route('portfolio.store') }}" method="POST">
+        <form action="{{ route('portfolio.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                 <div class="form-group">
@@ -75,13 +88,19 @@
                     <input type="text" name="client_name" class="form-control" placeholder="e.g. PT Maju Bersama">
                 </div>
             </div>
-            <div class="form-group">
-                <label>Category</label>
-                <select name="category" class="form-control" required>
-                    <option value="UMKM">UMKM</option>
-                    <option value="MEDIUM BUSINESS">MEDIUM BUSINESS</option>
-                    <option value="ENTERPRISE">ENTERPRISE</option>
-                </select>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" class="form-control" required>
+                        <option value="UMKM">UMKM</option>
+                        <option value="MEDIUM BUSINESS">MEDIUM BUSINESS</option>
+                        <option value="ENTERPRISE">ENTERPRISE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Project Cover Image</label>
+                    <input type="file" name="image" class="form-control" accept="image/*">
+                </div>
             </div>
             <div class="form-group">
                 <label>Problem Description</label>
@@ -110,7 +129,7 @@
             <h2>Edit Portfolio</h2>
             <i data-lucide="x" class="close-modal" onclick="closeModal('editPortfolioModal')"></i>
         </div>
-        <form id="editPortfolioForm" method="POST">
+        <form id="editPortfolioForm" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
@@ -123,13 +142,19 @@
                     <input type="text" name="client_name" id="p_client" class="form-control">
                 </div>
             </div>
-            <div class="form-group">
-                <label>Category</label>
-                <select name="category" id="p_category" class="form-control" required>
-                    <option value="UMKM">UMKM</option>
-                    <option value="MEDIUM BUSINESS">MEDIUM BUSINESS</option>
-                    <option value="ENTERPRISE">ENTERPRISE</option>
-                </select>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" id="p_category" class="form-control" required>
+                        <option value="UMKM">UMKM</option>
+                        <option value="MEDIUM BUSINESS">MEDIUM BUSINESS</option>
+                        <option value="ENTERPRISE">ENTERPRISE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Project Cover Image (Optional)</label>
+                    <input type="file" name="image" class="form-control" accept="image/*">
+                </div>
             </div>
             <div class="form-group">
                 <label>Problem Description</label>

@@ -7,10 +7,11 @@ use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\FaqController;
 
-Route::get('/', function () {
-    return view('client.home');
-});
+Route::get('/', [\App\Http\Controllers\Front\PageController::class, 'home'])->name('client.home');
+Route::get('/blog', [\App\Http\Controllers\Front\PageController::class, 'blogIndex'])->name('client.blog.index');
+Route::get('/blog/{slug}', [\App\Http\Controllers\Front\PageController::class, 'blogShow'])->name('client.blog.show');
 
 // Admin Routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
@@ -18,6 +19,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('portfolio', PortfolioController::class);
     Route::resource('service', ServiceController::class);
     Route::resource('article', ArticleController::class);
+    Route::resource('faq', FaqController::class);
     Route::get('setting', [SettingController::class, 'index'])->name('admin.setting.index');
     Route::post('setting', [SettingController::class, 'update'])->name('admin.setting.update');
     Route::get('ai-assistant', [\App\Http\Controllers\Admin\AiAssistantController::class, 'index'])->name('admin.ai-assistant.index');

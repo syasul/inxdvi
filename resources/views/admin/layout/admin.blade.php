@@ -238,6 +238,7 @@
                 <li><a href="/admin/portfolio" class="{{ Request::is('admin/portfolio*') ? 'active' : '' }}"><i data-lucide="briefcase"></i> Portfolio</a></li>
                 <li><a href="/admin/service" class="{{ Request::is('admin/service*') ? 'active' : '' }}"><i data-lucide="layers"></i> Services</a></li>
                 <li><a href="/admin/article" class="{{ Request::is('admin/article*') ? 'active' : '' }}"><i data-lucide="file-text"></i> Articles</a></li>
+                <li><a href="/admin/faq" class="{{ Request::is('admin/faq*') ? 'active' : '' }}"><i data-lucide="help-circle"></i> FAQ</a></li>
                 <li><a href="/admin/ai-assistant" class="{{ Request::is('admin/ai-assistant*') ? 'active' : '' }}"><i data-lucide="cpu"></i> AI Assistant</a></li>
                 <li><a href="/admin/setting" class="{{ Request::is('admin/setting*') ? 'active' : '' }}"><i data-lucide="settings"></i> Settings</a></li>
             </ul>

@@ -547,79 +547,35 @@
             <!-- Spotlight Cards Grid -->
             <div
                 class="grid grid-cols-1 md:grid-cols-3 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden bg-[var(--bg-card)] shadow-sm transition-colors duration-500">
-                <!-- Service 1 -->
+                @php
+                $iconMap = [
+                    'cpu' => 'fa-microchip',
+                    'trending-up' => 'fa-chart-line',
+                    'code' => 'fa-code',
+                    'mobile-screen' => 'fa-mobile-screen',
+                    'globe' => 'fa-globe',
+                    'pen-nib' => 'fa-pen-nib',
+                    'instagram' => 'fa-instagram',
+                    'shield-halved' => 'fa-shield-halved',
+                    'headset' => 'fa-headset'
+                ];
+                @endphp
+                @foreach($services as $index => $service)
+                @php
+                $iconClass = $iconMap[$service->icon] ?? ($service->icon ?? 'fa-cube');
+                $isBrandIcon = Str::startsWith($iconClass, 'fa-brands');
+                $iconPrefix = $isBrandIcon ? '' : 'fa-solid';
+                @endphp
                 <div
-                    class="spotlight-card p-8 border-b md:border-b-0 md:border-r border-black/10 dark:border-white/10 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] transition-colors group reveal reveal-delay-100">
+                    class="spotlight-card p-8 border border-black/10 dark:border-white/10 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] transition-colors group reveal reveal-delay-{{ (($index % 3) + 1) * 100 }}">
                     <div
                         class="w-12 h-12 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center mb-8 text-zinc-800 dark:text-white group-hover:bg-zinc-900 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-black transition-all">
-                        <i class="fa-solid fa-mobile-screen"></i>
+                        <i class="{{ $iconPrefix }} {{ $iconClass }}"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white font-headings mb-4"
-                        data-i18n="srv_mobile_title">Aplikasi Kasir & Stok</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-light"
-                        data-i18n="srv_mobile_desc">Pantau penjualan dan stok barang langsung dari HP (Real-time).</p>
+                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white font-headings mb-4">{{ $service->name }}</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-light">{{ $service->description }}</p>
                 </div>
-                <!-- Service 2 -->
-                <div
-                    class="spotlight-card p-8 border-b md:border-b-0 md:border-r border-black/10 dark:border-white/10 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] transition-colors group reveal reveal-delay-200">
-                    <div
-                        class="w-12 h-12 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center mb-8 text-zinc-800 dark:text-white group-hover:bg-zinc-900 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-black transition-all">
-                        <i class="fa-solid fa-globe"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white font-headings mb-4"
-                        data-i18n="srv_web_title">Website Pencari Pelanggan</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-light"
-                        data-i18n="srv_web_desc">Bikin toko/jasa Anda muncul paling atas di Google (SEO) saat orang
-                        mencari.</p>
-                </div>
-                <!-- Service 3 -->
-                <div
-                    class="spotlight-card p-8 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] transition-colors group reveal reveal-delay-300">
-                    <div
-                        class="w-12 h-12 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center mb-8 text-zinc-800 dark:text-white group-hover:bg-zinc-900 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-black transition-all">
-                        <i class="fa-solid fa-pen-nib"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white font-headings mb-4"
-                        data-i18n="srv_vector_title">Desain Logo & Branding</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-light"
-                        data-i18n="srv_vector_desc">Bikin brand terlihat mahal. Desain logo, banner, dan menu yang
-                        menggugah selera.</p>
-                </div>
-                <!-- Row 2 -->
-                <div
-                    class="spotlight-card p-8 border-t border-r border-black/10 dark:border-white/10 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] transition-colors group border-b md:border-b-0 reveal reveal-delay-100">
-                    <div
-                        class="w-12 h-12 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center mb-8 text-zinc-800 dark:text-white group-hover:bg-zinc-900 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-black transition-all">
-                        <i class="fa-brands fa-instagram"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white font-headings mb-4"
-                        data-i18n="srv_sosmed_spec_title">Jasa Kelola Sosmed</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-light"
-                        data-i18n="srv_sosmed_spec_desc">Kami urus IG & TikTok Anda. Mulai dari ide konten, edit video,
-                        sampai posting rutin.</p>
-                </div>
-                <div
-                    class="spotlight-card p-8 border-t border-r border-black/10 dark:border-white/10 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] transition-colors group border-b md:border-b-0 reveal reveal-delay-200">
-                    <div
-                        class="w-12 h-12 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center mb-8 text-zinc-800 dark:text-white group-hover:bg-zinc-900 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-black transition-all">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white font-headings mb-4"
-                        data-i18n="srv_sec_title">Keamanan Data</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-light"
-                        data-i18n="srv_sec_desc">Data keuangan Anda aman, tidak akan bocor ke kompetitor.</p>
-                </div>
-                <div
-                    class="spotlight-card p-8 border-t border-black/10 dark:border-white/10 hover:bg-black/[0.02] dark:hover:bg-white/[0.01] transition-colors group reveal reveal-delay-300">
-                    <div
-                        class="w-12 h-12 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center mb-8 text-zinc-800 dark:text-white group-hover:bg-zinc-900 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-black transition-all">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-zinc-900 dark:text-white font-headings mb-4"
-                        data-i18n="srv_sosmed_title">Bot Balas Chat</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-light"
-                        data-i18n="srv_sosmed_desc">Sistem yang menjawab pertanyaan pelanggan 24 jam nonstop.</p>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -781,42 +737,44 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Portfolio 1 -->
-                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-sm reveal reveal-delay-100">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1000&auto=format&fit=crop"
+                @foreach($portfolios as $index => $item)
+                @php
+                $imageUrl = $item->image_path;
+                if (!Str::startsWith($imageUrl, 'http')) {
+                    if (file_exists(public_path('storage/' . $imageUrl))) {
+                        $imageUrl = asset('storage/' . $imageUrl);
+                    } else if (file_exists(public_path($imageUrl))) {
+                        $imageUrl = asset($imageUrl);
+                    } else {
+                        // fallback image
+                        $imageUrl = 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1000';
+                    }
+                }
+                @endphp
+                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-sm reveal reveal-delay-{{ ($index + 1) * 100 }} cursor-pointer"
+                     onclick='openPortfolioModal({!! json_encode([
+                         "title" => $item->title,
+                         "client" => $item->client_name ?? "Internal Project",
+                         "category" => $item->category,
+                         "problem" => $item->problem_description,
+                         "solution" => $item->solution_description,
+                         "result" => $item->result_description,
+                         "image" => $imageUrl
+                     ]) !!})'>
+                    <img src="{{ $imageUrl }}"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        alt="POS App">
+                        alt="{{ $item->title }}">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
                     <div class="absolute bottom-6 left-6">
                         <span
-                            class="px-2.5 py-1 bg-white/10 border border-white/20 rounded text-[9px] text-white/95 font-mono mb-2 inline-block">FINTECH</span>
-                        <h3 class="text-lg font-bold text-white font-headings">E-Wallet App</h3>
+                            class="px-2.5 py-1 bg-white/10 border border-white/20 rounded text-[9px] text-white/95 font-mono mb-2 inline-block">{{ strtoupper($item->category) }}</span>
+                        <h3 class="text-lg font-bold text-white font-headings">{{ $item->title }}</h3>
+                        @if($item->client_name)
+                        <div class="text-[10px] text-white/60 font-mono mt-1">{{ $item->client_name }}</div>
+                        @endif
                     </div>
                 </div>
-                <!-- Portfolio 2 -->
-                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-sm reveal reveal-delay-200">
-                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop"
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        alt="Shopify Mobile">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <span
-                            class="px-2.5 py-1 bg-white/10 border border-white/20 rounded text-[9px] text-white/95 font-mono mb-2 inline-block">COMMERCE</span>
-                        <h3 class="text-lg font-bold text-white font-headings">Shopify Mobile</h3>
-                    </div>
-                </div>
-                <!-- Portfolio 3 -->
-                <div class="relative h-80 rounded-3xl overflow-hidden group shadow-sm reveal reveal-delay-300">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        alt="Team Dashboard">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <span
-                            class="px-2.5 py-1 bg-white/10 border border-white/20 rounded text-[9px] text-white/95 font-mono mb-2 inline-block">SAAS</span>
-                        <h3 class="text-lg font-bold text-white font-headings">Team Dashboard</h3>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -853,7 +811,7 @@
                 <div class="space-y-8 md:py-8">
                     <!-- Step 1 -->
                     <div
-                        class="step-item p-8 bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all duration-300 reveal reveal-delay-100">
+                        class="step-item p-8 bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all duration-300">
                         <div class="flex items-center justify-between mb-6">
                             <span class="text-3xl font-black text-zinc-400 dark:text-zinc-700 font-headings">01</span>
                             <div
@@ -868,7 +826,7 @@
                     </div>
                     <!-- Step 2 -->
                     <div
-                        class="step-item p-8 bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all duration-300 reveal reveal-delay-200">
+                        class="step-item p-8 bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all duration-300">
                         <div class="flex items-center justify-between mb-6">
                             <span class="text-3xl font-black text-zinc-400 dark:text-zinc-700 font-headings">02</span>
                             <div
@@ -883,7 +841,7 @@
                     </div>
                     <!-- Step 3 -->
                     <div
-                        class="step-item p-8 bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all duration-300 reveal reveal-delay-300">
+                        class="step-item p-8 bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all duration-300">
                         <div class="flex items-center justify-between mb-6">
                             <span class="text-3xl font-black text-zinc-400 dark:text-zinc-700 font-headings">03</span>
                             <div
@@ -898,7 +856,7 @@
                     </div>
                     <!-- Step 4 -->
                     <div
-                        class="step-item p-8 bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all duration-300 reveal reveal-delay-400">
+                        class="step-item p-8 bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all duration-300">
                         <div class="flex items-center justify-between mb-6">
                             <span class="text-3xl font-black text-zinc-400 dark:text-zinc-700 font-headings">04</span>
                             <div
@@ -990,7 +948,7 @@
                     <h2 class="text-3xl md:text-5xl font-extrabold text-zinc-900 dark:text-white font-headings"
                         data-i18n="sec_blog_title">Artikel & Tips</h2>
                 </div>
-                <a href="#"
+                <a href="{{ route('client.blog.index') }}"
                     class="text-xs font-mono text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center gap-2 group transition-colors">
                     <span data-i18n="btn_read_more">LIHAT SEMUA TIPS</span> <i
                         class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
@@ -998,69 +956,44 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Blog 1 -->
+                @foreach($articles as $index => $article)
+                @php
+                $imageUrl = $article->image_path;
+                if (!$imageUrl) {
+                    $imageUrl = 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600';
+                } else if (!Str::startsWith($imageUrl, 'http')) {
+                    if (file_exists(public_path('storage/' . $imageUrl))) {
+                        $imageUrl = asset('storage/' . $imageUrl);
+                    } else if (file_exists(public_path($imageUrl))) {
+                        $imageUrl = asset($imageUrl);
+                    } else {
+                        $imageUrl = 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600';
+                    }
+                }
+                @endphp
                 <div
-                    class="bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden group shadow-sm transition-colors duration-500 reveal reveal-delay-100">
+                    class="bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden group shadow-sm transition-colors duration-500 reveal reveal-delay-{{ ($index + 1) * 100 }}">
                     <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600&auto=format&fit=crop"
+                        <img src="{{ $imageUrl }}"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            alt="Blog Image">
+                            alt="{{ $article->title }}">
                         <div
-                            class="absolute top-4 left-4 bg-red-500/10 backdrop-blur-md border border-red-500/20 text-red-600 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
-                            KEUANGAN</div>
+                            class="absolute top-4 left-4 bg-indigo-500/10 backdrop-blur-md border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
+                            {{ strtoupper($article->category) }}</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-base font-bold text-zinc-900 dark:text-white font-headings mb-3 group-hover:text-zinc-900/80 dark:group-hover:text-white/80 transition-colors"
-                            data-i18n="blog_1_title">Kasir Sering Minus? Ini 5 Penyebabnya</h3>
-                        <p class="text-zinc-500 dark:text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed"
-                            data-i18n="blog_1_desc">Jangan biarkan uang bocor. Kenali tanda-tanda karyawan tidak jujur
-                            di meja kasir.</p>
-                        <span class="text-xs font-bold text-zinc-900 dark:text-white flex items-center gap-2">Baca
-                            Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <h3 class="text-base font-bold text-zinc-900 dark:text-white font-headings mb-3 group-hover:text-zinc-900/80 dark:group-hover:text-white/80 transition-colors">
+                            {{ $article->title }}
+                        </h3>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed">
+                            {{ $article->excerpt }}
+                        </p>
+                        <a href="{{ route('client.blog.show', $article->slug) }}" class="text-xs font-bold text-zinc-900 dark:text-white flex items-center gap-2 hover:underline">
+                            Baca Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
                     </div>
                 </div>
-                <!-- Blog 2 -->
-                <div
-                    class="bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden group shadow-sm transition-colors duration-500 reveal reveal-delay-200">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=600&auto=format&fit=crop"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            alt="Blog Image">
-                        <div
-                            class="absolute top-4 left-4 bg-[#4f46e5]/10 backdrop-blur-md border border-[#4f46e5]/20 text-[#4f46e5] dark:text-[#818cf8] px-3 py-1 rounded-full text-[10px] font-bold font-mono">
-                            MARKETING</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-base font-bold text-zinc-900 dark:text-white font-headings mb-3 group-hover:text-zinc-900/80 dark:group-hover:text-white/80 transition-colors"
-                            data-i18n="blog_2_title">Trik Agar Toko Muncul Paling Atas di Google</h3>
-                        <p class="text-zinc-500 dark:text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed"
-                            data-i18n="blog_2_desc">Cara gratis agar pelanggan di sekitar Anda langsung menemukan toko
-                            Anda di Google Maps.</p>
-                        <span class="text-xs font-bold text-zinc-900 dark:text-white flex items-center gap-2">Baca
-                            Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
-                    </div>
-                </div>
-                <!-- Blog 3 -->
-                <div
-                    class="bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden group shadow-sm transition-colors duration-500 reveal reveal-delay-300">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=600&auto=format&fit=crop"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            alt="Blog Image">
-                        <div
-                            class="absolute top-4 left-4 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/20 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
-                            OPERASIONAL</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-base font-bold text-zinc-900 dark:text-white font-headings mb-3 group-hover:text-zinc-900/80 dark:group-hover:text-white/80 transition-colors"
-                            data-i18n="blog_3_title">Capek Balas Chat? Pakai Trik Ini</h3>
-                        <p class="text-zinc-500 dark:text-zinc-400 text-xs mb-4 line-clamp-2 leading-relaxed"
-                            data-i18n="blog_3_desc">Rahasia agar chat pelanggan terjawab dalam 1 detik meski Anda sedang
-                            tidur.</p>
-                        <span class="text-xs font-bold text-zinc-900 dark:text-white flex items-center gap-2">Baca
-                            Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -1119,60 +1052,26 @@
                 <h3 class="text-2xl md:text-3xl font-extrabold font-headings text-white mb-12 text-center"
                     data-i18n="faq_title">Pertanyaan Umum</h3>
                 <div class="space-y-4">
-                    <!-- FAQ Item 1 -->
+                    @foreach($faqs as $index => $faq)
                     <div
                         class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
                         <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group"
                             onclick="toggleFaq(this)">
                             <span
-                                class="font-bold text-white text-sm md:text-base group-hover:text-emerald-400 transition-colors"
-                                data-i18n="faq_1_q">Apakah cocok untuk bisnis kecil / UMKM?</span>
+                                class="font-bold text-white text-sm md:text-base group-hover:text-emerald-400 transition-colors">
+                                {{ $faq->question }}
+                            </span>
                             <span
                                 class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-white/50 group-hover:text-white transition-all transform duration-300 shrink-0"><i
                                     class="fa-solid fa-chevron-down"></i></span>
                         </button>
                         <div class="faq-answer max-h-0 overflow-hidden transition-all duration-350 ease-in-out">
-                            <p class="px-6 pb-6 text-white/60 text-xs md:text-sm leading-relaxed" data-i18n="faq_1_a">
-                                Sangat cocok! Sistem kami dirancang sederhana agar mudah dipahami bahkan untuk yang
-                                gaptek sekalipun.</p>
+                            <p class="px-6 pb-6 text-white/60 text-xs md:text-sm leading-relaxed">
+                                {{ $faq->answer }}
+                            </p>
                         </div>
                     </div>
-                    <!-- FAQ Item 2 -->
-                    <div
-                        class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
-                        <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group"
-                            onclick="toggleFaq(this)">
-                            <span
-                                class="font-bold text-white text-sm md:text-base group-hover:text-emerald-400 transition-colors"
-                                data-i18n="faq_2_q">Berapa lama waktu pembuatan?</span>
-                            <span
-                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-white/50 group-hover:text-white transition-all transform duration-300 shrink-0"><i
-                                    class="fa-solid fa-chevron-down"></i></span>
-                        </button>
-                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-350 ease-in-out">
-                            <p class="px-6 pb-6 text-white/60 text-xs md:text-sm leading-relaxed" data-i18n="faq_2_a">
-                                Proses pengerjaan biasanya berkisar antara 2 hingga 4 minggu tergantung kompleksitas
-                                sistem.</p>
-                        </div>
-                    </div>
-                    <!-- FAQ Item 3 -->
-                    <div
-                        class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
-                        <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group"
-                            onclick="toggleFaq(this)">
-                            <span
-                                class="font-bold text-white text-sm md:text-base group-hover:text-emerald-400 transition-colors"
-                                data-i18n="faq_3_q">Bagaimana jika ada error di kemudian hari?</span>
-                            <span
-                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-white/50 group-hover:text-white transition-all transform duration-300 shrink-0"><i
-                                    class="fa-solid fa-chevron-down"></i></span>
-                        </button>
-                        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-350 ease-in-out">
-                            <p class="px-6 pb-6 text-white/60 text-xs md:text-sm leading-relaxed" data-i18n="faq_3_a">
-                                Kami memberikan garansi perbaikan gratis serta pendampingan penuh untuk melatih staf
-                                Anda.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -1475,16 +1374,19 @@
 
         // 5. Steps scrolling animation reveal
         gsap.utils.toArray('.step-item').forEach(step => {
-            gsap.from(step, {
-                opacity: 0.3,
-                y: 30,
-                scrollTrigger: {
-                    trigger: step,
-                    start: "top 85%",
-                    end: "top 55%",
-                    scrub: true
+            gsap.fromTo(step, 
+                { opacity: 0.3, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scrollTrigger: {
+                        trigger: step,
+                        start: "top 85%",
+                        end: "top 55%",
+                        scrub: true
+                    }
                 }
-            });
+            );
         });
 
         // 6. Interactive Dark Footer Category Row Hovers
@@ -1946,6 +1848,103 @@
         langBtn.addEventListener('click', () => {
             updateLang(currentLang === 'id' ? 'en' : 'id');
         });
+    </script>
+
+    <!-- Portfolio Detail Modal -->
+    <div id="portfolioModal" class="fixed inset-0 z-50 flex items-center justify-center hidden p-4 sm:p-6 md:p-10">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" onclick="closePortfolioModal()"></div>
+        
+        <!-- Modal Content Container -->
+        <div class="relative w-full max-w-4xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 transform scale-95 opacity-0 z-10 flex flex-col md:flex-row h-[90vh] md:h-auto max-h-[85vh]">
+            <!-- Close Button -->
+            <button onclick="closePortfolioModal()" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/50 hover:bg-black text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            
+            <!-- Left: Image Section -->
+            <div class="w-full md:w-1/2 h-48 md:h-[450px] relative">
+                <img id="modalPortImage" src="" class="w-full h-full object-cover" alt="">
+                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/50 to-transparent"></div>
+            </div>
+            
+            <!-- Right: Content Section -->
+            <div class="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between overflow-y-auto h-[60vh] md:h-[450px]">
+                <div>
+                    <!-- Category Badge -->
+                    <span id="modalPortCategory" class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded text-[9px] text-zinc-600 dark:text-zinc-400 font-mono mb-3 inline-block uppercase tracking-wider"></span>
+                    
+                    <!-- Title & Client -->
+                    <h3 id="modalPortTitle" class="text-xl md:text-2xl font-extrabold text-zinc-900 dark:text-white font-headings leading-tight mb-1"></h3>
+                    <div id="modalPortClient" class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mb-6"></div>
+                    
+                    <!-- Project Details Staggered -->
+                    <div class="space-y-6 font-sans">
+                        <!-- Problem -->
+                        <div>
+                            <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-1">/// MASALAH (PROBLEM)</span>
+                            <p id="modalPortProblem" class="text-xs md:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-light"></p>
+                        </div>
+                        
+                        <!-- Solution -->
+                        <div>
+                            <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-1">/// SOLUSI (SOLUTION)</span>
+                            <p id="modalPortSolution" class="text-xs md:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-light"></p>
+                        </div>
+                        
+                        <!-- Result -->
+                        <div>
+                            <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-1">/// HASIL (RESULTS)</span>
+                            <p id="modalPortResult" class="text-xs md:text-sm text-emerald-600 dark:text-emerald-400 font-semibold leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom CTA -->
+                <div class="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-900 flex justify-between items-center">
+                    <a href="https://wa.me/628123456789" target="_blank" class="px-5 py-2.5 bg-[var(--primary)] hover:opacity-95 text-white font-bold font-headings rounded-full text-xs transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>KONSULTASI SEKARANG</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPortfolioModal(data) {
+            const modal = document.getElementById('portfolioModal');
+            const modalContent = modal.querySelector('.relative.w-full.max-w-4xl');
+            
+            document.getElementById('modalPortImage').src = data.image;
+            document.getElementById('modalPortCategory').innerText = data.category;
+            document.getElementById('modalPortTitle').innerText = data.title;
+            document.getElementById('modalPortClient').innerText = data.client;
+            document.getElementById('modalPortProblem').innerText = data.problem;
+            document.getElementById('modalPortSolution').innerText = data.solution;
+            document.getElementById('modalPortResult').innerText = data.result;
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePortfolioModal() {
+            const modal = document.getElementById('portfolioModal');
+            const modalContent = modal.querySelector('.relative.w-full.max-w-4xl');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
     </script>
 </body>
 

@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Portfolio;
 use App\Models\Setting;
 use App\Models\Article;
+use App\Models\Faq;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -110,6 +111,29 @@ class StartupContentSeeder extends Seeder
 
         foreach ($settings as $setting) {
             Setting::updateOrCreate(['key' => $setting['key']], $setting);
+        }
+
+        // 6. FAQs
+        $faqs = [
+            [
+                'question' => 'Apakah cocok untuk bisnis kecil / UMKM?',
+                'answer' => 'Sangat cocok! Sistem kami dirancang sederhana agar mudah dipahami bahkan untuk yang gaptek sekalipun.',
+                'is_active' => true,
+            ],
+            [
+                'question' => 'Berapa lama waktu pembuatan?',
+                'answer' => 'Proses pengerjaan biasanya berkisar antara 2 hingga 4 minggu tergantung kompleksitas sistem.',
+                'is_active' => true,
+            ],
+            [
+                'question' => 'Bagaimana jika ada error di kemudian hari?',
+                'answer' => 'Kami memberikan garansi perbaikan gratis serta pendampingan penuh untuk melatih staf Anda.',
+                'is_active' => true,
+            ],
+        ];
+
+        foreach ($faqs as $faq) {
+            Faq::updateOrCreate(['question' => $faq['question']], $faq);
         }
     }
 }
