@@ -16,10 +16,15 @@ class Article extends Model
         'content',
         'status',
         'published_at',
+        'tags',
+        'author_name',
+        'read_time_min',
     ];
 
     protected $casts = [
         'published_at' => 'datetime',
+        'tags' => 'array',
+        'read_time_min' => 'integer',
     ];
 
     public function author()

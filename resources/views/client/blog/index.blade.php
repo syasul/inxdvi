@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog & Artikel - INXDVI</title>
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="icon" type="image/png" href="/images/logo_transparent1.png">
 
     <!-- CSS / Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <!-- Tailwind Config -->
     <script>
@@ -148,7 +150,9 @@
 <body class="antialiased selection:bg-[#4f46e5]/20 selection:text-[#4f46e5]">
 
     <!-- Scroll Progress Indicator -->
-    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-[100] transition-all duration-75" style="width: 0%;"></div>
+    <div id="scroll-progress"
+        class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-[100] transition-all duration-75"
+        style="width: 0%;"></div>
 
     <!-- Header Navigation -->
     <nav id="navbar" class="fixed w-full z-50 glass-panel py-4 md:py-6">
@@ -156,114 +160,150 @@
 
             <!-- Brand Logo -->
             <a href="{{ route('client.home') }}" class="flex items-center gap-3 z-50 text-decoration-none">
-                <img src="{{ asset('images/logo.png') }}" class="h-8 md:h-10 w-auto object-contain transition-transform duration-300 hover:scale-[1.03]" alt="INXDVI Logo">
+                <img src="{{ asset('images/logo_transparent1.png') }}"
+                    class="h-8 md:h-10 w-auto object-contain transition-transform duration-300 hover:scale-[1.03]"
+                    alt="INXDVI Logo">
             </a>
 
             <!-- Navigation Links -->
-            <div class="hidden md:flex items-center gap-2 bg-black/5 dark:bg-white/5 p-1 rounded-full border border-black/10 dark:border-white/10">
-                <a href="{{ route('client.home') }}#masalah" class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all" data-i18n="nav_problem">Masalah</a>
-                <a href="{{ route('client.home') }}#layanan" class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all" data-i18n="nav_solution">Solusi</a>
-                <a href="{{ route('client.home') }}#hemat" class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all" data-i18n="nav_benefit">Penghematan</a>
-                <a href="{{ route('client.home') }}#portfolio" class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all" data-i18n="nav_portfolio">Portfolio</a>
-                <a href="{{ route('client.blog.index') }}" class="px-5 py-2 text-xs font-semibold text-zinc-950 dark:text-white bg-black/5 dark:bg-white/10 rounded-full transition-all">Blog</a>
+            <div
+                class="hidden md:flex items-center gap-2 bg-black/5 dark:bg-white/5 p-1 rounded-full border border-black/10 dark:border-white/10">
+                <a href="{{ route('client.home') }}#masalah"
+                    class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
+                    data-i18n="nav_problem">Masalah</a>
+                <a href="{{ route('client.home') }}#layanan"
+                    class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
+                    data-i18n="nav_solution">Solusi</a>
+                <a href="{{ route('client.home') }}#hemat"
+                    class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
+                    data-i18n="nav_benefit">Penghematan</a>
+                <a href="{{ route('client.home') }}#portfolio"
+                    class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
+                    data-i18n="nav_portfolio">Portfolio</a>
+                <a href="{{ route('client.blog.index') }}"
+                    class="px-5 py-2 text-xs font-semibold text-zinc-950 dark:text-white bg-black/5 dark:bg-white/10 rounded-full transition-all">Blog</a>
             </div>
 
             <!-- Custom Controls & Call to Action -->
             <div class="flex items-center gap-3 z-50">
                 <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="h-9 w-9 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-black/10 dark:hover:bg-white/10 transition-all cursor-pointer text-zinc-600 dark:text-white">
+                <button id="theme-toggle"
+                    class="h-9 w-9 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center hover:bg-black/10 dark:hover:bg-white/10 transition-all cursor-pointer text-zinc-600 dark:text-white">
                     <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden"></i>
                     <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden"></i>
                 </button>
 
                 <!-- Language Toggle Button -->
-                <button id="lang-toggle" class="h-9 px-3 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center gap-2 hover:bg-black/10 dark:hover:bg-white/10 transition-all cursor-pointer">
+                <button id="lang-toggle"
+                    class="h-9 px-3 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center gap-2 hover:bg-black/10 dark:hover:bg-white/10 transition-all cursor-pointer">
                     <span id="lang-flag" class="text-sm">🇮🇩</span>
                     <span id="lang-text" class="text-xs font-bold font-mono text-zinc-800 dark:text-white">ID</span>
                 </button>
 
                 <!-- WhatsApp CTA Button -->
-                <a href="https://wa.me/628123456789" class="hidden md:flex items-center gap-2 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-bold rounded-full hover:bg-zinc-800 dark:hover:bg-gray-100 transition-all hover:scale-[1.02] shadow-sm">
+                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}"
+                    class="hidden md:flex items-center gap-2 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-bold rounded-full hover:bg-zinc-800 dark:hover:bg-gray-100 transition-all hover:scale-[1.02] shadow-sm">
                     <span data-i18n="btn_contact">Konsultasi Gratis</span>
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden w-9 h-9 flex items-center justify-center text-zinc-800 dark:text-white text-lg focus:outline-none hover:text-indigo-400 transition bg-black/5 dark:bg-white/5 rounded-full border border-black/10 dark:border-white/10">
+                <button id="mobile-menu-btn"
+                    class="md:hidden w-9 h-9 flex items-center justify-center text-zinc-800 dark:text-white text-lg focus:outline-none hover:text-indigo-400 transition bg-black/5 dark:bg-white/5 rounded-full border border-black/10 dark:border-white/10">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 shadow-lg transition-all z-40">
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 shadow-lg transition-all z-40">
             <div class="p-4 flex flex-col gap-2">
-                <a href="{{ route('client.home') }}#masalah" class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors" data-i18n="nav_problem">Masalah Anda</a>
-                <a href="{{ route('client.home') }}#layanan" class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors" data-i18n="nav_solution">Solusi</a>
-                <a href="{{ route('client.home') }}#hemat" class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors" data-i18n="nav_benefit">Penghematan</a>
-                <a href="{{ route('client.blog.index') }}" class="mobile-link block px-4 py-3 rounded-lg bg-black/5 dark:bg-white/5 text-zinc-800 dark:text-white font-semibold transition-colors">Blog</a>
-                <a href="https://wa.me/628123456789" class="block w-full py-3 bg-zinc-900 dark:bg-white text-white dark:text-black font-bold rounded-lg text-center hover:bg-black dark:hover:bg-zinc-100 transition-colors shadow-sm" data-i18n="btn_contact_wa">Chat WhatsApp</a>
+                <a href="{{ route('client.home') }}#masalah"
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
+                    data-i18n="nav_problem">Masalah Anda</a>
+                <a href="{{ route('client.home') }}#layanan"
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
+                    data-i18n="nav_solution">Solusi</a>
+                <a href="{{ route('client.home') }}#hemat"
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
+                    data-i18n="nav_benefit">Penghematan</a>
+                <a href="{{ route('client.blog.index') }}"
+                    class="mobile-link block px-4 py-3 rounded-lg bg-black/5 dark:bg-white/5 text-zinc-800 dark:text-white font-semibold transition-colors">Blog</a>
+                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}"
+                    class="block w-full py-3 bg-zinc-900 dark:bg-white text-white dark:text-black font-bold rounded-lg text-center hover:bg-black dark:hover:bg-zinc-100 transition-colors shadow-sm"
+                    data-i18n="btn_contact_wa">Chat WhatsApp</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content Area -->
     <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto relative z-20">
-        
+
         <!-- Page Header -->
         <div class="mb-16 reveal">
-            <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 block mb-2" data-i18n="sec_blog_sub">/// TIPS BISNIS</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold text-zinc-900 dark:text-white font-headings mb-4" data-i18n="sec_blog_title">Artikel & Tips</h1>
-            <p class="text-sm md:text-base text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed font-light" data-i18n="blog_desc_long">
-                Kumpulan strategi, taktik digitalisasi, dan wawasan industri untuk meningkatkan efisiensi operasional dan pertumbuhan bisnis Anda.
+            <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 block mb-2"
+                data-i18n="sec_blog_sub">/// TIPS BISNIS</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-zinc-900 dark:text-white font-headings mb-4"
+                data-i18n="sec_blog_title">Artikel & Tips</h1>
+            <p class="text-sm md:text-base text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed font-light"
+                data-i18n="blog_desc_long">
+                Kumpulan strategi, taktik digitalisasi, dan wawasan industri untuk meningkatkan efisiensi operasional
+                dan pertumbuhan bisnis Anda.
             </p>
         </div>
 
         <!-- Blog Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             @forelse($articles as $index => $article)
-            @php
-            $imageUrl = $article->image_path;
-            if (!$imageUrl) {
-                $imageUrl = 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600';
-            } else if (!Str::startsWith($imageUrl, 'http')) {
-                if (file_exists(public_path('storage/' . $imageUrl))) {
-                    $imageUrl = asset('storage/' . $imageUrl);
-                } else if (file_exists(public_path($imageUrl))) {
-                    $imageUrl = asset($imageUrl);
-                } else {
-                    $imageUrl = 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600';
-                }
-            }
-            @endphp
-            <div class="bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden group shadow-sm transition-colors duration-500 reveal reveal-delay-{{ ($index % 3 + 1) * 100 }}">
-                <div class="relative h-56 overflow-hidden">
-                    <img src="{{ $imageUrl }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ $article->title }}">
-                    <div class="absolute top-4 left-4 bg-indigo-500/10 backdrop-blur-md border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
-                        {{ strtoupper($article->category) }}
+                @php
+                    $imageUrl = $article->image_path;
+                    if (!$imageUrl) {
+                        $imageUrl = 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600';
+                    } else if (!Str::startsWith($imageUrl, 'http')) {
+                        if (file_exists(public_path('storage/' . $imageUrl))) {
+                            $imageUrl = asset('storage/' . $imageUrl);
+                        } else if (file_exists(public_path($imageUrl))) {
+                            $imageUrl = asset($imageUrl);
+                        } else {
+                            $imageUrl = 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600';
+                        }
+                    }
+                @endphp
+                <div
+                    class="bg-[var(--bg-card)] border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden group shadow-sm transition-colors duration-500 reveal reveal-delay-{{ ($index % 3 + 1) * 100 }}">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="{{ $imageUrl }}"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            alt="{{ $article->title }}">
+                        <div
+                            class="absolute top-4 left-4 bg-indigo-500/10 backdrop-blur-md border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 px-3 py-1 rounded-full text-[10px] font-bold font-mono">
+                            {{ strtoupper($article->category) }}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-3 text-[10px] text-zinc-400 dark:text-zinc-500 font-mono mb-3">
+                            <span>{{ $article->published_at ? $article->published_at->format('d M Y') : $article->created_at->format('d M Y') }}</span>
+                            <span>&bull;</span>
+                            <span>{{ $article->user ? $article->user->name : 'Admin' }}</span>
+                        </div>
+                        <h2
+                            class="text-lg font-bold text-zinc-900 dark:text-white font-headings mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
+                            {{ $article->title }}
+                        </h2>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-xs mb-6 line-clamp-3 leading-relaxed">
+                            {{ $article->excerpt }}
+                        </p>
+                        <a href="{{ route('client.blog.show', $article->slug) }}"
+                            class="text-xs font-bold text-zinc-900 dark:text-white flex items-center gap-2 hover:underline">
+                            Baca Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="p-6">
-                    <div class="flex items-center gap-3 text-[10px] text-zinc-400 dark:text-zinc-500 font-mono mb-3">
-                        <span>{{ $article->published_at ? $article->published_at->format('d M Y') : $article->created_at->format('d M Y') }}</span>
-                        <span>&bull;</span>
-                        <span>{{ $article->user ? $article->user->name : 'Admin' }}</span>
-                    </div>
-                    <h2 class="text-lg font-bold text-zinc-900 dark:text-white font-headings mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
-                        {{ $article->title }}
-                    </h2>
-                    <p class="text-zinc-500 dark:text-zinc-400 text-xs mb-6 line-clamp-3 leading-relaxed">
-                        {{ $article->excerpt }}
-                    </p>
-                    <a href="{{ route('client.blog.show', $article->slug) }}" class="text-xs font-bold text-zinc-900 dark:text-white flex items-center gap-2 hover:underline">
-                        Baca Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
             @empty
-            <div class="col-span-3 py-24 text-center">
-                <i class="fa-regular fa-folder-open text-zinc-400 text-5xl mb-4"></i>
-                <p class="text-zinc-500 dark:text-zinc-400 font-medium">Belum ada artikel yang diterbitkan.</p>
-            </div>
+                <div class="col-span-3 py-24 text-center">
+                    <i class="fa-regular fa-folder-open text-zinc-400 text-5xl mb-4"></i>
+                    <p class="text-zinc-500 dark:text-zinc-400 font-medium">Belum ada artikel yang diterbitkan.</p>
+                </div>
             @endforelse
         </div>
 
@@ -280,26 +320,46 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 pt-16 border-t border-white/10 text-white/50 text-sm">
                 <div>
                     <a href="{{ route('client.home') }}" class="inline-block mb-6">
-                        <img src="{{ asset('images/logo.png') }}" class="h-8 md:h-10 w-auto object-contain transition-transform duration-300 hover:scale-[1.03]" alt="INXDVI Logo">
+                        <img src="{{ asset('images/logo_transparent1.png') }}"
+                            class="h-8 md:h-10 w-auto object-contain transition-transform duration-300 hover:scale-[1.03]"
+                            alt="INXDVI Logo">
                     </a>
-                    <p class="text-xs text-white/40 leading-relaxed mb-6" data-i18n="footer_about_desc">Partner digital terpercaya untuk UMKM dan Bisnis Lokal. Kami membuat teknologi rumit menjadi mudah digunakan untuk semua orang.</p>
+                    <p class="text-xs text-white/40 leading-relaxed mb-6" data-i18n="footer_about_desc">Partner digital
+                        terpercaya untuk UMKM dan Bisnis Lokal. Kami membuat teknologi rumit menjadi mudah digunakan
+                        untuk semua orang.</p>
                     <div class="flex gap-2">
-                        <a href="#" class="w-8 h-8 rounded bg-white/5 hover:bg-white hover:text-black flex items-center justify-center text-white transition-all text-sm"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-8 h-8 rounded bg-white/5 hover:bg-white hover:text-black flex items-center justify-center text-white transition-all text-sm"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-8 h-8 rounded bg-white/5 hover:bg-white hover:text-black flex items-center justify-center text-white transition-all text-sm"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"
+                            class="w-8 h-8 rounded bg-white/5 hover:bg-white hover:text-black flex items-center justify-center text-white transition-all text-sm"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#"
+                            class="w-8 h-8 rounded bg-white/5 hover:bg-white hover:text-black flex items-center justify-center text-white transition-all text-sm"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"
+                            class="w-8 h-8 rounded bg-white/5 hover:bg-white hover:text-black flex items-center justify-center text-white transition-all text-sm"><i
+                                class="fa-brands fa-tiktok"></i></a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm flex items-center gap-2"><i class="fa-solid fa-link text-white/40 text-[10px]"></i> Menu</h4>
+                    <h4 class="text-white font-bold mb-6 text-sm flex items-center gap-2"><i
+                            class="fa-solid fa-link text-white/40 text-[10px]"></i> Menu</h4>
                     <ul class="space-y-3 text-xs text-white/40 font-medium">
-                        <li><a href="{{ route('client.home') }}#masalah" class="hover:text-white transition-all block hover:translate-x-1 duration-300">Masalah Bisnis</a></li>
-                        <li><a href="{{ route('client.home') }}#layanan" class="hover:text-white transition-all block hover:translate-x-1 duration-300">Solusi Kami</a></li>
-                        <li><a href="{{ route('client.home') }}#hemat" class="hover:text-white transition-all block hover:translate-x-1 duration-300">Hitung Hemat</a></li>
-                        <li><a href="{{ route('client.home') }}#portfolio" class="hover:text-white transition-all block hover:translate-x-1 duration-300">Hasil Kerja</a></li>
+                        <li><a href="{{ route('client.home') }}#masalah"
+                                class="hover:text-white transition-all block hover:translate-x-1 duration-300">Masalah
+                                Bisnis</a></li>
+                        <li><a href="{{ route('client.home') }}#layanan"
+                                class="hover:text-white transition-all block hover:translate-x-1 duration-300">Solusi
+                                Kami</a></li>
+                        <li><a href="{{ route('client.home') }}#hemat"
+                                class="hover:text-white transition-all block hover:translate-x-1 duration-300">Hitung
+                                Hemat</a></li>
+                        <li><a href="{{ route('client.home') }}#portfolio"
+                                class="hover:text-white transition-all block hover:translate-x-1 duration-300">Hasil
+                                Kerja</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm flex items-center gap-2"><i class="fa-solid fa-location-dot text-white/40 text-[10px]"></i> Kontak</h4>
+                    <h4 class="text-white font-bold mb-6 text-sm flex items-center gap-2"><i
+                            class="fa-solid fa-location-dot text-white/40 text-[10px]"></i> Kontak</h4>
                     <ul class="space-y-4 text-xs text-white/40 font-medium">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-map-pin mt-1 text-white/40"></i>
@@ -313,10 +373,13 @@
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-6 text-sm" data-i18n="newsletter_title">Tips Bisnis Gratis</h4>
-                    <p class="text-xs text-white/40 mb-4 leading-normal" data-i18n="newsletter_desc">Masukkan email untuk dapat tips meningkatkan omzet tiap minggu.</p>
+                    <p class="text-xs text-white/40 mb-4 leading-normal" data-i18n="newsletter_desc">Masukkan email
+                        untuk dapat tips meningkatkan omzet tiap minggu.</p>
                     <div class="relative">
-                        <input type="email" placeholder="Email Anda..." class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none focus:border-white transition-colors pr-10">
-                        <button class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white hover:bg-white/80 text-black rounded flex items-center justify-center transition-colors">
+                        <input type="email" placeholder="Email Anda..."
+                            class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none focus:border-white transition-colors pr-10">
+                        <button
+                            class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white hover:bg-white/80 text-black rounded flex items-center justify-center transition-colors">
                             <i class="fa-solid fa-paper-plane text-[10px]"></i>
                         </button>
                     </div>
@@ -324,7 +387,8 @@
             </div>
 
             <!-- Bottom Credits -->
-            <div class="flex flex-col md:flex-row justify-between items-center pt-8 mt-16 border-t border-white/10 text-xs text-white/30 font-mono">
+            <div
+                class="flex flex-col md:flex-row justify-between items-center pt-8 mt-16 border-t border-white/10 text-xs text-white/30 font-mono">
                 <p>&copy; 2026 INXDVI Indonesia. Hak Cipta Dilindungi.</p>
                 <div class="flex gap-6 mt-4 md:mt-0">
                     <a href="#" class="hover:text-white transition-colors">Privacy</a>

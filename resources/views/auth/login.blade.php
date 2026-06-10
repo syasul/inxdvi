@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - INXDVI Admin</title>
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="icon" type="image/png" href="/images/logo_transparent1.png">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary: #4f46e5;
@@ -68,7 +70,7 @@
             position: absolute;
             inset: 0;
             background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 40px 40px;
             pointer-events: none;
             z-index: -1;
@@ -311,7 +313,7 @@
             box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
         }
 
-        input:focus + i.input-icon {
+        input:focus+i.input-icon {
             color: var(--primary);
         }
 
@@ -446,20 +448,39 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Shake animation for errors */
         .shake {
-            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
             transform: translate3d(0, 0, 0);
         }
 
         @keyframes shake {
-            10%, 90% { transform: translate3d(-1px, 0, 0); }
-            20%, 80% { transform: translate3d(2px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-            40%, 60% { transform: translate3d(4px, 0, 0); }
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(4px, 0, 0);
+            }
         }
 
         /* Toast / Alert styling */
@@ -497,6 +518,7 @@
                 opacity: 0;
                 transform: translateY(15px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -508,6 +530,7 @@
                 opacity: 0;
                 transform: translateY(-15px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -515,54 +538,61 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="login-wrapper">
-        
+
         <!-- Left Panel: Interactive Canvas Visual & Brand Statement -->
         <div class="left-panel">
             <canvas id="particle-canvas"></canvas>
-            
+
             <div class="brand-header" style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="/images/logo.png" alt="INXDVI Logo" style="height: 32px; width: auto; object-fit: contain;">
-                <span style="font-size: 0.75rem; font-family: monospace; color: #a5b4fc; background: rgba(79, 70, 229, 0.15); border: 1px solid rgba(79, 70, 229, 0.3); padding: 0.125rem 0.5rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold; margin-left: 0.25rem;">Admin</span>
+                <img src="/images/logo_transparent1.png" alt="INXDVI Logo"
+                    style="height: 32px; width: auto; object-fit: contain;">
+                <span
+                    style="font-size: 0.75rem; font-family: monospace; color: #a5b4fc; background: rgba(79, 70, 229, 0.15); border: 1px solid rgba(79, 70, 229, 0.3); padding: 0.125rem 0.5rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold; margin-left: 0.25rem;">Admin</span>
             </div>
-            
+
             <div class="slider-container">
                 <div class="slide active">
                     <h2>Modern Portal Management</h2>
-                    <p>Access the control center to monitor operations, manage active digital solutions, and coordinate your corporate content instantly.</p>
+                    <p>Access the control center to monitor operations, manage active digital solutions, and coordinate
+                        your corporate content instantly.</p>
                 </div>
                 <div class="slide">
                     <h2>Real-time Analytics Desk</h2>
-                    <p>Track metrics, leads, portfolio engagement, and article performance in a fully integrated administrative workstation.</p>
+                    <p>Track metrics, leads, portfolio engagement, and article performance in a fully integrated
+                        administrative workstation.</p>
                 </div>
                 <div class="slide">
                     <h2>Intelligent Automation</h2>
-                    <p>Configure custom parameters, fine-tune the AI Assistant, and configure systemic values for UMKM & enterprise client nodes.</p>
+                    <p>Configure custom parameters, fine-tune the AI Assistant, and configure systemic values for UMKM &
+                        enterprise client nodes.</p>
                 </div>
-                
+
                 <div class="slider-dots">
                     <div class="dot active" onclick="setSlide(0)"></div>
                     <div class="dot" onclick="setSlide(1)"></div>
                     <div class="dot" onclick="setSlide(2)"></div>
                 </div>
             </div>
-            
+
             <div class="left-footer">
                 &copy; {{ date('Y') }} INXDVI Indonesia. All system nodes active.
             </div>
         </div>
-        
+
         <!-- Right Panel: Light Minimalist Login Form -->
         <div class="right-panel">
             <div class="form-container">
-                
+
                 <!-- Mobile Logo -->
                 <div class="mobile-brand" style="margin-bottom: 2rem;">
-                    <img src="/images/logo.png" alt="INXDVI Logo" style="height: 28px; width: auto; object-fit: contain;">
+                    <img src="/images/logo_transparent1.png" alt="INXDVI Logo"
+                        style="height: 28px; width: auto; object-fit: contain;">
                 </div>
-                
+
                 <div class="form-header">
                     <h1>Sign In</h1>
                     <p>Please enter your administrative credentials.</p>
@@ -577,12 +607,13 @@
 
                 <form id="login-form" action="{{ route('login.post') }}" method="POST">
                     @csrf
-                    
+
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <div class="input-wrapper">
                             <i data-lucide="mail" class="input-icon"></i>
-                            <input type="email" id="email" name="email" placeholder="admin@inxdvi.com" required value="{{ old('email') }}" autocomplete="email" autofocus>
+                            <input type="email" id="email" name="email" placeholder="admin@inxdvi.com" required
+                                value="{{ old('email') }}" autocomplete="email" autofocus>
                         </div>
                     </div>
 
@@ -590,8 +621,10 @@
                         <label for="password">Password</label>
                         <div class="input-wrapper">
                             <i data-lucide="lock" class="input-icon"></i>
-                            <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
-                            <button type="button" class="toggle-password" id="toggle-password-btn" title="Toggle password visibility">
+                            <input type="password" id="password" name="password" placeholder="••••••••" required
+                                autocomplete="current-password">
+                            <button type="button" class="toggle-password" id="toggle-password-btn"
+                                title="Toggle password visibility">
                                 <i data-lucide="eye" id="eye-icon" style="width: 18px; height: 18px;"></i>
                             </button>
                         </div>
@@ -609,14 +642,14 @@
                         <div class="spinner"></div>
                     </button>
                 </form>
-                
+
                 <div class="right-footer">
                     Secured connection &middot; &copy; {{ date('Y') }} INXDVI
                 </div>
-                
+
             </div>
         </div>
-        
+
     </div>
 
     <script>
@@ -650,7 +683,7 @@
             togglePasswordBtn.addEventListener('click', () => {
                 const isPassword = passwordInput.type === 'password';
                 passwordInput.type = isPassword ? 'text' : 'password';
-                
+
                 // Update icon
                 if (isPassword) {
                     eyeIcon.setAttribute('data-lucide', 'eye-off');
@@ -671,7 +704,7 @@
         function showSlide(index) {
             slides.forEach(s => s.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
-            
+
             slides[index].classList.add('active');
             dots[index].classList.add('active');
             currentSlide = index;
@@ -805,4 +838,5 @@
         animate();
     </script>
 </body>
+
 </html>

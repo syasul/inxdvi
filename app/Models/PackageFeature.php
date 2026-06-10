@@ -5,20 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Faq extends Model
+class PackageFeature extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'question',
-        'answer',
-        'is_active',
-        'category',
+        'package_id',
+        'feature',
+        'is_included',
         'sort_order',
     ];
 
     protected $casts = [
-        'is_active' => 'boolean',
+        'is_included' => 'boolean',
         'sort_order' => 'integer',
     ];
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
 }
