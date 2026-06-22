@@ -1239,63 +1239,105 @@
     </section>
 
     <!-- 7. How It Works (Proses) Section -->
-    <section id="proses" class="relative py-28 bg-darkbg border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="proses" class="relative py-28 bg-[#09090E] border-t border-white/5 overflow-hidden">
+        <!-- Background light rays or glows -->
+        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-primarypurple/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-accentcyan/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-24">
-                <span class="text-xs font-mono uppercase tracking-widest text-accentcyan block">/// PROSES SETUP</span>
-                <h2 class="text-3xl md:text-5xl font-display font-bold text-lighttext leading-none">Alur Kerja Cepat &
-                    Gampang</h2>
-                <p class="text-sm md:text-base text-mutedgray font-light">Estimasi setup selesai dalam 3-5 hari kerja
-                    saja.</p>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                <span class="text-xs font-mono uppercase tracking-widest text-accentcyan block" data-i18n="sec_proses_sub">/// PROSES SETUP</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-lighttext leading-none" data-i18n="sec_proses_title">Alur Kerja Cepat & Gampang</h2>
+                <p class="text-sm md:text-base text-mutedgray font-light" data-i18n="sec_proses_desc">Estimasi setup selesai dalam 3-5 hari kerja saja.</p>
             </div>
 
-            <!-- Timeline vertikal (4 steps) -->
-            <div class="relative max-w-3xl mx-auto border-l-2 border-white/5 pl-8 md:pl-16 space-y-16">
-                <!-- Dot guide -->
-                <div
-                    class="absolute left-[-5px] top-0 h-full w-[8px] bg-gradient-to-b from-primarypurple via-accentcyan to-transparent z-0 pointer-events-none rounded-full">
-                </div>
+            <!-- Steps Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                
+                <!-- Connecting Line (Desktop Only) -->
+                <div class="hidden md:block absolute top-[50px] left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-primarypurple/40 via-accentcyan/40 to-primarypurple/40 z-0"></div>
 
                 <!-- Step 1 -->
-                <div class="relative space-y-3">
-                    <div
-                        class="absolute left-[-45px] md:left-[-69px] w-8 h-8 rounded-full bg-primarypurple border border-white/10 flex items-center justify-center font-display font-bold text-white text-xs">
-                        1</div>
-                    <h3 class="text-lg font-bold text-lighttext">Konsultasi Kebutuhan</h3>
-                    <p class="text-xs md:text-sm text-mutedgray leading-relaxed font-light">Ceritakan alur bisnis Anda
-                        dan masalah yang sering dihadapi, kami analisis dan siapkan konsepnya.</p>
+                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-primarypurple/30 transition-all duration-300">
+                    <div class="space-y-6">
+                        <!-- Header: Icon & Glowing Step number -->
+                        <div class="flex justify-between items-center relative z-10">
+                            <div class="w-14 h-14 rounded-2xl bg-primarypurple/10 border border-primarypurple/20 flex items-center justify-center text-primarypurple group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-comments text-2xl"></i>
+                            </div>
+                            <span class="text-5xl font-black font-display text-white/5 group-hover:text-primarypurple/10 transition-colors duration-300">01</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="space-y-2 text-left">
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-primarypurple transition-colors" data-i18n="step_1_title">Konsultasi Kebutuhan</h3>
+                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed" data-i18n="step_1_desc">
+                                Ceritakan alur bisnis Anda dan masalah yang sering dihadapi, kami analisis dan siapkan konsepnya.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="relative space-y-3">
-                    <div
-                        class="absolute left-[-45px] md:left-[-69px] w-8 h-8 rounded-full bg-accentcyan border border-white/10 flex items-center justify-center font-display font-bold text-black text-xs">
-                        2</div>
-                    <h3 class="text-lg font-bold text-lighttext">Proses Pengerjaan</h3>
-                    <p class="text-xs md:text-sm text-mutedgray leading-relaxed font-light">Tim developer kami
-                        mengonfigurasi database, backend, POS, and integrasi WhatsApp API untuk toko Anda.</p>
+                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-accentcyan/30 transition-all duration-300">
+                    <div class="space-y-6">
+                        <!-- Header: Icon & Glowing Step number -->
+                        <div class="flex justify-between items-center relative z-10">
+                            <div class="w-14 h-14 rounded-2xl bg-accentcyan/10 border border-accentcyan/20 flex items-center justify-center text-accentcyan group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-laptop-code text-2xl"></i>
+                            </div>
+                            <span class="text-5xl font-black font-display text-white/5 group-hover:text-accentcyan/10 transition-colors duration-300">02</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="space-y-2 text-left">
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors" data-i18n="step_2_title">Proses Pengerjaan</h3>
+                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed" data-i18n="step_2_desc">
+                                Tim developer kami mengonfigurasi database, backend, POS, and integrasi WhatsApp API untuk toko Anda.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="relative space-y-3">
-                    <div
-                        class="absolute left-[-45px] md:left-[-69px] w-8 h-8 rounded-full bg-primarypurple border border-white/10 flex items-center justify-center font-display font-bold text-white text-xs">
-                        3</div>
-                    <h3 class="text-lg font-bold text-lighttext">Training & Pendampingan</h3>
-                    <p class="text-xs md:text-sm text-mutedgray leading-relaxed font-light">Kami ajari Anda dan karyawan
-                        cara menginput data, kasir, dan melihat laporan keuangan sampai mahir.</p>
+                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-primarypurple/30 transition-all duration-300">
+                    <div class="space-y-6">
+                        <!-- Header: Icon & Glowing Step number -->
+                        <div class="flex justify-between items-center relative z-10">
+                            <div class="w-14 h-14 rounded-2xl bg-primarypurple/10 border border-primarypurple/20 flex items-center justify-center text-primarypurple group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-chalkboard-user text-2xl"></i>
+                            </div>
+                            <span class="text-5xl font-black font-display text-white/5 group-hover:text-primarypurple/10 transition-colors duration-300">03</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="space-y-2 text-left">
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-primarypurple transition-colors" data-i18n="step_3_title">Training & Pendampingan</h3>
+                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed" data-i18n="step_3_desc">
+                                Kami ajari Anda dan karyawan cara menginput data, kasir, dan melihat laporan keuangan sampai mahir.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Step 4 -->
-                <div class="relative space-y-3">
-                    <div
-                        class="absolute left-[-45px] md:left-[-69px] w-8 h-8 rounded-full bg-accentcyan border border-white/10 flex items-center justify-center font-display font-bold text-black text-xs">
-                        4</div>
-                    <h3 class="text-lg font-bold text-lighttext">Serah Terima & Live</h3>
-                    <p class="text-xs md:text-sm text-mutedgray leading-relaxed font-light">Sistem live dan siap
-                        digunakan. Garansi perbaikan error gratis selamanya dan support WhatsApp 24 jam.</p>
+                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-accentcyan/30 transition-all duration-300">
+                    <div class="space-y-6">
+                        <!-- Header: Icon & Glowing Step number -->
+                        <div class="flex justify-between items-center relative z-10">
+                            <div class="w-14 h-14 rounded-2xl bg-accentcyan/10 border border-accentcyan/20 flex items-center justify-center text-accentcyan group-hover:scale-110 transition-transform duration-300">
+                                <i class="fa-solid fa-rocket text-2xl"></i>
+                            </div>
+                            <span class="text-5xl font-black font-display text-white/5 group-hover:text-accentcyan/10 transition-colors duration-300">04</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="space-y-2 text-left">
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors" data-i18n="step_4_title">Serah Terima & Live</h3>
+                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed" data-i18n="step_4_desc">
+                                Sistem live dan siap digunakan. Garansi perbaikan error gratis selamanya dan support WhatsApp 24 jam.
+                            </p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
         </div>
@@ -2056,7 +2098,18 @@
                 sec_demo_sub: "/// DEMO APLIKASI",
                 sec_demo_title: "Cobain Langsung Demo Aplikasi Kami",
                 sec_demo_desc: "Eksplorasi dashboard interaktif dan fitur-fitur unggulan yang siap diimplementasikan untuk bisnis Anda.",
-                btn_view_demo: "Lihat Demo Live"
+                btn_view_demo: "Lihat Demo Live",
+                sec_proses_sub: "/// PROSES SETUP",
+                sec_proses_title: "Alur Kerja Cepat & Gampang",
+                sec_proses_desc: "Estimasi setup selesai dalam 3-5 hari kerja saja.",
+                step_1_title: "Konsultasi Kebutuhan",
+                step_1_desc: "Ceritakan alur bisnis Anda dan masalah yang sering dihadapi, kami analisis dan siapkan konsepnya.",
+                step_2_title: "Proses Pengerjaan",
+                step_2_desc: "Tim developer kami mengonfigurasi database, backend, POS, and integrasi WhatsApp API untuk toko Anda.",
+                step_3_title: "Training & Pendampingan",
+                step_3_desc: "Kami ajari Anda dan karyawan cara menginput data, kasir, dan melihat laporan keuangan sampai mahir.",
+                step_4_title: "Serah Terima & Live",
+                step_4_desc: "Sistem live dan siap digunakan. Garansi perbaikan error gratis selamanya dan support WhatsApp 24 jam."
             },
             en: {
                 nav_problem: "Problems", nav_solusi: "Solutions", nav_testimonials: "Testimonials", nav_calculator: "Calculator", nav_pricing: "Pricing", btn_contact: "Free Consult", btn_contact_wa: "Chat WhatsApp",
@@ -2091,7 +2144,18 @@
                 sec_demo_sub: "/// APPLICATION DEMOS",
                 sec_demo_title: "Try Our Live Application Demos",
                 sec_demo_desc: "Explore interactive dashboards and key features ready to be implemented for your business.",
-                btn_view_demo: "View Live Demo"
+                btn_view_demo: "View Live Demo",
+                sec_proses_sub: "/// SETUP PROCESS",
+                sec_proses_title: "Fast & Easy Workflow",
+                sec_proses_desc: "Estimated setup completed in just 3-5 working days.",
+                step_1_title: "Needs Consultation",
+                step_1_desc: "Tell us your business flow and daily problems, we will analyze and prepare the concept.",
+                step_2_title: "Development Process",
+                step_2_desc: "Our developer team configures the database, backend, POS, and WhatsApp API integration for your store.",
+                step_3_title: "Training & Assistance",
+                step_3_desc: "We train you and your employees how to input data, operate cashier, and read financial reports until proficient.",
+                step_4_title: "Handover & Live",
+                step_4_desc: "System goes live and is ready to use. Free lifetime bug fixes and 24-hour WhatsApp support."
             }
         };
 
