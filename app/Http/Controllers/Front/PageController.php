@@ -39,6 +39,12 @@ class PageController extends Controller
         return view('client.home', compact('services', 'portfolios', 'articles', 'faqs', 'packages', 'testimonials', 'siteStats', 'appDemos'));
     }
 
+    public function demoIndex()
+    {
+        $appDemos = AppDemo::where('is_active', true)->orderBy('sort_order', 'asc')->get();
+        return view('client.demo.index', compact('appDemos'));
+    }
+
     public function blogIndex()
     {
         $articles = Article::where('status', 'published')->latest()->paginate(9);

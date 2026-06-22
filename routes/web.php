@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\AppDemoController;
 
 Route::get('/', [\App\Http\Controllers\Front\PageController::class, 'home'])->name('client.home');
+Route::get('/demo', [\App\Http\Controllers\Front\PageController::class, 'demoIndex'])->name('client.demo.index');
 Route::get('/blog', [\App\Http\Controllers\Front\PageController::class, 'blogIndex'])->name('client.blog.index');
 Route::get('/blog/{slug}', [\App\Http\Controllers\Front\PageController::class, 'blogShow'])->name('client.blog.show');
 

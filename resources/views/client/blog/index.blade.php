@@ -168,20 +168,27 @@
             <!-- Navigation Links -->
             <div
                 class="hidden md:flex items-center gap-2 bg-black/5 dark:bg-white/5 p-1 rounded-full border border-black/10 dark:border-white/10">
-                <a href="{{ route('client.home') }}#masalah"
+                <a href="/#masalah"
                     class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
                     data-i18n="nav_problem">Masalah</a>
-                <a href="{{ route('client.home') }}#layanan"
+                <a href="/#solusi"
                     class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
-                    data-i18n="nav_solution">Solusi</a>
-                <a href="{{ route('client.home') }}#hemat"
+                    data-i18n="nav_solusi">Solusi</a>
+                <a href="/#testimoni"
                     class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
-                    data-i18n="nav_benefit">Penghematan</a>
-                <a href="{{ route('client.home') }}#portfolio"
+                    data-i18n="nav_testimonials">Testimoni</a>
+                <a href="/#calculator"
                     class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
-                    data-i18n="nav_portfolio">Portfolio</a>
-                <a href="{{ route('client.blog.index') }}"
-                    class="px-5 py-2 text-xs font-semibold text-zinc-950 dark:text-white bg-black/5 dark:bg-white/10 rounded-full transition-all">Blog</a>
+                    data-i18n="nav_calculator">Calculator</a>
+                <a href="/#penawaran"
+                    class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
+                    data-i18n="nav_pricing">Pricing</a>
+                <a href="/demo"
+                    class="px-5 py-2 text-xs font-semibold text-zinc-600 dark:text-gray-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-all"
+                    data-i18n="nav_demo">Demo</a>
+                <a href="/blog"
+                    class="px-5 py-2 text-xs font-semibold text-zinc-950 dark:text-white bg-black/5 dark:bg-white/10 rounded-full transition-all"
+                    data-i18n="nav_blog">Blog</a>
             </div>
 
             <!-- Custom Controls & Call to Action -->
@@ -218,17 +225,27 @@
         <div id="mobile-menu"
             class="hidden md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 shadow-lg transition-all z-40">
             <div class="p-4 flex flex-col gap-2">
-                <a href="{{ route('client.home') }}#masalah"
+                <a href="/#masalah"
                     class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
                     data-i18n="nav_problem">Masalah Anda</a>
-                <a href="{{ route('client.home') }}#layanan"
+                <a href="/#solusi"
                     class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
-                    data-i18n="nav_solution">Solusi</a>
-                <a href="{{ route('client.home') }}#hemat"
+                    data-i18n="nav_solusi">Solusi</a>
+                <a href="/#testimoni"
                     class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
-                    data-i18n="nav_benefit">Penghematan</a>
-                <a href="{{ route('client.blog.index') }}"
-                    class="mobile-link block px-4 py-3 rounded-lg bg-black/5 dark:bg-white/5 text-zinc-800 dark:text-white font-semibold transition-colors">Blog</a>
+                    data-i18n="nav_testimonials">Testimoni</a>
+                <a href="/#calculator"
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
+                    data-i18n="nav_calculator">Calculator</a>
+                <a href="/#penawaran"
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
+                    data-i18n="nav_pricing">Pricing</a>
+                <a href="/demo"
+                    class="mobile-link block px-4 py-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 text-zinc-800 dark:text-white font-medium transition-colors"
+                    data-i18n="nav_demo">Demo</a>
+                <a href="/blog"
+                    class="mobile-link block px-4 py-3 rounded-lg bg-black/5 dark:bg-white/5 text-zinc-800 dark:text-white font-semibold transition-colors"
+                    data-i18n="nav_blog">Blog</a>
                 <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}"
                     class="block w-full py-3 bg-zinc-900 dark:bg-white text-white dark:text-black font-bold rounded-lg text-center hover:bg-black dark:hover:bg-zinc-100 transition-colors shadow-sm"
                     data-i18n="btn_contact_wa">Chat WhatsApp</a>
@@ -532,14 +549,14 @@
 
         const resources = {
             id: {
-                nav_problem: "Masalah", nav_solution: "Solusi", nav_benefit: "Hemat", nav_portfolio: "Portfolio", btn_contact: "Konsultasi Gratis", btn_contact_wa: "Chat WhatsApp",
+                nav_problem: "Masalah", nav_solusi: "Solusi", nav_testimonials: "Testimoni", nav_calculator: "Calculator", nav_pricing: "Pricing", nav_demo: "Demo", nav_blog: "Blog", btn_contact: "Konsultasi Gratis", btn_contact_wa: "Chat WhatsApp",
                 sec_blog_sub: "/// TIPS BISNIS", sec_blog_title: "Artikel & Tips",
                 blog_desc_long: "Kumpulan strategi, taktik digitalisasi, dan wawasan industri untuk meningkatkan efisiensi operasional dan pertumbuhan bisnis Anda.",
                 footer_about_desc: "Partner digital terpercaya untuk UMKM dan Bisnis Lokal. Kami membuat teknologi rumit menjadi mudah digunakan untuk semua orang.",
                 newsletter_title: "Tips Bisnis Gratis", newsletter_desc: "Masukkan email untuk dapat tips meningkatkan omzet tiap minggu."
             },
             en: {
-                nav_problem: "Problems", nav_solution: "Solutions", nav_benefit: "Savings", nav_portfolio: "Portfolio", btn_contact: "Free Consult", btn_contact_wa: "Chat WhatsApp",
+                nav_problem: "Problems", nav_solusi: "Solutions", nav_testimonials: "Testimonials", nav_calculator: "Calculator", nav_pricing: "Pricing", nav_demo: "Demo", nav_blog: "Blog", btn_contact: "Free Consult", btn_contact_wa: "Chat WhatsApp",
                 sec_blog_sub: "/// INSIGHTS", sec_blog_title: "Articles & Tips",
                 blog_desc_long: "A curated collection of business strategies, digitalization tactics, and industry insights to scale your operations and drive growth.",
                 footer_about_desc: "Your trusted digital partner for local business and MSMEs. We make complex technology easy for anyone.",

@@ -265,7 +265,7 @@
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
             <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 z-50 text-decoration-none group">
+            <a href="/" class="flex items-center gap-3 z-50 text-decoration-none group">
                 <img src="/images/logo_transparent1.png"
                     class="h-8 w-auto object-contain transition-transform duration-300 hover:scale-[1.03]"
                     alt="INXDVI Logo">
@@ -274,21 +274,27 @@
             <!-- Navigation Links -->
             <div
                 class="hidden md:flex items-center gap-1 bg-white/[0.02] border border-white/5 p-1.5 rounded-full backdrop-blur-md">
-                <a href="#masalah"
+                <a href="/#masalah"
                     class="px-5 py-2 text-xs font-semibold text-mutedgray hover:text-lighttext hover:bg-white/5 rounded-full transition-all"
                     data-i18n="nav_problem">Masalah</a>
-                <a href="#solusi"
+                <a href="/#solusi"
                     class="px-5 py-2 text-xs font-semibold text-mutedgray hover:text-lighttext hover:bg-white/5 rounded-full transition-all"
                     data-i18n="nav_solusi">Solusi</a>
-                <a href="#testimoni"
+                <!-- <a href="/#testimoni"
                     class="px-5 py-2 text-xs font-semibold text-mutedgray hover:text-lighttext hover:bg-white/5 rounded-full transition-all"
                     data-i18n="nav_testimonials">Testimoni</a>
-                <a href="#calculator"
+                <a href="/#calculator"
                     class="px-5 py-2 text-xs font-semibold text-mutedgray hover:text-lighttext hover:bg-white/5 rounded-full transition-all"
-                    data-i18n="nav_calculator">Calculator</a>
-                <a href="#penawaran"
+                    data-i18n="nav_calculator">Calculator</a> -->
+                <a href="/#penawaran"
                     class="px-5 py-2 text-xs font-semibold text-mutedgray hover:text-lighttext hover:bg-white/5 rounded-full transition-all"
                     data-i18n="nav_pricing">Pricing</a>
+                <a href="/demo"
+                    class="px-5 py-2 text-xs font-semibold text-mutedgray hover:text-lighttext hover:bg-white/5 rounded-full transition-all"
+                    data-i18n="nav_demo">Demo</a>
+                <a href="/blog"
+                    class="px-5 py-2 text-xs font-semibold text-mutedgray hover:text-lighttext hover:bg-white/5 rounded-full transition-all"
+                    data-i18n="nav_blog">Blog</a>
             </div>
 
             <!-- Controls & CTA -->
@@ -318,21 +324,27 @@
         <div id="mobile-menu"
             class="hidden md:hidden absolute top-full left-0 w-full bg-[#0A0A0F]/95 backdrop-blur-2xl border-b border-white/5 shadow-2xl transition-all duration-300">
             <div class="p-6 flex flex-col gap-3">
-                <a href="#masalah"
+                <a href="/#masalah"
                     class="mobile-link block px-4 py-3 rounded-xl hover:bg-white/5 text-mutedgray hover:text-lighttext transition-colors"
                     data-i18n="nav_problem">Masalah Anda</a>
-                <a href="#solusi"
+                <a href="/#solusi"
                     class="mobile-link block px-4 py-3 rounded-xl hover:bg-white/5 text-mutedgray hover:text-lighttext transition-colors"
                     data-i18n="nav_solusi">Solusi</a>
-                <a href="#testimoni"
+                <!-- <a href="/#testimoni"
                     class="mobile-link block px-4 py-3 rounded-xl hover:bg-white/5 text-mutedgray hover:text-lighttext transition-colors"
                     data-i18n="nav_testimonials">Testimoni</a>
-                <a href="#calculator"
+                <a href="/#calculator"
                     class="mobile-link block px-4 py-3 rounded-xl hover:bg-white/5 text-mutedgray hover:text-lighttext transition-colors"
-                    data-i18n="nav_calculator">Calculator</a>
-                <a href="#penawaran"
+                    data-i18n="nav_calculator">Calculator</a> -->
+                <a href="/#penawaran"
                     class="mobile-link block px-4 py-3 rounded-xl hover:bg-white/5 text-mutedgray hover:text-lighttext transition-colors"
                     data-i18n="nav_pricing">Pricing</a>
+                <a href="/demo"
+                    class="mobile-link block px-4 py-3 rounded-xl hover:bg-white/5 text-mutedgray hover:text-lighttext transition-colors"
+                    data-i18n="nav_demo">Demo</a>
+                <a href="/blog"
+                    class="mobile-link block px-4 py-3 rounded-xl hover:bg-white/5 text-mutedgray hover:text-lighttext transition-colors"
+                    data-i18n="nav_blog">Blog</a>
                 <a href="https://wa.me/{{ $siteStats['whatsapp_number']['value'] ?? '6281234567890' }}"
                     class="block w-full py-4 bg-gradient-to-r from-primarypurple to-accentcyan text-white text-center font-bold rounded-xl shadow-lg"
                     data-i18n="btn_contact_wa">Chat WhatsApp</a>
@@ -876,7 +888,7 @@
             <!-- Video Testimonials (Grid 2 video) -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 <!-- Video 1 -->
-                <div class="relative h-64 rounded-3xl overflow-hidden border border-white/5 group shadow-2xl">
+                <!-- <div class="relative h-64 rounded-3xl overflow-hidden border border-white/5 group shadow-2xl">
                     <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600"
                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         alt="">
@@ -897,10 +909,10 @@
                         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-primarypurple text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-play text-xl ml-1"></i>
                     </button>
-                </div>
+                </div> -->
 
                 <!-- Video 2 -->
-                <div class="relative h-64 rounded-3xl overflow-hidden border border-white/5 group shadow-2xl">
+                <!-- <div class="relative h-64 rounded-3xl overflow-hidden border border-white/5 group shadow-2xl">
                     <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600"
                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         alt="">
@@ -921,7 +933,7 @@
                         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-primarypurple text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-play text-xl ml-1"></i>
                     </button>
-                </div>
+                </div> -->
             </div>
 
             <!-- Swiper Carousel Slider for Testimonials -->
@@ -1241,98 +1253,131 @@
     <!-- 7. How It Works (Proses) Section -->
     <section id="proses" class="relative py-28 bg-[#09090E] border-t border-white/5 overflow-hidden">
         <!-- Background light rays or glows -->
-        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-primarypurple/5 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-accentcyan/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div
+            class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-primarypurple/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
+        <div
+            class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-accentcyan/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
 
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
-                <span class="text-xs font-mono uppercase tracking-widest text-accentcyan block" data-i18n="sec_proses_sub">/// PROSES SETUP</span>
-                <h2 class="text-3xl md:text-5xl font-display font-bold text-lighttext leading-none" data-i18n="sec_proses_title">Alur Kerja Cepat & Gampang</h2>
-                <p class="text-sm md:text-base text-mutedgray font-light" data-i18n="sec_proses_desc">Estimasi setup selesai dalam 3-5 hari kerja saja.</p>
+                <span class="text-xs font-mono uppercase tracking-widest text-accentcyan block"
+                    data-i18n="sec_proses_sub">/// PROSES SETUP</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-lighttext leading-none"
+                    data-i18n="sec_proses_title">Alur Kerja Cepat & Gampang</h2>
+                <p class="text-sm md:text-base text-mutedgray font-light" data-i18n="sec_proses_desc">Estimasi setup
+                    selesai dalam 3-5 hari kerja saja.</p>
             </div>
 
             <!-- Steps Grid -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-                
+
                 <!-- Connecting Line (Desktop Only) -->
-                <div class="hidden md:block absolute top-[50px] left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-primarypurple/40 via-accentcyan/40 to-primarypurple/40 z-0"></div>
+                <div
+                    class="hidden md:block absolute top-[50px] left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-primarypurple/40 via-accentcyan/40 to-primarypurple/40 z-0">
+                </div>
 
                 <!-- Step 1 -->
-                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-primarypurple/30 transition-all duration-300">
+                <div
+                    class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-primarypurple/30 transition-all duration-300">
                     <div class="space-y-6">
                         <!-- Header: Icon & Glowing Step number -->
                         <div class="flex justify-between items-center relative z-10">
-                            <div class="w-14 h-14 rounded-2xl bg-primarypurple/10 border border-primarypurple/20 flex items-center justify-center text-primarypurple group-hover:scale-110 transition-transform duration-300">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-primarypurple/10 border border-primarypurple/20 flex items-center justify-center text-primarypurple group-hover:scale-110 transition-transform duration-300">
                                 <i class="fa-solid fa-comments text-2xl"></i>
                             </div>
-                            <span class="text-5xl font-black font-display text-white/5 group-hover:text-primarypurple/10 transition-colors duration-300">01</span>
+                            <span
+                                class="text-5xl font-black font-display text-white/5 group-hover:text-primarypurple/10 transition-colors duration-300">01</span>
                         </div>
                         <!-- Content -->
                         <div class="space-y-2 text-left">
-                            <h3 class="text-lg font-bold text-lighttext group-hover:text-primarypurple transition-colors" data-i18n="step_1_title">Konsultasi Kebutuhan</h3>
-                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed" data-i18n="step_1_desc">
-                                Ceritakan alur bisnis Anda dan masalah yang sering dihadapi, kami analisis dan siapkan konsepnya.
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-primarypurple transition-colors"
+                                data-i18n="step_1_title">Konsultasi Kebutuhan</h3>
+                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed"
+                                data-i18n="step_1_desc">
+                                Ceritakan alur bisnis Anda dan masalah yang sering dihadapi, kami analisis dan siapkan
+                                konsepnya.
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-accentcyan/30 transition-all duration-300">
+                <div
+                    class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-accentcyan/30 transition-all duration-300">
                     <div class="space-y-6">
                         <!-- Header: Icon & Glowing Step number -->
                         <div class="flex justify-between items-center relative z-10">
-                            <div class="w-14 h-14 rounded-2xl bg-accentcyan/10 border border-accentcyan/20 flex items-center justify-center text-accentcyan group-hover:scale-110 transition-transform duration-300">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-accentcyan/10 border border-accentcyan/20 flex items-center justify-center text-accentcyan group-hover:scale-110 transition-transform duration-300">
                                 <i class="fa-solid fa-laptop-code text-2xl"></i>
                             </div>
-                            <span class="text-5xl font-black font-display text-white/5 group-hover:text-accentcyan/10 transition-colors duration-300">02</span>
+                            <span
+                                class="text-5xl font-black font-display text-white/5 group-hover:text-accentcyan/10 transition-colors duration-300">02</span>
                         </div>
                         <!-- Content -->
                         <div class="space-y-2 text-left">
-                            <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors" data-i18n="step_2_title">Proses Pengerjaan</h3>
-                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed" data-i18n="step_2_desc">
-                                Tim developer kami mengonfigurasi database, backend, POS, and integrasi WhatsApp API untuk toko Anda.
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors"
+                                data-i18n="step_2_title">Proses Pengerjaan</h3>
+                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed"
+                                data-i18n="step_2_desc">
+                                Tim developer kami mengonfigurasi database, backend, POS, and integrasi WhatsApp API
+                                untuk toko Anda.
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-primarypurple/30 transition-all duration-300">
+                <div
+                    class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-primarypurple/30 transition-all duration-300">
                     <div class="space-y-6">
                         <!-- Header: Icon & Glowing Step number -->
                         <div class="flex justify-between items-center relative z-10">
-                            <div class="w-14 h-14 rounded-2xl bg-primarypurple/10 border border-primarypurple/20 flex items-center justify-center text-primarypurple group-hover:scale-110 transition-transform duration-300">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-primarypurple/10 border border-primarypurple/20 flex items-center justify-center text-primarypurple group-hover:scale-110 transition-transform duration-300">
                                 <i class="fa-solid fa-chalkboard-user text-2xl"></i>
                             </div>
-                            <span class="text-5xl font-black font-display text-white/5 group-hover:text-primarypurple/10 transition-colors duration-300">03</span>
+                            <span
+                                class="text-5xl font-black font-display text-white/5 group-hover:text-primarypurple/10 transition-colors duration-300">03</span>
                         </div>
                         <!-- Content -->
                         <div class="space-y-2 text-left">
-                            <h3 class="text-lg font-bold text-lighttext group-hover:text-primarypurple transition-colors" data-i18n="step_3_title">Training & Pendampingan</h3>
-                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed" data-i18n="step_3_desc">
-                                Kami ajari Anda dan karyawan cara menginput data, kasir, dan melihat laporan keuangan sampai mahir.
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-primarypurple transition-colors"
+                                data-i18n="step_3_title">Training & Pendampingan</h3>
+                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed"
+                                data-i18n="step_3_desc">
+                                Kami ajari Anda dan karyawan cara menginput data, kasir, dan melihat laporan keuangan
+                                sampai mahir.
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 4 -->
-                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-accentcyan/30 transition-all duration-300">
+                <div
+                    class="glass-card p-8 rounded-3xl relative flex flex-col justify-between min-h-[280px] group hover:border-accentcyan/30 transition-all duration-300">
                     <div class="space-y-6">
                         <!-- Header: Icon & Glowing Step number -->
                         <div class="flex justify-between items-center relative z-10">
-                            <div class="w-14 h-14 rounded-2xl bg-accentcyan/10 border border-accentcyan/20 flex items-center justify-center text-accentcyan group-hover:scale-110 transition-transform duration-300">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-accentcyan/10 border border-accentcyan/20 flex items-center justify-center text-accentcyan group-hover:scale-110 transition-transform duration-300">
                                 <i class="fa-solid fa-rocket text-2xl"></i>
                             </div>
-                            <span class="text-5xl font-black font-display text-white/5 group-hover:text-accentcyan/10 transition-colors duration-300">04</span>
+                            <span
+                                class="text-5xl font-black font-display text-white/5 group-hover:text-accentcyan/10 transition-colors duration-300">04</span>
                         </div>
                         <!-- Content -->
                         <div class="space-y-2 text-left">
-                            <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors" data-i18n="step_4_title">Serah Terima & Live</h3>
-                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed" data-i18n="step_4_desc">
-                                Sistem live dan siap digunakan. Garansi perbaikan error gratis selamanya dan support WhatsApp 24 jam.
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors"
+                                data-i18n="step_4_title">Serah Terima & Live</h3>
+                            <p class="text-xs md:text-sm text-mutedgray font-light leading-relaxed"
+                                data-i18n="step_4_desc">
+                                Sistem live dan siap digunakan. Garansi perbaikan error gratis selamanya dan support
+                                WhatsApp 24 jam.
                             </p>
                         </div>
                     </div>
@@ -1426,61 +1471,68 @@
 
     <!-- 8.5. Section: Live Demo Aplikasi -->
     @if(isset($appDemos) && $appDemos->isNotEmpty())
-    <section id="demo-aplikasi" class="relative py-28 bg-[#0A0A0F] border-t border-white/5">
-        <!-- Texture and overlay noise -->
-        <div class="noise-overlay"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <section id="demo-aplikasi" class="relative py-28 bg-[#0A0A0F] border-t border-white/5">
+            <!-- Texture and overlay noise -->
+            <div class="noise-overlay"></div>
 
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
-                <span class="text-xs font-mono uppercase tracking-widest text-accentcyan block" data-i18n="sec_demo_sub">/// DEMO APLIKASI</span>
-                <h2 class="text-3xl md:text-5xl font-display font-bold text-lighttext leading-none" data-i18n="sec_demo_title">Cobain Langsung Demo Aplikasi Kami</h2>
-                <p class="text-sm md:text-base text-mutedgray font-light" data-i18n="sec_demo_desc">Eksplorasi dashboard interaktif dan fitur-fitur unggulan yang siap diimplementasikan untuk bisnis Anda.</p>
-            </div>
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
 
-            <!-- Demos Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @foreach($appDemos as $demo)
-                <div class="glass-card overflow-hidden group shadow-2xl relative flex flex-col justify-between h-[450px]">
-                    <!-- Thumbnail / Image -->
-                    <div class="h-48 overflow-hidden relative">
-                        @php
-                        $demoImageUrl = $demo->image_path;
-                        if (!$demoImageUrl) {
-                            $demoImageUrl = 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=400';
-                        } else if (!Str::startsWith($demoImageUrl, 'http')) {
-                            $demoImageUrl = asset('storage/' . $demoImageUrl);
-                        }
-                        @endphp
-                        <img src="{{ $demoImageUrl }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $demo->title }}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-darkbg/80 to-transparent"></div>
-                    </div>
-
-                    <!-- Content -->
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div class="space-y-3 text-left">
-                            <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors">
-                                {{ $demo->title }}
-                            </h3>
-                            <p class="text-xs md:text-sm text-mutedgray line-clamp-4 font-light leading-relaxed">
-                                {{ $demo->description }}
-                            </p>
-                        </div>
-
-                        <!-- Action Button to Demo URL -->
-                        <div class="mt-6 pt-4 border-t border-white/5">
-                            <a href="{{ $demo->url }}" target="_blank" class="w-full py-3 bg-gradient-to-r from-primarypurple to-accentcyan text-white text-xs font-bold rounded-xl hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 group-hover:from-accentcyan group-hover:to-primarypurple">
-                                <span data-i18n="btn_view_demo">Lihat Demo Live</span>
-                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                    <span class="text-xs font-mono uppercase tracking-widest text-accentcyan block"
+                        data-i18n="sec_demo_sub">/// DEMO APLIKASI</span>
+                    <h2 class="text-3xl md:text-5xl font-display font-bold text-lighttext leading-none"
+                        data-i18n="sec_demo_title">Cobain Langsung Demo Aplikasi Kami</h2>
+                    <p class="text-sm md:text-base text-mutedgray font-light" data-i18n="sec_demo_desc">Eksplorasi dashboard
+                        interaktif dan fitur-fitur unggulan yang siap diimplementasikan untuk bisnis Anda.</p>
                 </div>
-                @endforeach
-            </div>
 
-        </div>
-    </section>
+                <!-- Demos Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    @foreach($appDemos as $demo)
+                        <div
+                            class="glass-card overflow-hidden group shadow-2xl relative flex flex-col justify-between h-[450px]">
+                            <!-- Thumbnail / Image -->
+                            <div class="h-48 overflow-hidden relative">
+                                @php
+                                    $demoImageUrl = $demo->image_path;
+                                    if (!$demoImageUrl) {
+                                        $demoImageUrl = 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=400';
+                                    } else if (!Str::startsWith($demoImageUrl, 'http')) {
+                                        $demoImageUrl = asset('storage/' . $demoImageUrl);
+                                    }
+                                @endphp
+                                <img src="{{ $demoImageUrl }}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    alt="{{ $demo->title }}">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkbg/80 to-transparent"></div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="p-6 flex-1 flex flex-col justify-between">
+                                <div class="space-y-3 text-left">
+                                    <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors">
+                                        {{ $demo->title }}
+                                    </h3>
+                                    <p class="text-xs md:text-sm text-mutedgray line-clamp-4 font-light leading-relaxed">
+                                        {{ $demo->description }}
+                                    </p>
+                                </div>
+
+                                <!-- Action Button to Demo URL -->
+                                <div class="mt-6 pt-4 border-t border-white/5">
+                                    <a href="{{ $demo->url }}" target="_blank"
+                                        class="w-full py-3 bg-gradient-to-r from-primarypurple to-accentcyan text-white text-xs font-bold rounded-xl hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 group-hover:from-accentcyan group-hover:to-primarypurple">
+                                        <span data-i18n="btn_view_demo">Lihat Demo Live</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
+        </section>
     @endif
 
     <!-- 9. Blog / Tips Section -->
@@ -2066,7 +2118,7 @@
         let currentLang = localStorage.getItem('lang') || 'id';
         const resources = {
             id: {
-                nav_problem: "Masalah", nav_solusi: "Solusi", nav_testimonials: "Testimoni", nav_calculator: "Calculator", nav_pricing: "Pricing", btn_contact: "Konsultasi Gratis", btn_contact_wa: "Chat WhatsApp",
+                nav_problem: "Masalah", nav_solusi: "Solusi", nav_testimonials: "Testimoni", nav_calculator: "Calculator", nav_pricing: "Pricing", nav_demo: "Demo", nav_blog: "Blog", btn_contact: "Konsultasi Gratis", btn_contact_wa: "Chat WhatsApp",
                 hero_badge: "BISNIS JADI AUTOPILOT",
                 hero_desc: "Sistem kasir, stok, dan laporan otomatis — tanpa perlu jago teknologi. Pantau omzet kapan saja langsung dari HP Anda.",
                 btn_start: "Konsultasi Gratis via WA", btn_demo: "Lihat Demo Langsung",
@@ -2112,7 +2164,7 @@
                 step_4_desc: "Sistem live dan siap digunakan. Garansi perbaikan error gratis selamanya dan support WhatsApp 24 jam."
             },
             en: {
-                nav_problem: "Problems", nav_solusi: "Solutions", nav_testimonials: "Testimonials", nav_calculator: "Calculator", nav_pricing: "Pricing", btn_contact: "Free Consult", btn_contact_wa: "Chat WhatsApp",
+                nav_problem: "Problems", nav_solusi: "Solutions", nav_testimonials: "Testimonials", nav_calculator: "Calculator", nav_pricing: "Pricing", nav_demo: "Demo", nav_blog: "Blog", btn_contact: "Free Consult", btn_contact_wa: "Chat WhatsApp",
                 hero_badge: "BUSINESS ON AUTOPILOT",
                 hero_desc: "Cashier, stock, and automated report system — no tech skills required. Monitor revenue anytime directly from your phone.",
                 btn_start: "Free Consult via WA", btn_demo: "View Live Demo",
