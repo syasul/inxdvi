@@ -7,6 +7,7 @@ use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Lead;
 use App\Models\Article;
+use App\Models\AppDemo;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,6 +19,7 @@ class DashboardController extends Controller
             'services' => Service::count(),
             'leads' => Lead::where('status', 'new')->count(),
             'articles' => Article::count(),
+            'app_demos' => AppDemo::count(),
         ];
 
         $recentLeads = Lead::latest()->take(5)->get();

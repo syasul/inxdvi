@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\AppDemoController;
 
 Route::get('/', [\App\Http\Controllers\Front\PageController::class, 'home'])->name('client.home');
 Route::get('/blog', [\App\Http\Controllers\Front\PageController::class, 'blogIndex'])->name('client.blog.index');
@@ -20,6 +21,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('service', ServiceController::class);
     Route::resource('article', ArticleController::class);
     Route::resource('faq', FaqController::class);
+    Route::resource('app-demo', AppDemoController::class);
     Route::get('setting', [SettingController::class, 'index'])->name('admin.setting.index');
     Route::post('setting', [SettingController::class, 'update'])->name('admin.setting.update');
     Route::get('ai-assistant', [\App\Http\Controllers\Admin\AiAssistantController::class, 'index'])->name('admin.ai-assistant.index');

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INXDVI.COM — Solusi Digital Premium</title>
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="icon" type="image/png" href="/images/logo_2.png">
 
     <!-- CSS / Fonts / CDNs -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -301,7 +301,7 @@
                 </button>
 
                 <!-- WhatsApp CTA Button -->
-                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}"
+                <a href="https://wa.me/{{ $siteStats['whatsapp_number']['value'] ?? '6281234567890' }}"
                     class="hidden md:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primarypurple to-accentcyan text-white text-xs font-bold rounded-full hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] transition-all transform hover:scale-[1.02]">
                     <span data-i18n="btn_contact">Konsultasi Gratis</span>
                 </a>
@@ -333,7 +333,7 @@
                 <a href="#penawaran"
                     class="mobile-link block px-4 py-3 rounded-xl hover:bg-white/5 text-mutedgray hover:text-lighttext transition-colors"
                     data-i18n="nav_pricing">Pricing</a>
-                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}"
+                <a href="https://wa.me/{{ $siteStats['whatsapp_number']['value'] ?? '6281234567890' }}"
                     class="block w-full py-4 bg-gradient-to-r from-primarypurple to-accentcyan text-white text-center font-bold rounded-xl shadow-lg"
                     data-i18n="btn_contact_wa">Chat WhatsApp</a>
             </div>
@@ -392,7 +392,7 @@
 
                     <!-- CTA Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4 max-w-md pt-2">
-                        <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}"
+                        <a href="https://wa.me/{{ $siteStats['whatsapp_number']['value'] ?? '6281234567890' }}"
                             class="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold font-display rounded-full text-center hover:shadow-[0_0_25px_rgba(16,185,129,0.35)] transition-all transform hover:scale-[1.03] flex items-center justify-center gap-2 group">
                             <span data-i18n="btn_start">Konsultasi Gratis via WA</span>
                             <i class="fa-brands fa-whatsapp text-lg group-hover:scale-110 transition-transform"></i>
@@ -618,7 +618,8 @@
                                             Croissant</span><span>Rp 24.000</span></div>
                                     <div
                                         class="flex justify-between text-lighttext font-bold pt-2 border-t border-white/5">
-                                        <span>Total Bayar</span><span>Rp 80.000</span></div>
+                                        <span>Total Bayar</span><span>Rp 80.000</span>
+                                    </div>
                                 </div>
                                 <button
                                     class="w-full py-2 bg-emerald-500 text-white font-bold text-center rounded-lg text-[10px]">SIMPAN
@@ -702,7 +703,8 @@
                                     <div
                                         class="flex justify-between text-lighttext font-bold pt-1 border-t border-white/5">
                                         <span>Keuntungan Bersih (Profit)</span><span
-                                            class="text-accentcyan font-mono">Rp 19.100.000</span></div>
+                                            class="text-accentcyan font-mono">Rp 19.100.000</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -935,7 +937,8 @@
                                         <div>
                                             <p class="text-sm font-bold text-lighttext">{{ $testi->client_name }}</p>
                                             <p class="text-[10px] text-mutedgray">{{ $testi->position }}
-                                                {{ $testi->company }}</p>
+                                                {{ $testi->company }}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="text-yellow-400 text-xs">
@@ -962,7 +965,8 @@
                 @foreach($siteStats as $key => $stat)
                     <div class="space-y-1">
                         <p class="text-3xl md:text-4xl font-display font-bold text-accentcyan font-mono">
-                            {{ $stat['value'] }}</p>
+                            {{ $stat['value'] }}
+                        </p>
                         <p class="text-xs text-mutedgray uppercase tracking-widest font-mono">{{ $stat['label'] }}</p>
                     </div>
                 @endforeach
@@ -1106,12 +1110,12 @@
                         <!-- CTA Button -->
                         <div class="pt-8">
                             @if($pkg->is_custom)
-                                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}?text=Halo+INXDVI,+saya+tertarik+dengan+paket+Enterprise"
+                                <a href="https://wa.me/{{ $siteStats['whatsapp_number']['value'] ?? '6281234567890' }}?text=Halo+INXDVI,+saya+tertarik+dengan+paket+Enterprise"
                                     class="block w-full py-4 text-center text-xs font-bold font-display rounded-2xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-lighttext transition-all">
                                     Konsultasi Custom
                                 </a>
                             @else
-                                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}?text=Halo+INXDVI,+saya+mau+order+paket+{{ $pkg->name }}"
+                                <a href="https://wa.me/{{ $siteStats['whatsapp_number']['value'] ?? '6281234567890' }}?text=Halo+INXDVI,+saya+mau+order+paket+{{ $pkg->name }}"
                                     class="block w-full py-4 text-center text-xs font-bold font-display rounded-2xl {{ $pkg->is_popular ? 'bg-gradient-to-r from-primarypurple to-accentcyan text-white shadow-lg shadow-primarypurple/25' : 'border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-lighttext' }} transition-all">
                                     Mulai Sekarang
                                 </a>
@@ -1352,12 +1356,15 @@
                                     <div class="p-6 flex-1 flex flex-col justify-between">
                                         <div class="space-y-2">
                                             <p class="text-[9px] font-mono text-accentcyan uppercase tracking-wider">Client:
-                                                {{ $port->client_name }}</p>
+                                                {{ $port->client_name }}
+                                            </p>
                                             <h3
                                                 class="text-md font-bold text-lighttext group-hover:text-accentcyan transition-colors line-clamp-2">
-                                                {{ $port->title }}</h3>
+                                                {{ $port->title }}
+                                            </h3>
                                             <p class="text-xs text-mutedgray line-clamp-3 font-light leading-relaxed">
-                                                {{ $port->description }}</p>
+                                                {{ $port->description }}
+                                            </p>
                                         </div>
 
                                         <!-- Metric Highlight -->
@@ -1374,6 +1381,65 @@
 
         </div>
     </section>
+
+    <!-- 8.5. Section: Live Demo Aplikasi -->
+    @if(isset($appDemos) && $appDemos->isNotEmpty())
+    <section id="demo-aplikasi" class="relative py-28 bg-[#0A0A0F] border-t border-white/5">
+        <!-- Texture and overlay noise -->
+        <div class="noise-overlay"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+                <span class="text-xs font-mono uppercase tracking-widest text-accentcyan block" data-i18n="sec_demo_sub">/// DEMO APLIKASI</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-lighttext leading-none" data-i18n="sec_demo_title">Cobain Langsung Demo Aplikasi Kami</h2>
+                <p class="text-sm md:text-base text-mutedgray font-light" data-i18n="sec_demo_desc">Eksplorasi dashboard interaktif dan fitur-fitur unggulan yang siap diimplementasikan untuk bisnis Anda.</p>
+            </div>
+
+            <!-- Demos Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                @foreach($appDemos as $demo)
+                <div class="glass-card overflow-hidden group shadow-2xl relative flex flex-col justify-between h-[450px]">
+                    <!-- Thumbnail / Image -->
+                    <div class="h-48 overflow-hidden relative">
+                        @php
+                        $demoImageUrl = $demo->image_path;
+                        if (!$demoImageUrl) {
+                            $demoImageUrl = 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=400';
+                        } else if (!Str::startsWith($demoImageUrl, 'http')) {
+                            $demoImageUrl = asset('storage/' . $demoImageUrl);
+                        }
+                        @endphp
+                        <img src="{{ $demoImageUrl }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $demo->title }}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkbg/80 to-transparent"></div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-3 text-left">
+                            <h3 class="text-lg font-bold text-lighttext group-hover:text-accentcyan transition-colors">
+                                {{ $demo->title }}
+                            </h3>
+                            <p class="text-xs md:text-sm text-mutedgray line-clamp-4 font-light leading-relaxed">
+                                {{ $demo->description }}
+                            </p>
+                        </div>
+
+                        <!-- Action Button to Demo URL -->
+                        <div class="mt-6 pt-4 border-t border-white/5">
+                            <a href="{{ $demo->url }}" target="_blank" class="w-full py-3 bg-gradient-to-r from-primarypurple to-accentcyan text-white text-xs font-bold rounded-xl hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 group-hover:from-accentcyan group-hover:to-primarypurple">
+                                <span data-i18n="btn_view_demo">Lihat Demo Live</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+        </div>
+    </section>
+    @endif
 
     <!-- 9. Blog / Tips Section -->
     <section id="blog" class="relative py-28 bg-darkbg border-t border-white/5">
@@ -1417,9 +1483,11 @@
                                 </div>
                                 <h3
                                     class="text-md font-bold text-lighttext group-hover:text-accentcyan transition-colors line-clamp-2">
-                                    <a href="/blog/{{ $art->slug }}">{{ $art->title }}</a></h3>
+                                    <a href="/blog/{{ $art->slug }}">{{ $art->title }}</a>
+                                </h3>
                                 <p class="text-xs text-mutedgray line-clamp-3 font-light leading-relaxed">
-                                    {{ $art->excerpt }}</p>
+                                    {{ $art->excerpt }}
+                                </p>
                             </div>
 
                             <div class="mt-4 pt-4 border-t border-white/5 text-xs">
@@ -1455,7 +1523,7 @@
 
             <!-- Big WA Button -->
             <div class="pt-4 flex justify-center">
-                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}?text=Halo+INXDVI,+saya+tertarik+dengan+sistem+kasir+stok+otomatis"
+                <a href="https://wa.me/{{ $siteStats['whatsapp_number']['value'] ?? '6281234567890' }}?text=Halo+INXDVI,+saya+tertarik+dengan+sistem+kasir+stok+otomatis"
                     class="px-12 py-5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold font-display rounded-full hover:shadow-[0_0_35px_rgba(16,185,129,0.5)] transition-all transform hover:scale-[1.05] flex items-center gap-3 text-sm tracking-wider">
                     <i class="fa-brands fa-whatsapp text-xl"></i>
                     <span>CHAT WHATSAPP SEKARANG</span>
@@ -1475,7 +1543,7 @@
             <div class="flex justify-center gap-6 text-sm py-2">
                 <a href="#" class="hover:text-accentcyan"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" class="hover:text-accentcyan"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}" target="_blank" class="hover:text-accentcyan"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="hover:text-accentcyan"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
             <p class="border-t border-white/5 pt-6">&copy; 2026 INXDVI.COM. All rights reserved. Developed with ❤️ in
                 Indonesia.</p>
@@ -1559,7 +1627,7 @@
 
                 <!-- Bottom CTA -->
                 <div class="mt-8 pt-6 border-t border-white/5 flex justify-between items-center">
-                    <a href="https://wa.me/{{ $settings['whatsapp_number'] ?? '6281330012100' }}"
+                    <a href="https://wa.me/{{ $siteStats['whatsapp_number']['value'] ?? '6281234567890' }}"
                         target="_blank"
                         class="px-6 py-3 bg-gradient-to-r from-primarypurple to-accentcyan hover:opacity-95 text-white font-bold font-display rounded-full text-xs transition-all flex items-center gap-2">
                         <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -1984,7 +2052,11 @@
                 sec_pricing_desc: "Semua paket sudah include training, garansi error, dan support WhatsApp.",
                 sec_roi_sub: "/// HITUNG-HITUNGAN CUAN", sec_roi_title: "Lebih Hemat Dari Gaji Karyawan",
                 sec_roi_desc: "Bandingkan biaya menggaji staf admin manual versus investasi sistem otomatis.",
-                calc_staff_label: "Jumlah Karyawan Admin", calc_salary_label: "Gaji Per Karyawan (Bulanan)"
+                calc_staff_label: "Jumlah Karyawan Admin", calc_salary_label: "Gaji Per Karyawan (Bulanan)",
+                sec_demo_sub: "/// DEMO APLIKASI",
+                sec_demo_title: "Cobain Langsung Demo Aplikasi Kami",
+                sec_demo_desc: "Eksplorasi dashboard interaktif dan fitur-fitur unggulan yang siap diimplementasikan untuk bisnis Anda.",
+                btn_view_demo: "Lihat Demo Live"
             },
             en: {
                 nav_problem: "Problems", nav_solusi: "Solutions", nav_testimonials: "Testimonials", nav_calculator: "Calculator", nav_pricing: "Pricing", btn_contact: "Free Consult", btn_contact_wa: "Chat WhatsApp",
@@ -2015,7 +2087,11 @@
                 sec_pricing_desc: "All packages include training, error warranty, and WhatsApp support.",
                 sec_roi_sub: "/// PROFIT CALCULATION", sec_roi_title: "Cheaper Than Admin Salaries",
                 sec_roi_desc: "Compare the cost of hiring manual admin staff versus investing in an automated system.",
-                calc_staff_label: "Number of Admin Staff", calc_salary_label: "Salary Per Staff (Monthly)"
+                calc_staff_label: "Number of Admin Staff", calc_salary_label: "Salary Per Staff (Monthly)",
+                sec_demo_sub: "/// APPLICATION DEMOS",
+                sec_demo_title: "Try Our Live Application Demos",
+                sec_demo_desc: "Explore interactive dashboards and key features ready to be implemented for your business.",
+                btn_view_demo: "View Live Demo"
             }
         };
 

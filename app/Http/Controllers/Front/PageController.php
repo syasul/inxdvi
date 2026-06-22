@@ -10,6 +10,7 @@ use App\Models\Faq;
 use App\Models\Package;
 use App\Models\Testimonial;
 use App\Models\SiteStat;
+use App\Models\AppDemo;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -24,6 +25,7 @@ class PageController extends Controller
         // New tables
         $packages = Package::with('features')->where('is_active', true)->orderBy('sort_order', 'asc')->get();
         $testimonials = Testimonial::where('is_active', true)->orderBy('sort_order', 'asc')->get();
+        $appDemos = AppDemo::where('is_active', true)->orderBy('sort_order', 'asc')->get();
         
         $statsRaw = SiteStat::orderBy('sort_order', 'asc')->get();
         $siteStats = [];
@@ -34,7 +36,7 @@ class PageController extends Controller
             ];
         }
 
-        return view('client.home', compact('services', 'portfolios', 'articles', 'faqs', 'packages', 'testimonials', 'siteStats'));
+        return view('client.home', compact('services', 'portfolios', 'articles', 'faqs', 'packages', 'testimonials', 'siteStats', 'appDemos'));
     }
 
     public function blogIndex()

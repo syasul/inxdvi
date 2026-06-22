@@ -12,6 +12,7 @@ use App\Models\Package;
 use App\Models\PackageFeature;
 use App\Models\Testimonial;
 use App\Models\SiteStat;
+use App\Models\AppDemo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -427,6 +428,30 @@ class StartupContentSeeder extends Seeder
 
         foreach ($stats as $stat) {
             SiteStat::updateOrCreate(['key' => $stat['key']], $stat);
+        }
+
+        // 10. Application Demos
+        $demos = [
+            [
+                'title' => 'Kasir Pintar POS - Demo Retail',
+                'description' => 'Sistem kasir cloud cepat dengan pencarian barcode super cepat, manajemen multi-cashier, dan printer kasir thermal.',
+                'url' => 'https://poskopiniboss.inxdvi.com/api',
+                'image_path' => null,
+                'sort_order' => 1,
+                'is_active' => true,
+            ],
+            [
+                'title' => 'Dashboard Analitik Multi-cabang',
+                'description' => 'Dashboard analytics real-time untuk memantau omzet, stok menipis, dan menu paling laku di semua cabang kafe Anda.',
+                'url' => 'https://poskopiniboss.inxdvi.com/api',
+                'image_path' => null,
+                'sort_order' => 2,
+                'is_active' => true,
+            ]
+        ];
+
+        foreach ($demos as $demo) {
+            AppDemo::updateOrCreate(['title' => $demo['title']], $demo);
         }
     }
 }

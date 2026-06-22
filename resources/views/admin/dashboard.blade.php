@@ -12,7 +12,7 @@
     </div>
 </header>
 
-<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2.5rem;">
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-bottom: 2.5rem;">
     <div class="card" style="margin-bottom: 0; padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem;">
         <div style="width: 48px; height: 48px; background: #eef2ff; color: var(--primary); border-radius: 1rem; display: flex; align-items: center; justify-content: center;">
             <i data-lucide="briefcase"></i>
@@ -49,7 +49,17 @@
             <div style="font-size: 1.5rem; font-weight: 800;">{{ $stats['articles'] }}</div>
         </div>
     </div>
+    <div class="card" style="margin-bottom: 0; padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem;">
+        <div style="width: 48px; height: 48px; background: #ecfeff; color: #0891b2; border-radius: 1rem; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="monitor"></i>
+        </div>
+        <div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">App Demos</div>
+            <div style="font-size: 1.5rem; font-weight: 800;">{{ $stats['app_demos'] }}</div>
+        </div>
+    </div>
 </div>
+
 
 <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
     <div class="card">
@@ -98,6 +108,9 @@
                 </a>
                 <a href="/admin/service" class="btn" style="width: 100%; background: #f8fafc; border: 1px solid var(--border); justify-content: flex-start;">
                     <i data-lucide="plus" size="18"></i> New Service
+                </a>
+                <a href="/admin/app-demo" class="btn" style="width: 100%; background: #f8fafc; border: 1px solid var(--border); justify-content: flex-start;">
+                    <i data-lucide="monitor" size="18"></i> Manage App Demos
                 </a>
                 <a href="/admin/setting" class="btn" style="width: 100%; background: #f8fafc; border: 1px solid var(--border); justify-content: flex-start;">
                     <i data-lucide="settings" size="18"></i> Site Settings
