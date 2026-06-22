@@ -886,9 +886,9 @@
             </div>
 
             <!-- Video Testimonials (Grid 2 video) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                <!-- Video 1 -->
-                <!-- <div class="relative h-64 rounded-3xl overflow-hidden border border-white/5 group shadow-2xl">
+            <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"> -->
+            <!-- Video 1 -->
+            <!-- <div class="relative h-64 rounded-3xl overflow-hidden border border-white/5 group shadow-2xl">
                     <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600"
                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         alt="">
@@ -911,8 +911,8 @@
                     </button>
                 </div> -->
 
-                <!-- Video 2 -->
-                <!-- <div class="relative h-64 rounded-3xl overflow-hidden border border-white/5 group shadow-2xl">
+            <!-- Video 2 -->
+            <!-- <div class="relative h-64 rounded-3xl overflow-hidden border border-white/5 group shadow-2xl">
                     <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600"
                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         alt="">
@@ -934,7 +934,7 @@
                         <i class="fa-solid fa-play text-xl ml-1"></i>
                     </button>
                 </div> -->
-            </div>
+            <!-- </div> -->
 
             <!-- Swiper Carousel Slider for Testimonials -->
             <div class="swiper testimonials-slider mb-20">
