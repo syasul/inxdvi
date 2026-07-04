@@ -10,5 +10,5 @@ Artisan::command('inspire', function () {
 use Illuminate\Support\Facades\Schedule;
 
 // Schedule the AI blog generation command to run twice daily (at 9:00 and 17:00)
-Schedule::command('app:generate-blog')->twiceDaily(9, 17);
+Schedule::command('app:generate-blog')->twiceDaily(9, 17)->timezone('Asia/Jakarta');
 

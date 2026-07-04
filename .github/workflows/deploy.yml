@@ -12,21 +12,21 @@ jobs:
     steps:
       - name: Tarik update terbaru dari GitHub
         run: |
-          cd /home/inxdvi/portofolio
+          cd /home/inxdvi/webapps/portofolio
           git fetch --all
           git reset --hard origin/main
           
       - name: Update Composer Dependencies
         run: |
-          cd /home/inxdvi/portofolio
+          cd /home/inxdvi/webapps/portofolio
           composer install --no-interaction --prefer-dist --optimize-autoloader
           
       - name: Jalankan Migrasi Database (Jika ada)
         run: |
-          cd /home/inxdvi/portofolio
+          cd /home/inxdvi/webapps/portofolio
           php artisan migrate --force
           
       - name: Bersihkan Cache Laravel
         run: |
-          cd /home/inxdvi/portofolio
+          cd /home/inxdvi/webapps/portofolio
           php artisan optimize:clear
