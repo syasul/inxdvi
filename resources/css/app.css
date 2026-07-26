@@ -4,8 +4,117 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@source '../**/*.jsx';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --font-sans: 'Satoshi', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Clash Display', sans-serif;
 }
+
+/* Custom rich text blog body styles */
+.blog-content-body p {
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+}
+
+.blog-content-body h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+.blog-content-body h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: #334155;
+}
+
+.blog-content-body ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.blog-content-body ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.blog-content-body li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.blog-content-body strong {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.blog-content-body a {
+    color: #4f46e5;
+    text-decoration: underline;
+}
+
+.blog-content-body a:hover {
+    color: #4338ca;
+}
+
+body {
+    background-color: #FDFBF7;
+}
+
+/* Custom Webkit scrollbar for Neo-Brutalism look */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #FAF6EE;
+    border-left: 2px solid #0f172a;
+    border-top: 2px solid #0f172a;
+}
+::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border: 2px solid #0f172a;
+    border-radius: 0;
+}
+
+/* Retro Grid Pattern for Hero/Jumbotron background */
+.retro-grid {
+    background-size: 24px 24px;
+    background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    background-color: #FDFBF7;
+}
+
+/* Retro infinite marquee ticker animations */
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(4deg); }
+}
+
+.animate-wiggle-badge {
+    animation: wiggle 4s ease-in-out infinite;
+}
+
+
+
+
