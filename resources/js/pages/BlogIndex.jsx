@@ -7,8 +7,8 @@ export default function BlogIndex({ articles, settings }) {
     const [searchQuery, setSearchQuery] = useState('');
 
     const articleList = articles?.data || [];
-    
-    const filteredArticles = articleList.filter(article => 
+
+    const filteredArticles = articleList.filter(article =>
         article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (article.excerpt && article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()))
     );
@@ -30,7 +30,7 @@ export default function BlogIndex({ articles, settings }) {
             <div className="relative pt-32 pb-16 px-6 text-center overflow-hidden border-b-2 border-slate-900 bg-white">
                 <div className="max-w-3xl mx-auto space-y-5 relative z-10">
                     <span className="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block">
-                        /// BLOG & INSIGHTS
+                        BLOG & INSIGHTS
                     </span>
                     <h1 className="text-3xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
                         Wawasan & Edukasi Bisnis
@@ -41,8 +41,8 @@ export default function BlogIndex({ articles, settings }) {
 
                     {/* Search bar */}
                     <div className="max-w-md mx-auto pt-4 relative">
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Cari judul artikel..."
@@ -55,19 +55,19 @@ export default function BlogIndex({ articles, settings }) {
 
             {/* Main Articles Area */}
             <main className="py-20 px-6 max-w-6xl mx-auto space-y-16">
-                
+
                 {filteredArticles.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {filteredArticles.map((article) => (
-                            <article 
-                                key={article.id} 
+                            <article
+                                key={article.id}
                                 className="bg-white border-2 border-slate-900 rounded-none overflow-hidden shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all flex flex-col justify-between"
                             >
                                 {/* Cover Image */}
                                 <div className="h-48 bg-slate-100 border-b-2 border-slate-900 overflow-hidden relative">
-                                    <img 
-                                        src={article.image_url || "https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=600"} 
-                                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-103" 
+                                    <img
+                                        src={article.image_url || "https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=600"}
+                                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-103"
                                         alt={article.title}
                                     />
                                     {article.category && (
@@ -101,8 +101,8 @@ export default function BlogIndex({ articles, settings }) {
 
                                     {/* Action button */}
                                     <div className="pt-4 border-t-2 border-slate-900/10">
-                                        <a 
-                                            href={`/blog/${article.slug}`} 
+                                        <a
+                                            href={`/blog/${article.slug}`}
                                             className="text-blue-600 hover:text-blue-755 text-xs font-extrabold flex items-center gap-1.5 transition-colors group cursor-pointer"
                                         >
                                             <span>Baca Selengkapnya</span>
@@ -123,8 +123,8 @@ export default function BlogIndex({ articles, settings }) {
                 {articles && articles.last_page > 1 && (
                     <div className="flex justify-center items-center gap-3 pt-10 border-t-2 border-slate-900/10">
                         {articles.prev_page_url ? (
-                            <a 
-                                href={articles.prev_page_url} 
+                            <a
+                                href={articles.prev_page_url}
                                 className="px-4 py-2 bg-white border-2 border-slate-900 hover:bg-slate-50 text-xs font-bold text-slate-800 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]"
                             >
                                 Sebelumnya
@@ -140,8 +140,8 @@ export default function BlogIndex({ articles, settings }) {
                         </span>
 
                         {articles.next_page_url ? (
-                            <a 
-                                href={articles.next_page_url} 
+                            <a
+                                href={articles.next_page_url}
                                 className="px-4 py-2 bg-white border-2 border-slate-900 hover:bg-slate-50 text-xs font-bold text-slate-800 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]"
                             >
                                 Selanjutnya

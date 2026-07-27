@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import anime from 'animejs';
-import { 
-    Check, 
-    X, 
-    AlertTriangle, 
-    MessageSquare, 
-    Plus, 
-    Trash2, 
+import {
+    Check,
+    X,
+    AlertTriangle,
+    MessageSquare,
+    Plus,
+    Trash2,
     Download,
     Send,
     Bot,
@@ -152,7 +152,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
     // 3. Custom Software Sandbox
     const toggleModule = (id) => {
-        setSelectedModules(prev => 
+        setSelectedModules(prev =>
             prev.includes(id) ? prev.filter(m => m !== id) : [...prev, id]
         );
     };
@@ -178,7 +178,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
             {/* 1. HERO SECTION (Retro grid background pattern) */}
             <header className="relative pt-32 pb-24 px-6 overflow-hidden retro-grid border-b-2 border-slate-900">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    
+
                     {/* Hero Left Text content */}
                     <div className="lg:col-span-7 space-y-8 animate-fade-up">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none border-2 border-slate-900 bg-white text-blue-600 text-xs font-mono font-bold uppercase tracking-wider shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
@@ -219,7 +219,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                         {/* CTA group */}
                         <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                            <a 
+                            <a
                                 href={whatsappUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -227,7 +227,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                             >
                                 <span>Konsultasi Proyek Gratis</span>
                             </a>
-                            <a 
+                            <a
                                 href="#solusi"
                                 className="px-8 py-4 bg-white border-2 border-slate-900 text-slate-800 font-bold shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] transition-all flex items-center justify-center gap-2 cursor-pointer"
                             >
@@ -240,9 +240,9 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                     {/* Hero Right - Premium Retro tech Workspace image illustration */}
                     <div className="lg:col-span-5 flex justify-center">
                         <div className="bg-white border-2 border-slate-900 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] overflow-hidden transition-all duration-300 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[7px_7px_0px_0px_rgba(15,23,42,1)]">
-                            <img 
-                                src="/images/hero_workspace.png" 
-                                className="w-full h-auto max-w-sm md:max-w-md object-contain" 
+                            <img
+                                src="/images/hero_workspace.png"
+                                className="w-full h-auto max-w-sm md:max-w-md object-contain"
                                 alt="INXDVI Digital Workspace Solution"
                             />
                         </div>
@@ -268,7 +268,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                             🚀 100% Bespoke Code
                         </div>
                         <span className="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block pt-4">
-                            /// LAYANAN UTAMA KAMI
+                            LAYANAN UTAMA KAMI
                         </span>
                         <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 leading-tight">
                             Solusi Teknologi End-to-End Bisnis Anda
@@ -327,14 +327,14 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
             {/* 3. INTERACTIVE PRODUCT PLAYGROUND SANDBOX */}
             <section id="solusi" className="py-24 px-6 border-b-2 border-slate-900">
                 <div className="max-w-7xl mx-auto">
-                    
+
                     <div className="text-center max-w-3xl mx-auto space-y-4 mb-12 relative">
                         {/* Wiggling sticker badge */}
                         <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-slate-900 text-[9px] font-mono font-bold uppercase border-2 border-slate-900 px-3 py-1 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] -rotate-3 animate-wiggle-badge">
                             ⚡ Try Live Playground
                         </div>
                         <span className="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block pt-4">
-                            /// COBA PRODUK LANGSUNG
+                            COBA PRODUK LANGSUNG
                         </span>
                         <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 leading-tight">
                             Interactive Product Playground
@@ -346,21 +346,21 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                     {/* Tab triggers */}
                     <div className="flex flex-wrap justify-center gap-3.5 mb-10">
-                        <button 
+                        <button
                             onClick={() => setActiveFeatureTab('ai-whatsapp')}
                             className={activeFeatureTab === 'ai-whatsapp' ? activeTabStyle : inactiveTabStyle}
                         >
                             <Cpu size={14} />
                             <span>1. AI WhatsApp Bot</span>
                         </button>
-                        <button 
+                        <button
                             onClick={() => setActiveFeatureTab('pos-stok')}
                             className={activeFeatureTab === 'pos-stok' ? activeTabStyle : inactiveTabStyle}
                         >
                             <Layers size={14} />
                             <span>2. Kasir POS & Stok</span>
                         </button>
-                        <button 
+                        <button
                             onClick={() => setActiveFeatureTab('custom-software')}
                             className={activeFeatureTab === 'custom-software' ? activeTabStyle : inactiveTabStyle}
                         >
@@ -371,7 +371,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                     {/* Sandbox screen container */}
                     <div className="bg-white border-2 border-slate-900 p-6 md:p-10 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] max-w-4xl mx-auto">
-                        
+
                         {/* PLAYGROUND 1: AI WHATSAPP CHAT BOT */}
                         {activeFeatureTab === 'ai-whatsapp' && (
                             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
@@ -386,20 +386,20 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                     {/* Clickable quick query helpers */}
                                     <div className="flex flex-wrap gap-2 pt-2">
                                         <span className="text-[10px] text-slate-400 font-mono self-center">Kirim Template:</span>
-                                        <button 
+                                        <button
                                             onClick={() => setChatInput('Berapa biaya pembuatan sistem absensi karyawan?')}
                                             className="px-3 py-1.5 bg-[#FAF6EE] hover:bg-slate-100 text-slate-800 text-[10px] font-extrabold border-2 border-slate-900 shadow-[1px_1px_0px_0px_rgba(15,23,42,1)] transition-all cursor-pointer"
                                         >
                                             Biaya sistem absensi?
                                         </button>
-                                        <button 
+                                        <button
                                             onClick={() => setChatInput('Bagaimana cara integrasi AI Bot di Whatsapp?')}
                                             className="px-3 py-1.5 bg-[#FAF6EE] hover:bg-slate-100 text-slate-800 text-[10px] font-extrabold border-2 border-slate-900 shadow-[1px_1px_0px_0px_rgba(15,23,42,1)] transition-all cursor-pointer"
                                         >
                                             Cara pasang AI WA?
                                         </button>
                                     </div>
-                                    
+
                                     <div className="bg-blue-50 border-2 border-slate-900 rounded-none p-4 text-xs text-blue-900 flex items-start gap-2.5">
                                         <Zap className="text-blue-600 flex-shrink-0 mt-0.5" size={14} />
                                         <span>Ketik pertanyaan Anda tentang program, sistem kasir, atau bot di kolom chat sebelah kanan untuk melihat kecerdasan balasan otomatis AI!</span>
@@ -415,15 +415,14 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                     </div>
 
                                     {/* Chatbox history */}
-                                    <div 
+                                    <div
                                         id="ai-chat-box-container"
                                         className="h-48 bg-white border-2 border-slate-900 p-3 overflow-y-auto space-y-2.5 scroll-smooth"
                                     >
                                         {chatMessages.map((msg, i) => (
                                             <div key={i} className={`flex gap-2 max-w-[85%] ${msg.sender === 'client' ? 'ml-auto flex-row-reverse' : 'mr-auto'}`}>
-                                                <div className={`p-2.5 border border-slate-900 text-[11px] leading-relaxed shadow-[1px_1px_0px_0px_rgba(15,23,42,1)] ${
-                                                    msg.sender === 'client' ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-700'
-                                                }`}>
+                                                <div className={`p-2.5 border border-slate-900 text-[11px] leading-relaxed shadow-[1px_1px_0px_0px_rgba(15,23,42,1)] ${msg.sender === 'client' ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-700'
+                                                    }`}>
                                                     {msg.text}
                                                 </div>
                                             </div>
@@ -439,14 +438,14 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                                     {/* Chat input form */}
                                     <form onSubmit={sendChatMessage} className="flex gap-1.5">
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             value={chatInput}
                                             onChange={(e) => setChatInput(e.target.value)}
                                             placeholder="Tanya AI tentang software..."
                                             className="flex-1 px-3 py-2 bg-white border-2 border-slate-900 text-xs focus:outline-none text-slate-800"
                                         />
-                                        <button 
+                                        <button
                                             type="submit"
                                             className="px-3 py-2 bg-blue-600 border-2 border-slate-900 text-white font-bold transition-all flex items-center justify-center cursor-pointer shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(15,23,42,1)]"
                                         >
@@ -470,7 +469,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                                     <div className="grid grid-cols-3 gap-2">
                                         {posMenu.map(item => (
-                                            <button 
+                                            <button
                                                 key={item.id}
                                                 onClick={() => addToCart(item)}
                                                 className="p-3 bg-white border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] hover:bg-slate-50 text-left transition-all cursor-pointer"
@@ -496,8 +495,8 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                                     <span className={item.stock <= 5 ? 'text-red-650 font-mono' : 'text-slate-550 font-mono'}>{item.stock} / {item.max} Box</span>
                                                 </div>
                                                 <div className="h-3.5 bg-[#FAF6EE] border-2 border-slate-900 rounded-none overflow-hidden">
-                                                    <div 
-                                                        className={`h-full transition-all duration-300 ${item.stock <= 5 ? 'bg-red-500' : 'bg-blue-600'}`} 
+                                                    <div
+                                                        className={`h-full transition-all duration-300 ${item.stock <= 5 ? 'bg-red-500' : 'bg-blue-600'}`}
                                                         style={{ width: `${(item.stock / item.max) * 100}%` }}
                                                     ></div>
                                                 </div>
@@ -509,7 +508,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                 {/* Right Cart/Checkout display */}
                                 <div className="md:col-span-5 bg-[#FAF6EE] border-2 border-slate-900 rounded-none p-4 space-y-3">
                                     <span className="font-bold text-xs text-slate-800 block border-b-2 border-slate-900 pb-1.5">Nota Transaksi POS</span>
-                                    
+
                                     {cart.length === 0 ? (
                                         <div className="py-8 text-center text-slate-400 text-xs font-light">Keranjang POS kosong.</div>
                                     ) : (
@@ -529,7 +528,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                                 <span>Total</span>
                                                 <span className="font-mono">Rp {cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0).toLocaleString('id-ID')}</span>
                                             </div>
-                                            <button 
+                                            <button
                                                 onClick={handlePOSCheckout}
                                                 disabled={isPrinting}
                                                 className="w-full py-2 bg-blue-600 border-2 border-slate-900 text-white font-bold text-xs shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(15,23,42,1)] transition-colors cursor-pointer"
@@ -576,22 +575,20 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                         {customModulesList.map(mod => {
                                             const isSelected = selectedModules.includes(mod.id);
                                             return (
-                                                <button 
+                                                <button
                                                     key={mod.id}
                                                     onClick={() => toggleModule(mod.id)}
-                                                    className={`w-full p-3 border-2 rounded-none text-left flex justify-between items-center transition-all cursor-pointer ${
-                                                        isSelected 
-                                                            ? 'bg-blue-50 border-slate-900 text-blue-750 font-bold shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]' 
+                                                    className={`w-full p-3 border-2 rounded-none text-left flex justify-between items-center transition-all cursor-pointer ${isSelected
+                                                            ? 'bg-blue-50 border-slate-900 text-blue-750 font-bold shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]'
                                                             : 'bg-white border-slate-900 text-slate-700 hover:bg-slate-50'
-                                                    }`}
+                                                        }`}
                                                 >
                                                     <div className="space-y-0.5">
                                                         <p className="text-xs">{mod.name}</p>
                                                         <p className="text-[9px] text-slate-400 font-mono uppercase tracking-wider">{mod.category} | Complexity: {mod.complexity}</p>
                                                     </div>
-                                                    <span className={`w-4 h-4 border-2 border-slate-900 flex items-center justify-center text-[10px] ${
-                                                        isSelected ? 'bg-blue-600 text-white' : 'bg-white'
-                                                    }`}>
+                                                    <span className={`w-4 h-4 border-2 border-slate-900 flex items-center justify-center text-[10px] ${isSelected ? 'bg-blue-600 text-white' : 'bg-white'
+                                                        }`}>
                                                         {isSelected ? '✓' : ''}
                                                     </span>
                                                 </button>
@@ -602,7 +599,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                                 <div className="md:col-span-6 bg-[#FAF6EE] border-2 border-slate-900 rounded-none p-5 space-y-4">
                                     <span className="font-bold text-xs text-slate-800 block border-b-2 border-slate-900 pb-1.5">Blueprint Arsitektur Software</span>
-                                    
+
                                     {selectedModules.length === 0 ? (
                                         <div className="py-12 text-center text-slate-455 text-xs font-light">Pilih minimal satu modul untuk melihat blueprint.</div>
                                     ) : (
@@ -648,7 +645,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                     <h3 className="text-2xl md:text-3xl font-display font-extrabold text-slate-800 text-center mb-12">
                         Manual VS Sistem Integrasi INXDVI
                     </h3>
-                    
+
                     <div className="overflow-x-auto border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] max-w-4xl mx-auto bg-white">
                         <table className="w-full border-collapse text-left text-xs md:text-sm">
                             <thead>
@@ -701,14 +698,14 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
             {testimonials && testimonials.length > 0 && (
                 <section id="testimoni" className="py-24 px-6 bg-[#FDFBF7]">
                     <div className="max-w-7xl mx-auto">
-                        
+
                         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 relative">
                             {/* Wiggling sticker badge */}
                             <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white text-slate-900 text-[9px] font-mono font-bold uppercase border-2 border-slate-900 px-3 py-1 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] rotate-6 animate-wiggle-badge">
                                 💬 Client Approved
                             </div>
                             <span className="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block pt-4">
-                                /// KATA KLIEN KAMI
+                                KATA KLIEN KAMI
                             </span>
                             <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 leading-tight">
                                 Kisah Sukses Bersama INXDVI
@@ -721,9 +718,9 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                         <div className="max-w-3xl mx-auto bg-white border-2 border-slate-900 p-8 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] relative">
                             <div className="flex flex-col md:flex-row justify-between gap-4 border-b-2 border-slate-900 pb-5 mb-5 md:items-center">
                                 <div className="flex items-center gap-3.5">
-                                    <img 
-                                        src={testimonials[testiIndex].photo_url || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150"} 
-                                        className="w-12 h-12 rounded-none object-cover border-2 border-slate-900" 
+                                    <img
+                                        src={testimonials[testiIndex].photo_url || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150"}
+                                        className="w-12 h-12 rounded-none object-cover border-2 border-slate-900"
                                         alt=""
                                     />
                                     <div>
@@ -746,17 +743,17 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                             <div className="flex justify-between items-center mt-6">
                                 <span className="text-[10px] font-mono text-blue-600 uppercase tracking-widest font-bold">
-                                    /// INDUSTRI {testimonials[testiIndex].industry || 'KORPORASI'}
+                                    INDUSTRI {testimonials[testiIndex].industry || 'KORPORASI'}
                                 </span>
-                                
+
                                 <div className="flex gap-2">
-                                    <button 
+                                    <button
                                         onClick={prevTesti}
                                         className="w-8 h-8 border-2 border-slate-900 hover:bg-slate-50 flex items-center justify-center text-slate-800 text-xs font-bold shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(15,23,42,1)] transition-colors cursor-pointer"
                                     >
                                         ←
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={nextTesti}
                                         className="w-8 h-8 border-2 border-slate-900 hover:bg-slate-50 flex items-center justify-center text-slate-800 text-xs font-bold shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(15,23,42,1)] transition-colors cursor-pointer"
                                     >
@@ -791,7 +788,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
                             <span className="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block">
-                                /// INVESTASI NILAI PROYEK
+                                INVESTASI NILAI PROYEK
                             </span>
                             <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 leading-tight">
                                 Opsi Pilihan Investasi Anda
@@ -802,16 +799,15 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                             <div className="flex items-center justify-center gap-3 pt-6">
                                 <span className={`text-xs font-bold ${billingPeriod === 'monthly' ? 'text-slate-900' : 'text-slate-400'}`}>Bulanan</span>
-                                <button 
+                                <button
                                     onClick={() => setBillingPeriod(prev => prev === 'monthly' ? 'yearly' : 'monthly')}
                                     className="w-12 h-6.5 rounded-full bg-slate-200 p-0.5 flex items-center transition-all duration-300 focus:outline-none cursor-pointer"
                                 >
-                                    <div className={`w-5.5 h-5.5 rounded-full bg-blue-600 transition-transform duration-300 ${
-                                        billingPeriod === 'yearly' ? 'translate-x-5.5' : ''
-                                    }`}></div>
+                                    <div className={`w-5.5 h-5.5 rounded-full bg-blue-600 transition-transform duration-300 ${billingPeriod === 'yearly' ? 'translate-x-5.5' : ''
+                                        }`}></div>
                                 </button>
                                 <span className={`text-xs font-bold flex items-center gap-1.5 ${billingPeriod === 'yearly' ? 'text-slate-900' : 'text-slate-400'}`}>
-                                    Tahunan 
+                                    Tahunan
                                     <span className="px-2 py-0.5 bg-white border border-slate-900 text-blue-600 rounded-full text-[9px] font-mono font-bold animate-pulse shadow-[1px_1px_0px_0px_rgba(15,23,42,1)]">Hemat 20%</span>
                                 </span>
                             </div>
@@ -819,13 +815,12 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start max-w-6xl mx-auto">
                             {packages.map(pkg => (
-                                <div 
+                                <div
                                     key={pkg.id}
-                                    className={`p-8 rounded-none flex flex-col justify-between min-h-[500px] transition-all duration-300 relative ${
-                                        pkg.is_popular 
-                                            ? 'bg-white border-2 border-slate-950 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] scale-[1.03]' 
+                                    className={`p-8 rounded-none flex flex-col justify-between min-h-[500px] transition-all duration-300 relative ${pkg.is_popular
+                                            ? 'bg-white border-2 border-slate-950 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] scale-[1.03]'
                                             : 'bg-white border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]'
-                                    }`}
+                                        }`}
                                 >
                                     {pkg.is_popular && (
                                         <span className="absolute top-0 right-8 transform -translate-y-1/2 px-3 py-1 bg-blue-600 border-2 border-slate-900 text-white text-[9px] font-bold uppercase rounded-none tracking-wider font-mono">
@@ -836,7 +831,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                     <div className="space-y-6">
                                         <div>
                                             <span className="text-[10px] font-mono text-blue-600 block uppercase tracking-wider font-bold">
-                                                /// PAKET {pkg.name}
+                                                PAKET {pkg.name}
                                             </span>
                                             <h3 className="text-xl font-display font-extrabold text-slate-800 mt-1">{pkg.name}</h3>
                                             <p className="text-xs text-slate-500 mt-1 font-medium leading-relaxed">{pkg.tagline}</p>
@@ -853,7 +848,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                                     <div className="flex items-baseline gap-1">
                                                         <span className="text-xs text-slate-500 font-semibold">Rp</span>
                                                         <span className="text-3xl font-extrabold text-slate-800 font-mono">
-                                                            {billingPeriod === 'monthly' 
+                                                            {billingPeriod === 'monthly'
                                                                 ? pkg.price_monthly.toLocaleString('id-ID')
                                                                 : Math.round(pkg.price_yearly / 12).toLocaleString('id-ID')
                                                             }
@@ -890,15 +885,14 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                     </div>
 
                                     <div className="pt-8">
-                                        <a 
+                                        <a
                                             href={`https://wa.me/${whatsappNumber}?text=Halo%20INXDVI%2C%20saya%2520tertarik%2520dengan%2520paket%2520${encodeURIComponent(pkg.name)}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className={`block w-full py-3.5 text-center text-xs font-bold border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] transition-all ${
-                                                pkg.is_popular 
-                                                    ? 'bg-blue-600 text-white' 
+                                            className={`block w-full py-3.5 text-center text-xs font-bold border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] transition-all ${pkg.is_popular
+                                                    ? 'bg-blue-600 text-white'
                                                     : 'bg-white text-slate-800 hover:bg-slate-50'
-                                            }`}
+                                                }`}
                                         >
                                             {pkg.is_custom ? 'Minta Penawaran Proyek' : 'Pilih Paket Proyek'}
                                         </a>
@@ -916,7 +910,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center space-y-4 mb-16">
                             <span className="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block">
-                                /// FAQ KONSULTASI
+                                FAQ KONSULTASI
                             </span>
                             <h3 className="text-2xl md:text-3xl font-display font-extrabold text-slate-800">
                                 FAQ & Kerjasama
@@ -926,16 +920,15 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                         <div className="space-y-3.5">
                             {faqs.map((faq, i) => (
                                 <div key={faq.id} className="bg-white border-2 border-slate-900 rounded-none overflow-hidden shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
-                                    <button 
+                                    <button
                                         onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                                         className="w-full p-5 text-left flex justify-between items-center text-slate-800 font-bold text-xs md:text-sm focus:outline-none"
                                     >
                                         <span>{faq.question}</span>
                                         <ChevronDown size={14} className={`text-blue-600 transition-transform duration-300 ${activeFaq === i ? 'rotate-180' : ''}`} />
                                     </button>
-                                    <div className={`transition-all duration-300 ease-in-out ${
-                                        activeFaq === i ? 'max-h-60 opacity-100 border-t-2 border-slate-900' : 'max-h-0 opacity-0 pointer-events-none'
-                                    }`}>
+                                    <div className={`transition-all duration-300 ease-in-out ${activeFaq === i ? 'max-h-60 opacity-100 border-t-2 border-slate-900' : 'max-h-0 opacity-0 pointer-events-none'
+                                        }`}>
                                         <p className="p-5 text-xs md:text-sm text-slate-650 font-medium leading-relaxed bg-[#FAF6EE]">
                                             {faq.answer}
                                         </p>

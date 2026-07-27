@@ -12,7 +12,7 @@ export default function Demo({ appDemos, settings }) {
             <div className="relative pt-32 pb-16 px-6 text-center overflow-hidden border-b-2 border-slate-900 bg-white">
                 <div className="max-w-3xl mx-auto space-y-4 relative z-10">
                     <span className="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block">
-                        /// LIVE APP SHOWCASE
+                        LIVE APP SHOWCASE
                     </span>
                     <h1 className="text-3xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
                         Demo Aplikasi Live
@@ -28,15 +28,15 @@ export default function Demo({ appDemos, settings }) {
                 {appDemos && appDemos.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {appDemos.map((demo) => (
-                            <div 
-                                key={demo.id} 
+                            <div
+                                key={demo.id}
                                 className="bg-white border-2 border-slate-900 rounded-none overflow-hidden shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all flex flex-col justify-between"
                             >
                                 {/* Demo Image Mockup */}
                                 <div className="h-48 bg-slate-105 border-b-2 border-slate-900 relative overflow-hidden group">
-                                    <img 
-                                        src={demo.image_path || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600"} 
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                                    <img
+                                        src={demo.image_path || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600"}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                         alt={demo.title}
                                     />
                                     <div className="absolute inset-0 bg-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -77,9 +77,9 @@ export default function Demo({ appDemos, settings }) {
 
                                     {/* Action button */}
                                     <div className="pt-6">
-                                        <a 
-                                            href={demo.url} 
-                                            target="_blank" 
+                                        <a
+                                            href={demo.url}
+                                            target="_blank"
                                             rel="noopener noreferrer"
                                             className="w-full py-3 bg-blue-600 border-2 border-slate-900 text-white rounded-none text-xs font-bold shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] transition-all flex items-center justify-center gap-2 cursor-pointer"
                                         >
