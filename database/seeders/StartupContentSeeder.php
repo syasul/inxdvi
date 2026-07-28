@@ -54,6 +54,13 @@ class StartupContentSeeder extends Seeder
                 'description' => 'Solusi perangkat lunak kustom untuk pengusaha menengah ke atas yang membutuhkan sistem spesifik untuk skala bisnis besar.',
                 'base_price' => 15000000,
             ],
+            [
+                'name' => 'Layanan Iklan Digital (Basic Ads)',
+                'slug' => 'basic-ads-campaign',
+                'icon' => 'megaphone',
+                'description' => 'Setup dan optimasi iklan berbayar Meta Ads & Google Ads tingkat dasar untuk mendatangkan traffic potensial, meningkatkan leads WA, dan konversi penjualan Anda.',
+                'base_price' => 750000,
+            ],
         ];
 
         foreach ($services as $service) {

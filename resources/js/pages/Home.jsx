@@ -19,8 +19,39 @@ import {
     Cpu,
     TrendingUp,
     Code,
-    Calendar
+    Calendar,
+    Megaphone
 } from 'lucide-react';
+
+const ServiceIcon = ({ iconName, ...props }) => {
+    switch (iconName) {
+        case 'cpu':
+            return <Cpu {...props} />;
+        case 'trending-up':
+            return <TrendingUp {...props} />;
+        case 'code':
+            return <Code {...props} />;
+        case 'megaphone':
+            return <Megaphone {...props} />;
+        default:
+            return <Layers {...props} />;
+    }
+};
+
+const getServiceTag = (slug) => {
+    switch (slug) {
+        case 'ai-assistant-business':
+            return '✓ Chatbot & Otomasi CS';
+        case 'digital-transformation-umkm':
+            return '✓ Sistem POS & Stok Cloud';
+        case 'enterprise-custom-software':
+            return '✓ Web App & ERP Kustom';
+        case 'basic-ads-campaign':
+            return '✓ Meta & Google Ads Setup';
+        default:
+            return '✓ Layanan Premium';
+    }
+};
 
 export default function Home({ services, portfolios, articles, faqs, packages, testimonials, siteStats, appDemos, settings }) {
     const [billingPeriod, setBillingPeriod] = useState('monthly');
@@ -274,52 +305,78 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                             Solusi Teknologi End-to-End Bisnis Anda
                         </h2>
                         <p className="text-slate-700 text-sm font-bold">
-                            Kami menyediakan tiga pilar produk untuk membantu bisnis beralih ke operasional digital yang autopilot dan akurat.
+                            Kami menyediakan solusi teknologi dan digital marketing premium untuk membantu bisnis beralih ke operasional digital autopilot dan melakukan ekspansi pasar tertarget.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Service 1 */}
-                        <div className="p-8 bg-white border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] space-y-6 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all">
-                            <div className="w-12 h-12 bg-[#FAF6EE] border-2 border-slate-900 flex items-center justify-center text-blue-600">
-                                <Cpu size={24} />
-                            </div>
-                            <div className="space-y-2">
-                                <h3 className="text-slate-900 font-extrabold text-lg">AI WhatsApp Assistant</h3>
-                                <p className="text-slate-650 text-xs md:text-sm font-medium leading-relaxed">
-                                    Asisten AI pintar 24 jam nonstop untuk merespons pertanyaan pelanggan di WhatsApp, menangkap prospek leads, merekomendasikan produk, dan menyetor data rekap harian secara otomatis.
-                                </p>
-                            </div>
-                            <div className="text-[11px] font-mono font-bold text-blue-600">✓ Chatbot & Otomasi CS</div>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {services && services.length > 0 ? (
+                            services.map((service) => (
+                                <div key={service.id} className="p-8 bg-white border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all flex flex-col justify-between">
+                                    <div className="space-y-6">
+                                        <div className="w-12 h-12 bg-[#FAF6EE] border-2 border-slate-900 flex items-center justify-center text-blue-600">
+                                            <ServiceIcon iconName={service.icon} size={24} />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <h3 className="text-slate-900 font-extrabold text-lg">{service.name}</h3>
+                                            <p className="text-slate-650 text-xs md:text-sm font-medium leading-relaxed">
+                                                {service.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-3 pt-6 border-t border-slate-100 mt-4">
+                                        <div className="text-[11px] font-mono text-slate-500">
+                                            Mulai dari <span className="font-bold text-slate-900">IDR {Number(service.base_price).toLocaleString('id-ID')}</span>
+                                        </div>
+                                        <div className="text-[11px] font-mono font-bold text-blue-600">{getServiceTag(service.slug)}</div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <>
+                                {/* Fallback Service 1 */}
+                                <div className="p-8 bg-white border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] space-y-6 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all">
+                                    <div className="w-12 h-12 bg-[#FAF6EE] border-2 border-slate-900 flex items-center justify-center text-blue-600">
+                                        <Cpu size={24} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <h3 className="text-slate-900 font-extrabold text-lg">AI WhatsApp Assistant</h3>
+                                        <p className="text-slate-650 text-xs md:text-sm font-medium leading-relaxed">
+                                            Asisten AI pintar 24 jam nonstop untuk merespons pertanyaan pelanggan di WhatsApp, menangkap prospek leads, merekomendasikan produk, dan menyetor data rekap harian secara otomatis.
+                                        </p>
+                                    </div>
+                                    <div className="text-[11px] font-mono font-bold text-blue-600">✓ Chatbot & Otomasi CS</div>
+                                </div>
 
-                        {/* Service 2 */}
-                        <div className="p-8 bg-white border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] space-y-6 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all">
-                            <div className="w-12 h-12 bg-[#FAF6EE] border-2 border-slate-900 flex items-center justify-center text-blue-600">
-                                <TrendingUp size={24} />
-                            </div>
-                            <div className="space-y-2">
-                                <h3 className="text-slate-900 font-extrabold text-lg">Digitalisasi UMKM (POS & Cloud)</h3>
-                                <p className="text-slate-650 text-xs md:text-sm font-medium leading-relaxed">
-                                    Paket integrasi lengkap kasir cloud pintar (POS), monitor stok real-time, manajemen cabang, cetak nota struk thermal instan, dan laporan laba rugi terautomasi tanpa ribet rekap manual.
-                                </p>
-                            </div>
-                            <div className="text-[11px] font-mono font-bold text-blue-600">✓ Sistem POS & Stok Cloud</div>
-                        </div>
+                                {/* Fallback Service 2 */}
+                                <div className="p-8 bg-white border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] space-y-6 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all">
+                                    <div className="w-12 h-12 bg-[#FAF6EE] border-2 border-slate-900 flex items-center justify-center text-blue-600">
+                                        <TrendingUp size={24} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <h3 className="text-slate-900 font-extrabold text-lg">Digitalisasi UMKM (POS & Cloud)</h3>
+                                        <p className="text-slate-650 text-xs md:text-sm font-medium leading-relaxed">
+                                            Paket integrasi lengkap kasir cloud pintar (POS), monitor stok real-time, manajemen cabang, cetak nota struk thermal instan, dan laporan laba rugi terautomasi tanpa ribet rekap manual.
+                                        </p>
+                                    </div>
+                                    <div className="text-[11px] font-mono font-bold text-blue-600">✓ Sistem POS & Stok Cloud</div>
+                                </div>
 
-                        {/* Service 3 */}
-                        <div className="p-8 bg-white border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] space-y-6 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all">
-                            <div className="w-12 h-12 bg-[#FAF6EE] border-2 border-slate-900 flex items-center justify-center text-blue-600">
-                                <Code size={24} />
-                            </div>
-                            <div className="space-y-2">
-                                <h3 className="text-slate-900 font-extrabold text-lg">Enterprise Custom Software</h3>
-                                <p className="text-slate-650 text-xs md:text-sm font-medium leading-relaxed">
-                                    Pengembangan aplikasi web kustom untuk skala bisnis menegah ke atas. Kami bangun sistem HRIS, absensi GPS, logistik gudang suplai, manajemen CRM, dan integrasi API yang kokoh sesuai permintaan Anda.
-                                </p>
-                            </div>
-                            <div className="text-[11px] font-mono font-bold text-blue-600">✓ Web App & ERP Kustom</div>
-                        </div>
+                                {/* Fallback Service 3 */}
+                                <div className="p-8 bg-white border-2 border-slate-900 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] space-y-6 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] transition-all">
+                                    <div className="w-12 h-12 bg-[#FAF6EE] border-2 border-slate-900 flex items-center justify-center text-blue-600">
+                                        <Code size={24} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <h3 className="text-slate-900 font-extrabold text-lg">Enterprise Custom Software</h3>
+                                        <p className="text-slate-650 text-xs md:text-sm font-medium leading-relaxed">
+                                            Pengembangan aplikasi web kustom untuk skala bisnis menegah ke atas. Kami bangun sistem HRIS, absensi GPS, logistik gudang suplai, manajemen CRM, dan integrasi API yang kokoh sesuai permintaan Anda.
+                                        </p>
+                                    </div>
+                                    <div className="text-[11px] font-mono font-bold text-blue-600">✓ Web App & ERP Kustom</div>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </section>

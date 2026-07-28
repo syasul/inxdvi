@@ -4,7 +4,6 @@ import { Menu, X, MessageSquare, PhoneCall } from 'lucide-react';
 export default function Navbar({ settings }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [lang, setLang] = useState('ID');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,10 +19,6 @@ export default function Navbar({ settings }) {
 
     const whatsappNumber = settings?.whatsapp_number || '6281330012100';
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Halo%20INXDVI%2C%20saya%20tertarik%20dengan%20solusi%20digital%20Anda.`;
-
-    const toggleLang = () => {
-        setLang(prev => prev === 'ID' ? 'EN' : 'ID');
-    };
 
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -62,15 +57,6 @@ export default function Navbar({ settings }) {
 
                 {/* Controls & CTA */}
                 <div className="flex items-center gap-3">
-                    {/* Language Toggle (Retro Outlined) */}
-                    <button 
-                        onClick={toggleLang}
-                        className="h-9 px-3 bg-white hover:bg-slate-50 border-2 border-slate-900 flex items-center gap-1.5 transition-all text-xs font-bold text-slate-900 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] cursor-pointer"
-                    >
-                        <span>{lang === 'ID' ? '🇮🇩' : '🇺🇸'}</span>
-                        <span>{lang}</span>
-                    </button>
-
                     {/* WhatsApp CTA (Neo-Brutalist Solid Blue) */}
                     <a 
                         href={whatsappUrl}
