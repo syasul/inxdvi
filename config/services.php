@@ -40,4 +40,9 @@ return [
         'model' => env('GEMINI_MODEL', 'gemini-2.5-flash'),
     ],
 
+    'meta' => [
+        'pixel_id' => env('META_PIXEL_ID'),
+    ],
+
 ];
+

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import anime from 'animejs';
+import { trackPixelEvent } from '../utils/pixel';
 import {
     Check,
     X,
@@ -254,6 +255,7 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                 href={whatsappUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => trackPixelEvent('Contact', { position: 'hero' })}
                                 className="px-8 py-4 bg-blue-600 text-white font-bold border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] transition-all flex items-center justify-center gap-2 cursor-pointer"
                             >
                                 <span>Konsultasi Proyek Gratis</span>
@@ -946,6 +948,11 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                                             href={`https://wa.me/${whatsappNumber}?text=Halo%20INXDVI%2C%20saya%2520tertarik%2520dengan%2520paket%2520${encodeURIComponent(pkg.name)}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => trackPixelEvent('Lead', {
+                                                content_name: pkg.name,
+                                                value: pkg.is_custom ? 0 : (billingPeriod === 'yearly' ? pkg.price_yearly : pkg.price_monthly),
+                                                currency: 'IDR'
+                                            })}
                                             className={`block w-full py-3.5 text-center text-xs font-bold border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] transition-all ${pkg.is_popular
                                                     ? 'bg-blue-600 text-white'
                                                     : 'bg-white text-slate-800 hover:bg-slate-50'

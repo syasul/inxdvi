@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MessageSquare, PhoneCall } from 'lucide-react';
+import { trackPixelEvent } from '../utils/pixel';
 
 export default function Navbar({ settings }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,6 +63,7 @@ export default function Navbar({ settings }) {
                         href={whatsappUrl}
                         target="_blank" 
                         rel="noopener noreferrer"
+                        onClick={() => trackPixelEvent('Contact', { position: 'navbar_desktop' })}
                         className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white text-xs font-bold border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] transition-all"
                     >
                         <PhoneCall size={14} />
@@ -121,6 +123,7 @@ export default function Navbar({ settings }) {
                             href={whatsappUrl}
                             target="_blank" 
                             rel="noopener noreferrer"
+                            onClick={() => trackPixelEvent('Contact', { position: 'navbar_mobile' })}
                             className="flex items-center justify-center gap-2 w-full py-3.5 mt-2 bg-blue-600 text-white font-bold border-2 border-slate-900 shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] text-sm"
                         >
                             <MessageSquare size={16} />

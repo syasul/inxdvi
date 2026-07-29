@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Instagram, Globe } from 'lucide-react';
+import { trackPixelEvent } from '../utils/pixel';
 
 export default function Footer({ settings }) {
     const whatsappNumber = settings?.whatsapp_number || '6281330012100';
@@ -72,7 +73,13 @@ export default function Footer({ settings }) {
                     <ul className="space-y-3 text-xs md:text-sm text-slate-700 font-medium">
                         <li className="flex items-center gap-2">
                             <Phone className="text-blue-600 flex-shrink-0" size={14} />
-                            <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-600">
+                            <a 
+                                href={`https://wa.me/${whatsappNumber}`} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                onClick={() => trackPixelEvent('Contact', { position: 'footer' })}
+                                className="hover:underline hover:text-blue-600"
+                            >
                                 +{whatsappNumber}
                             </a>
                         </li>
