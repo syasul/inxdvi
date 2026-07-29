@@ -44,5 +44,9 @@ return [
         'pixel_id' => env('META_PIXEL_ID'),
     ],
 
+    'google' => [
+        'analytics_id' => env('GA_MEASUREMENT_ID'),
+    ],
+
 ];
 
