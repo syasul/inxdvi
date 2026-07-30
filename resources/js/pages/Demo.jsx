@@ -4,6 +4,19 @@ import Footer from '../components/Footer';
 import { ExternalLink, Shield, Lock, Eye } from 'lucide-react';
 
 export default function Demo({ appDemos, settings }) {
+    const getImageUrl = (demo) => {
+        if (demo.image_path) {
+            if (demo.image_path.startsWith('http')) {
+                return demo.image_path;
+            }
+            return `/storage/${demo.image_path}`;
+        }
+        if (demo.url) {
+            return `https://image.thum.io/get/width/600/crop/800/${demo.url}`;
+        }
+        return "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600";
+    };
+
     return (
         <div className="bg-[#FDFBF7] min-h-screen text-slate-900 font-sans">
             <Navbar settings={settings} />
@@ -35,7 +48,7 @@ export default function Demo({ appDemos, settings }) {
                                 {/* Demo Image Mockup */}
                                 <div className="h-48 bg-slate-105 border-b-2 border-slate-900 relative overflow-hidden group">
                                     <img
-                                        src={demo.image_path || "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600"}
+                                        src={getImageUrl(demo)}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                         alt={demo.title}
                                     />
