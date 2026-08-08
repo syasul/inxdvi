@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Calendar, User, ArrowLeft, ArrowRight, Share2 } from 'lucide-react';
@@ -27,6 +28,11 @@ export default function BlogShow({ article, recentArticles, settings }) {
 
     return (
         <div className="bg-[#FDFBF7] min-h-screen text-slate-900 font-sans">
+            <Helmet>
+                <title>{article.title} — {settings?.site_name || 'INXDVI'}</title>
+                <meta name="description" content={article.excerpt || 'Baca selengkapnya mengenai artikel ini di INXDVI.'} />
+                <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+            </Helmet>
             <Navbar settings={settings} />
 
             {/* Navigation back helper & sharing */}

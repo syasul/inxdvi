@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import anime from 'animejs';
@@ -54,7 +55,7 @@ const getServiceTag = (slug) => {
     }
 };
 
-export default function Home({ services, portfolios, articles, faqs, packages, testimonials, siteStats, appDemos, settings }) {
+export default function Home({ services, portfolios, articles, faqs, packages, testimonials, siteStats, appDemos, settings, homeContents }) {
     const [billingPeriod, setBillingPeriod] = useState('monthly');
     const [activeFaq, setActiveFaq] = useState(null);
     const [activeFeatureTab, setActiveFeatureTab] = useState('ai-whatsapp');
@@ -203,8 +204,22 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
     const activeTabStyle = "px-6 py-3 bg-blue-600 text-white rounded-none border-2 border-slate-900 text-xs font-bold shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] flex items-center gap-2 transition-all cursor-pointer";
     const inactiveTabStyle = "px-6 py-3 bg-white text-slate-650 hover:bg-slate-50 border-2 border-slate-900 rounded-none text-xs font-bold shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] flex items-center gap-2 transition-all cursor-pointer";
 
+    // Fallback values for homeContents
+    const heroBadge = homeContents?.hero_badge || "INXDVI PREMIUM SOLUTION";
+    const heroTitle = homeContents?.hero_title || "Digitalisasi & Software Kustom <br /> Tanpa Batas Usaha Anda.";
+    const heroDesc = homeContents?.hero_description || "Kami merancang solusi digital premium untuk akselerasi operasional: mulai dari kasir cloud, inventory pintar, asisten AI WhatsApp 24 jam, hingga sistem Enterprise kustom yang didesain khusus sesuai kebutuhan arsitektur bisnis Anda.";
+    const marqueeText = homeContents?.marquee_text || "CUSTOM SOFTWARE ENGINEERING • INTEGRASI AUTOMASI • CLOUD KASIR POS • DIGITALISASI UMKM • WHATSAPP AI ASSISTANT • 100% BESPOKE SOLUTIONS • SUPPORT & MAINTENANCE •";
+    const servicesBadge = homeContents?.services_badge || "🚀 100% Bespoke Code";
+    const servicesTitle = homeContents?.services_title || "Solusi Teknologi End-to-End Bisnis Anda";
+    const servicesDesc = homeContents?.services_description || "Kami menyediakan solusi teknologi dan digital marketing premium untuk membantu bisnis beralih ke operasional digital autopilot dan melakukan ekspansi pasar tertarget.";
+
     return (
         <div className="bg-[#FDFBF7] min-h-screen text-slate-900 font-sans">
+            <Helmet>
+                <title>{settings?.site_name || 'INXDVI — Solusi Digital Premium'}</title>
+                <meta name="description" content={heroDesc} />
+                <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+            </Helmet>
             <Navbar settings={settings} />
 
             {/* 1. HERO SECTION (Retro grid background pattern) */}
@@ -215,18 +230,16 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                     <div className="lg:col-span-7 space-y-8 animate-fade-up">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none border-2 border-slate-900 bg-white text-blue-600 text-xs font-mono font-bold uppercase tracking-wider shadow-[3px_3px_0px_0px_rgba(15,23,42,1)]">
                             <span className="w-2.5 h-2.5 bg-blue-600 border border-slate-900"></span>
-                            <span>INXDVI PREMIUM SOLUTION</span>
+                            <span>{heroBadge}</span>
                         </div>
 
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.08] max-w-2xl">
-                            Digitalisasi & Software Kustom <br />
-                            <span className="text-blue-600">
-                                Tanpa Batas Usaha Anda.
-                            </span>
-                        </h1>
+                        <h1 
+                            className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight leading-[1.08] max-w-2xl"
+                            dangerouslySetInnerHTML={{ __html: heroTitle }}
+                        />
 
                         <p className="text-slate-700 text-sm md:text-base font-bold leading-relaxed max-w-xl">
-                            Kami merancang solusi digital premium untuk akselerasi operasional: mulai dari kasir cloud, inventory pintar, asisten AI WhatsApp 24 jam, hingga sistem Enterprise kustom yang didesain khusus sesuai kebutuhan arsitektur bisnis Anda.
+                            {heroDesc}
                         </p>
 
                         {/* Feature List (Retro styled) */}
@@ -287,8 +300,8 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
             {/* INFINITE Horizontal MARQUEE TICKER STRIP */}
             <div className="bg-blue-600 border-b-2 border-slate-900 py-3 overflow-hidden text-white font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest select-none">
                 <div className="animate-marquee whitespace-nowrap flex">
-                    <span>CUSTOM SOFTWARE ENGINEERING • INTEGRASI AUTOMASI • CLOUD KASIR POS • DIGITALISASI UMKM • WHATSAPP AI ASSISTANT • 100% BESPOKE SOLUTIONS • SUPPORT & MAINTENANCE •&nbsp;</span>
-                    <span>CUSTOM SOFTWARE ENGINEERING • INTEGRASI AUTOMASI • CLOUD KASIR POS • DIGITALISASI UMKM • WHATSAPP AI ASSISTANT • 100% BESPOKE SOLUTIONS • SUPPORT & MAINTENANCE •&nbsp;</span>
+                    <span>{marqueeText}&nbsp;</span>
+                    <span>{marqueeText}&nbsp;</span>
                 </div>
             </div>
 
@@ -298,16 +311,16 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                     <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 relative">
                         {/* Wiggling sticker badge */}
                         <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white text-blue-600 text-[9px] font-mono font-bold uppercase border-2 border-slate-900 px-3 py-1 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] animate-wiggle-badge">
-                            🚀 100% Bespoke Code
+                            {servicesBadge}
                         </div>
                         <span className="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold block pt-4">
                             LAYANAN UTAMA KAMI
                         </span>
                         <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 leading-tight">
-                            Solusi Teknologi End-to-End Bisnis Anda
+                            {servicesTitle}
                         </h2>
                         <p className="text-slate-700 text-sm font-bold">
-                            Kami menyediakan solusi teknologi dan digital marketing premium untuk membantu bisnis beralih ke operasional digital autopilot dan melakukan ekspansi pasar tertarget.
+                            {servicesDesc}
                         </p>
                     </div>
 

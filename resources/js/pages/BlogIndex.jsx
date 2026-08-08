@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Calendar, User, ArrowRight, Search } from 'lucide-react';
@@ -24,6 +25,11 @@ export default function BlogIndex({ articles, settings }) {
 
     return (
         <div className="bg-[#FDFBF7] min-h-screen text-slate-900 font-sans">
+            <Helmet>
+                <title>Blog & Wawasan Bisnis — {settings?.site_name || 'INXDVI'}</title>
+                <meta name="description" content="Pelajari strategi digital, automasi operasional, dan tips UMKM untuk melipatgandakan omzet penjualan Anda." />
+                <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+            </Helmet>
             <Navbar settings={settings} />
 
             {/* Header Area */}

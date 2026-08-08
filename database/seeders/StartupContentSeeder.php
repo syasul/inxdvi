@@ -13,6 +13,7 @@ use App\Models\PackageFeature;
 use App\Models\Testimonial;
 use App\Models\SiteStat;
 use App\Models\AppDemo;
+use App\Models\HomeContent;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -459,6 +460,63 @@ class StartupContentSeeder extends Seeder
 
         foreach ($demos as $demo) {
             AppDemo::updateOrCreate(['title' => $demo['title']], $demo);
+        }
+
+        // 11. Home Contents
+        $homeContents = [
+            [
+                'key' => 'hero_badge',
+                'value' => 'INXDVI PREMIUM SOLUTION',
+                'label' => 'Hero Badge Text',
+                'section' => 'Hero',
+                'type' => 'text'
+            ],
+            [
+                'key' => 'hero_title',
+                'value' => 'Digitalisasi & Software Kustom <br /><span class="text-blue-600">Tanpa Batas Usaha Anda.</span>',
+                'label' => 'Hero Title (Supports HTML)',
+                'section' => 'Hero',
+                'type' => 'textarea'
+            ],
+            [
+                'key' => 'hero_description',
+                'value' => 'Kami merancang solusi digital premium untuk akselerasi operasional: mulai dari kasir cloud, inventory pintar, asisten AI WhatsApp 24 jam, hingga sistem Enterprise kustom yang didesain khusus sesuai kebutuhan arsitektur bisnis Anda.',
+                'label' => 'Hero Description',
+                'section' => 'Hero',
+                'type' => 'textarea'
+            ],
+            [
+                'key' => 'marquee_text',
+                'value' => 'CUSTOM SOFTWARE ENGINEERING • INTEGRASI AUTOMASI • CLOUD KASIR POS • DIGITALISASI UMKM • WHATSAPP AI ASSISTANT • 100% BESPOKE SOLUTIONS • SUPPORT & MAINTENANCE •',
+                'label' => 'Marquee Ticker Text',
+                'section' => 'Marquee',
+                'type' => 'textarea'
+            ],
+            [
+                'key' => 'services_badge',
+                'value' => '🚀 100% Bespoke Code',
+                'label' => 'Services Badge Text',
+                'section' => 'Services',
+                'type' => 'text'
+            ],
+            [
+                'key' => 'services_title',
+                'value' => 'Solusi Teknologi End-to-End Bisnis Anda',
+                'label' => 'Services Title',
+                'section' => 'Services',
+                'type' => 'text'
+            ],
+            [
+                'key' => 'services_description',
+                'value' => 'Kami menyediakan solusi teknologi dan digital marketing premium untuk membantu bisnis beralih ke operasional digital autopilot dan melakukan ekspansi pasar tertarget.',
+                'label' => 'Services Section Description',
+                'section' => 'Services',
+                'type' => 'textarea'
+            ],
+        ];
+
+        foreach ($homeContents as $content) {
+            HomeContent::updateOrCreate(['key' => $content['key']], $content);
         }
     }
 }

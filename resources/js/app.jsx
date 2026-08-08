@@ -1,10 +1,12 @@
 import './bootstrap';
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
-import Home from './pages/Home';
-import Demo from './pages/Demo';
-import BlogIndex from './pages/BlogIndex';
-import BlogShow from './pages/BlogShow';
+import { HelmetProvider } from 'react-helmet-async';
+
+const Home = lazy(() => import('./pages/Home'));
+const Demo = lazy(() => import('./pages/Demo'));
+const BlogIndex = lazy(() => import('./pages/BlogIndex'));
+const BlogShow = lazy(() => import('./pages/BlogShow'));
 
 const container = document.getElementById('root');
 
@@ -19,15 +21,24 @@ if (container) {
 
     const root = createRoot(container);
 
-    if (page === 'home') {
-        root.render(<Home {...props} />);
-    } else if (page === 'demo') {
-        root.render(<Demo {...props} />);
-    } else if (page === 'blog-index') {
-        root.render(<BlogIndex {...props} />);
-    } else if (page === 'blog-show') {
-        root.render(<BlogShow {...props} />);
-    } else {
-        console.warn(`Unknown page component: ${page}`);
-    }
+    root.render(
+        <HelmetProvider>
+            <Suspense fallback={
+                <div className="min-h-screen flex items-center justify-center bg-[#FDFBF7]">
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="animate-spin rounded-full h-12 w-12 border-4 border-slate-200 border-t-blue-600"></div>
+                        <p className="text-xs font-mono font-bold text-slate-500 uppercase tracking-widest animate-pulse">Memuat Halaman...</p>
+                    </div>
+                </div>
+            }>
+                {page === 'home' && <Home {...props} />}
+                {page === 'demo' && <Demo {...props} />}
+                {page === 'blog-index' && <BlogIndex {...props} />}
+                {page === 'blog-show' && <BlogShow {...props} />}
+                {page !== 'home' && page !== 'demo' && page !== 'blog-index' && page !== 'blog-show' && (
+                    <div className="p-8 text-center text-red-500">Unknown page component: {page}</div>
+                )}
+            </Suspense>
+        </HelmetProvider>
+    );
 }

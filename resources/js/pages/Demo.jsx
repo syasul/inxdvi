@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ExternalLink, Shield, Lock, Eye } from 'lucide-react';
@@ -19,6 +20,11 @@ export default function Demo({ appDemos, settings }) {
 
     return (
         <div className="bg-[#FDFBF7] min-h-screen text-slate-900 font-sans">
+            <Helmet>
+                <title>Demo Aplikasi Live — {settings?.site_name || 'INXDVI'}</title>
+                <meta name="description" content="Coba langsung sistem kasir, admin dashboard, dan website e-commerce hasil rancangan tim INXDVI secara gratis." />
+                <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+            </Helmet>
             <Navbar settings={settings} />
 
             {/* Header Area */}

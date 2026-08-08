@@ -9,11 +9,13 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\AppDemoController;
+use App\Http\Controllers\Admin\HomeContentController;
 
 Route::get('/', [\App\Http\Controllers\Front\PageController::class, 'home'])->name('client.home');
 Route::get('/demo', [\App\Http\Controllers\Front\PageController::class, 'demoIndex'])->name('client.demo.index');
 Route::get('/blog', [\App\Http\Controllers\Front\PageController::class, 'blogIndex'])->name('client.blog.index');
 Route::get('/blog/{slug}', [\App\Http\Controllers\Front\PageController::class, 'blogShow'])->name('client.blog.show');
+Route::get('/sitemap.xml', [\App\Http\Controllers\Front\PageController::class, 'sitemap'])->name('client.sitemap');
 
 // Admin Routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
@@ -25,6 +27,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('app-demo', AppDemoController::class);
     Route::get('setting', [SettingController::class, 'index'])->name('admin.setting.index');
     Route::post('setting', [SettingController::class, 'update'])->name('admin.setting.update');
+    Route::get('home-content', [HomeContentController::class, 'index'])->name('admin.home-content.index');
+    Route::post('home-content', [HomeContentController::class, 'update'])->name('admin.home-content.update');
     Route::get('ai-assistant', [\App\Http\Controllers\Admin\AiAssistantController::class, 'index'])->name('admin.ai-assistant.index');
 });
 

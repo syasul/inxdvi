@@ -12,6 +12,7 @@
         'testimonials' => $testimonials,
         'siteStats' => $siteStats,
         'appDemos' => $appDemos,
-        'settings' => $settings ?? []
+        'settings' => $settings ?? [],
+        'homeContents' => $homeContents ?? []
     ]) }}"></div>
 @endsection

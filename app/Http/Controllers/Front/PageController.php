@@ -36,7 +36,23 @@ class PageController extends Controller
             ];
         }
 
-        return view('client.home', compact('services', 'portfolios', 'articles', 'faqs', 'packages', 'testimonials', 'siteStats', 'appDemos'));
+        $homeContentsRaw = \App\Models\HomeContent::all();
+        $homeContents = [];
+        foreach ($homeContentsRaw as $content) {
+            $homeContents[$content->key] = $content->value;
+        }
+
+        return view('client.home', compact('services', 'portfolios', 'articles', 'faqs', 'packages', 'testimonials', 'siteStats', 'appDemos', 'homeContents'));
+    }
+
+    public function sitemap()
+    {
+        $articles = Article::where('status', 'published')->get();
+        $portfolios = Portfolio::where('is_active', true)->get();
+        $services = Service::where('is_active', true)->get();
+
+        return response()->view('client.sitemap', compact('articles', 'portfolios', 'services'))
+            ->header('Content-Type', 'text/xml');
     }
 
     public function demoIndex()
