@@ -766,13 +766,13 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                 </div>
             </section>
 
-            {/* 5. TESTIMONIALS */}
-            {testimonials && testimonials.length > 0 && (
+            {/* 5. TESTIMONIALS (DIKOMEN / DINONAKTIFKAN SESUAI REQUEST) */}
+            {/*
+            testimonials && testimonials.length > 0 && (
                 <section id="testimoni" className="py-24 px-6 bg-[#FDFBF7]">
                     <div className="max-w-7xl mx-auto">
 
                         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 relative">
-                            {/* Wiggling sticker badge */}
                             <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white text-slate-900 text-[9px] font-mono font-bold uppercase border-2 border-slate-900 px-3 py-1 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] rotate-6 animate-wiggle-badge">
                                 💬 Client Approved
                             </div>
@@ -835,7 +835,6 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                             </div>
                         </div>
 
-                        {/* Stats strip */}
                         {siteStats && Object.keys(siteStats).length > 0 && (
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t-2 border-slate-900 pt-16 mt-20 text-center max-w-4xl mx-auto">
                                 {Object.keys(siteStats).map(key => (
@@ -852,7 +851,8 @@ export default function Home({ services, portfolios, articles, faqs, packages, t
                         )}
                     </div>
                 </section>
-            )}
+            )
+            */}
 
             {/* 7. PRICING */}
             {packages && packages.length > 0 && (
