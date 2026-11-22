@@ -1,13 +1,15 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Instagram, Globe } from 'lucide-react';
 import { trackPixelEvent } from '../utils/pixel';
+import FloatingWhatsApp from './FloatingWhatsApp';
 
 export default function Footer({ settings }) {
     const whatsappNumber = settings?.whatsapp_number || '6281330012100';
     const email = settings?.email || 'support@inxdvi.com';
 
     return (
-        <footer className="bg-[#FAF6EE] border-t-2 border-slate-900 py-16">
+        <>
+            <footer className="bg-[#FAF6EE] border-t-2 border-slate-900 py-16">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10">
                 
                 {/* Branding Column */}
@@ -104,5 +106,7 @@ export default function Footer({ settings }) {
                 <span className="block sm:inline sm:ml-2">Dibuat dengan dedikasi untuk akselerasi bisnis lokal.</span>
             </div>
         </footer>
+        <FloatingWhatsApp settings={settings} />
+        </>
     );
 }
